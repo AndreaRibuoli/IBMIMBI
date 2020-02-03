@@ -1,1 +1,2 @@
 QCLSRC    BUILD     CLP       IBMIMBI installer
+QCLSRC    ESEMPIO   CLP       Prova di installazione
