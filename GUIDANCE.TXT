@@ -1,2 +1,18 @@
 QCLSRC    BUILD     CLLE      IBMIMBI development (CALL IBMIMBI/BUILD)
 QCLSRC    ESEMPIO   CLP       Prova di installazione
+QCLSRC    T0011CP5  CLP       Command processing program for T0011CM5    
+QCLSRC    T0011CR5  CLP       Installation program for creating all example objects     
+QCLSRC    T0011DL5  CLP       Program used by command to delete example objects                       
+QDDSSRC   T0011DD5  PF        Physical file description for address book file         
+QUIMSRC   T0011PN5  PNLGRP    Application panel group         
+QUIMSRC   T0011PN6  PNLGRP    Help for example                
+QRPGSRC   T0011RP5  RPG       Runs intial panel               
+QRPGSRC   T0011RE5  RPG       General exit program            
+QRPGSRC   T0011RL5  RPG       Incomplete list exit            
+QRPGSRC   T0011RP6  RPG       F4 on state selection handler                       
+QRPGSRC   T0011RF5  RPG       Called by T0011RP6              
+QRPGSRC   T0011RA5  RPG       List option exit                
+QRPGSRC   T0011RF6  RPG       Function key exit               
+QRPGSRC   T0011RA5  RPG       List option exit                
+QCMDSRC   T0011CM5  CMD       Invokes initial panel           
+QCMDSRC   T0011DC5  CMD       Command to delete example objects               
