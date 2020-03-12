@@ -36,30 +36,30 @@
       **************************************************************
      I            DS
      I                                    B   1   40TYPCAL
-     I                                        1   4 TYPCA@
+     I                                        1   4 TYPCA§
      I                                    B   5   80OPTNUM
-     I                                        5   8 OPTNU@
+     I                                        5   8 OPTNU§
      I                                    B   9  120FNCQUA
-     I                                        9  12 FNCQU@
+     I                                        9  12 FNCQU§
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR
       **************************************************************
      C           *ENTRY    PLIST
-     C                     PARM           TYPCA#  4
-     C                     PARM           APPHN#  8
-     C                     PARM           PNLNA# 10
-     C                     PARM           LSTNA# 10
-     C                     PARM           SLTHN#  4
-     C                     PARM           OPTNU#  4
-     C                     PARM           FNCQU#  4
-     C                     MOVE TYPCA#    TYPCA@
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE PNLNA#    PNLNAM
-     C                     MOVE LSTNA#    LSTNAM
-     C                     MOVE SLTHN#    SLTHND
-     C                     MOVE OPTNU#    OPTNU@
-     C                     MOVE FNCQU#    FNCQU@
+     C                     PARM           TYPCA£  4
+     C                     PARM           APPHN£  8
+     C                     PARM           PNLNA£ 10
+     C                     PARM           LSTNA£ 10
+     C                     PARM           SLTHN£  4
+     C                     PARM           OPTNU£  4
+     C                     PARM           FNCQU£  4
+     C                     MOVE TYPCA£    TYPCA§
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE PNLNA£    PNLNAM
+     C                     MOVE LSTNA£    LSTNAM
+     C                     MOVE SLTHN£    SLTHND
+     C                     MOVE OPTNU£    OPTNU§
+     C                     MOVE FNCQU£    FNCQU§
       **************************************************************
       *   Check the parameters, this routine only does call=3.
       **************************************************************
