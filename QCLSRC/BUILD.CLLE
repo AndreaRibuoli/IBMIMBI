@@ -7,6 +7,7 @@
              DCL        VAR(&IFSPATH) TYPE(*CHAR) LEN(100)
              DCL        VAR(&F) TYPE(*CHAR) LEN(10) VALUE(T0011MG5)
              DCL        VAR(&SPOOL) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SPOOL_O) TYPE(*CHAR) LEN(10)
              CHGVAR     VAR(&DEVOPT) VALUE(&DEVOPT_P)
              MONMSG     MSGID(MCH3601) EXEC(CHGVAR VAR(&DEVOPT) VALUE(L))
              CRTLIB     LIB(&TGTLIB)
