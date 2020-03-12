@@ -67,22 +67,14 @@
                           OUTPUT(*NONE) ALWRTVSRC(*NO) 
              MONMSG     MSGID(CPF0000)
              ENDDO
-/*---------------------------------------------------------------
-    Create library and datafile -
-*/
 ADDLIBLE   LIB(&TGTLIB)
   MONMSG CPF2103
   CRTPF      FILE(&TGTLIB/T0011DD5) SRCFILE(&SRCLIB/QDDSSRC)
   MONMSG     MSGID(CPF0000)
-/*-----------------------------------------------------------
-    Create message file -                                 */
 
            DLTMSGF    MSGF(&TGTLIB/&F)
            MONMSG     MSGID(CPF2105)
            CRTMSGF    MSGF(&TGTLIB/&F)
-
-/*  Message 0001 is the product title and copyright.  */
-
 ADDMSGD USR0001 &TGTLIB/&F 'Address Book Utility:  Sample RPG-UIM +
    program.'
 
