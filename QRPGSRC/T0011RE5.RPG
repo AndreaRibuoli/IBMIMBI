@@ -37,13 +37,13 @@
       *
      I            DS
      I                                    B   1   40TYPCAL
-     I                                        1   4 TYPCA@
+     I                                        1   4 TYPCA§
      I                                    B   5   80OPTNUM
-     I                                        5   8 OPTNU@
+     I                                        5   8 OPTNU§
      I                                    B   9  120FNCQUA
-     I                                        9  12 FNCQU@
+     I                                        9  12 FNCQU§
      I                                    B  13  160FNCKEY
-     I                                       13  16 FNCKE@
+     I                                       13  16 FNCKE§
       *-------------------------------------------------------------
       *   Declare parameters to the QMHSNDPM system API
       *
@@ -60,18 +60,18 @@
       *  Some acrobatics required since B parms not allowed on *ENTR
       *
      C           *ENTRY    PLIST
-     C                     PARM           TYPCA#  4
-     C                     PARM           APPHN#  8
-     C                     PARM           PNLNA# 10
-     C                     PARM           FNCKE#  4
-     C                     PARM           FNCQU#  4
-     C                     PARM           OPTNU#  4
-     C                     MOVE TYPCA#    TYPCA@
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE PNLNA#    PNLNAM
-     C                     MOVE FNCKE#    FNCKE@
-     C                     MOVE FNCQU#    FNCQU@
-     C                     MOVE OPTNU#    OPTNU@
+     C                     PARM           TYPCA£  4
+     C                     PARM           APPHN£  8
+     C                     PARM           PNLNA£ 10
+     C                     PARM           FNCKE£  4
+     C                     PARM           FNCQU£  4
+     C                     PARM           OPTNU£  4
+     C                     MOVE TYPCA£    TYPCA§
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE PNLNA£    PNLNAM
+     C                     MOVE FNCKE£    FNCKE§
+     C                     MOVE FNCQU£    FNCQU§
+     C                     MOVE OPTNU£    OPTNU§
       **************************************************************
       *   Check the parameters, this routine only does call=4.
       **************************************************************
