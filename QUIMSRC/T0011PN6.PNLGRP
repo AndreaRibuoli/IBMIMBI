@@ -1,22 +1,4 @@
-.*******************************************************************
-.*
-.*  Part name:    T0011PN6
-.*
-.*  Source file:  QATTUIM in library QUSRTOOL
-.*
-.*  Function:     Source for panel group T0011PN6 for example 6
-.*                in the Guide to Programming Application
-.*                and Help Displays manual.
-.*
-.*                The panel group contains all the help ids for
-.*                example 3.
-.*
-.*  Publication:  Guide to Programming Application and Help
-.*                Displays, SC41-0011
-.*
-.*******************************************************************
 :PNLGRP.
-.*
 :HELP     NAME='about'.
 About UIM Example
 :P.
@@ -29,14 +11,9 @@ and "User Interface Manager APIs" in
 :cit.System Programmer's Interface Reference:ecit.,
 (SC41-8223).
 :EHELP.
-.*
 :HELP  Name=nohelp.
 No help for this item.
 :EHELP.
-.*
-.*****************************************************************
-.*     The following is help for the T0011CM5 command
-.*****************************************************************
 :help name=STRABU.
 :p.
 Use the Start Address Book Utility (T0011CM5) command to view and
@@ -52,8 +29,6 @@ deleted, or added.  If *NO is specified, then all writes and updates
 to the database are ignored.
 :eparml.
 :ehelp.
-
-.*****************************************************************
 :help name=wrkabuact1help.
 :parml.
 :pt.1=Create
@@ -61,14 +36,12 @@ to the database are ignored.
 This option can only be used on the first entry field.
 :eparml.
 :ehelp.
-
 :help name=wrkabuact2help.
 :parml.
 :pt.2=Change
 :pd.Allows you to change a name.
 :eparml.
 :ehelp.
-
 :help name=wrkabuact4help.
 :parml.
 :pt.4=Delete
@@ -78,24 +51,15 @@ deleted.
 This option cannot be used on the first entry field.
 :eparml.
 :ehelp.
-
 :help name=wrkabuact5help.
 :parml.
 :pt.5=Display
 :pd.Allows you to display the details of a name.
 :eparml.
 :ehelp.
-
-.*******************************************************************
-.*
-.*    Common function key help
-.*
-.*******************************************************************
-
 :help name=fkeyhelp.
 :h3.Function keys
 :ehelp.
-
 :help name=k1help.
 :parml.
 :pt.F1=Help
@@ -103,7 +67,6 @@ This option cannot be used on the first entry field.
 specific field on the display.
 :eparml.
 :ehelp.
-
 :help name=k3help.
 :parml.
 :pt.F3=Exit
@@ -111,21 +74,18 @@ specific field on the display.
 task was started.
 :eparml.
 :ehelp.
-
 :help name=k4help.
 :parml.
 :pt.F4=Prompt
 :pd.Provides assistance in entering information for a data item.
 :eparml.
 :ehelp.
-
 :help name=k5help.
 :parml.
 :pt.F5=Refresh
 :pd.Refresh the current display with the current file contents.
 :eparml.
 :ehelp.
-
 :help name=k11help.
 :parml.
 :pt.F11=Change view
@@ -133,49 +93,42 @@ task was started.
 display with more columns.
 :eparml.
 :ehelp.
-
 :help name=k12help.
 :parml.
 :pt.F12=Cancel
 :pd.Returns to the previous menu or display.
 :eparml.
 :ehelp.
-
 :help name=k17help.
 :parml.
 :pt.F17=Position to
 :pd.Allows you to position the list to a name.
 :eparml.
 :ehelp.
-
 :help name=k24help.
 :parml.
 :pt.F24=More keys
 :pd.Display more function keys available for this display.
 :eparml.
 :ehelp.
-
 :help name=pageuphelp.
 :parml.
 :pt.Page Up or Roll Down
 :pd.Moves backward to show additional information for this display.
 :eparml.
 :ehelp.
-
 :help name=pagedownhelp.
 :parml.
 :pt.Page Down or Roll Up
 :pd.Moves forward to show additional information for this display.
 :eparml.
 :ehelp.
-
 :help name=helphelp.
 :parml.
 :pt.Help
 :pd.Provides additional information about using the display.
 :eparml.
 :ehelp.
-
 :help name=printhelp.
 :parml.
 :pt.Print
@@ -183,19 +136,16 @@ display with more columns.
 on the display.
 :eparml.
 :ehelp.
-
 :help name=sysreqhelp.
 :parml.
 :pt.System Request
 :pd.Ends the previous request.
 :eparml.
 :ehelp.
-
 :help name=enterhelp.
 :parml.
 :pt.Enter
 :pd.Submits information on the display for processing.
 :eparml.
 :ehelp.
-.*
 :EPNLGRP.
