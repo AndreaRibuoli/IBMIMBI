@@ -1,0 +1,513 @@
+.*******************************************************************
+.*
+.*  Part name:    T0011PN5
+.*
+.*  Source file:  QATTUIM in library QUSRTOOL
+.*
+.*  Function:     Source for panel group T0011PN5 for example 3
+.*                in the Guide to Programming Application
+.*                and Help Displays manual.
+.*
+.*                The panel group contains all application panel
+.*                definitions for the the command for example 3
+.*
+.*  Publication:  Guide to Programming Application and Help
+.*                Displays, SC41-0011
+.*
+.*  DISCLAIMER:
+.*  These examples have not been thoroughly tested under all conditi
+.*  IBM, therefore, cannot guarantee or imply reliability, serviceab
+.*  or function of these programs.  All programs contained herein ar
+.*  provided 'AS IS'.  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+.*  FITNESS FOR A PARTICULAR PURPOSE ARE EXPRESSELY DISCLAIMED.  IBM
+.*  not be liable for any lost revenue, lost profits or other conseq
+.*  damages caused by the Programs even if advised of the possibilit
+.*  such damages.  Furthermore, IBM shall not be liable for any dela
+.*  losses or any other damages which may result from furnishing the
+.*  Program, even if advised of the possibility of such damages.
+.*
+.*  (C) Copyright IBM Corp. 1993, All rights reserved.
+.*****************************************************************
+.*
+:PNLGRP DFTMSGF='*LIBL/T0011MG5'.
+.* -----------------------------------------------------------------
+.* The following imports all the help text identifiers from the
+.* help panel group.
+.*
+:IMPORT NAME='*' PNLGRP=t0011pn6.
+.* -----------------------------------------------------------------
+.* The following imbeds the member containing the classes, variables
+.* varrcds, listdefs, conditions, and key lists.
+.*
+.im t0011pni
+.*
+.*******************************************************************
+.*   Main panel to work with address book
+.*******************************************************************
+:PANEL    NAME=wrkabu
+          HELP=nohelp
+          KEYL=wrkkeys
+          TT=viewtt
+          ENTER='RETURN 26'
+          USREXIT='CALL ABUEXIT'
+          TOPSEP=SYSNAM.
+Work with Address Book Entries
+.* -------------------------------------
+.* Define the list area
+.* -------------------------------------
+:LIST     DEPTH='*'
+          LISTDEF=datalst
+          ACTOR=UIM
+          EXTACT=YES
+          MAXHEAD=4
+          MAXACTL=3
+          VIEW=views
+          .
+:TOPINST.
+Type options, press Enter.
+.*
+.* -------------------------------------
+.* Specify the action to be taken for each option
+.* -------------------------------------
+:LISTACT  OPTION=1
+          ACTFOR=EXTACTE
+          HELP=nohelp
+          ENTER='CALL ABUACTN'.
+1=Add
+.*
+:LISTACT  OPTION=2
+          NOEXT=MSG
+          EXTMSGID='USR0010'
+          EXTMSGF='*LIBL/T0011MG5'
+          HELP=nohelp
+          ENTER='CALL ABUACTN'.
+2=Change
+.*       (actions requiring confirmation must have actfor=liste).
+:LISTACT  OPTION=4
+          ACTFOR=LISTE
+          HELP=nohelp
+          CONFIRM=rmvabu
+          ENTER='CALL ABUACTN'.
+4=Remove
+.*
+:LISTACT  OPTION=5
+          NOEXT=MSG
+          EXTMSGID='USR0010'
+          EXTMSGF='*LIBL/T0011MG5'
+          HELP=nohelp
+          ENTER='CALL ABUACTN'.
+5=Display
+:LISTACT  OPTION=6
+          NOEXT=MSG
+          EXTMSGID='USR0010'
+          EXTMSGF='*LIBL/T0011MG5'
+          HELP=nohelp
+          ENTER='CALL ABUACTN'.
+6=Print
+.* -------------------------------------
+.* Define the columns and headings to display
+.* -------------------------------------
+:LISTCOL  VAR=opt
+          USAGE=INOUT
+          EXTACT=YES
+          HELP=nohelp
+          MAXWIDTH=6.
+Opt
+.*
+:LISTCOL  VAR=name
+          USAGE=OUT
+          EXTACT=YES
+          HELP=nohelp
+          MAXWIDTH=25.
+'Full Name'
+.*   (use quotes to prevent title breakage)
+.*   (maxwidth='*' will truncate data if necessary)
+:LISTCOL  VAR=addr
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH='*'.
+'Street Address'
+.*
+:LISTCOL  VAR=city
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=20.
+City
+.*
+:LISTCOL  VAR=state
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=5.
+State
+.*
+:LISTCOL  VAR=zip
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH='*'.
+'Zip Code'
+.*
+.* -------------------------------------
+.* Define multiple views for F11 to toggle between
+.* -------------------------------------
+:LISTVIEW COLS='opt name addr'.
+:LISTVIEW COLS='opt name city state zip'.
+.*
+:ELIST.
+:EPANEL.
+.*
+.*******************************************************************
+.* Define panel for confirm remove of members from WRKMBR panel
+.*
+.*  return 100 is required for confirmation panels.
+.*******************************************************************
+:PANEL    NAME=rmvabu
+          HELP=nohelp
+          KEYL=nconfkeys
+          ENTER='RETURN 100'
+          USREXIT='CALL ABUEXIT'
+          TOPSEP=space.
+Confirm Delete of Address Book Entries
+.* -------------------------------------
+.* Define the list area
+.* -------------------------------------
+:LIST     DEPTH='*'
+          LISTDEF=rmvlst
+          ACTOR=NONE
+          MAXHEAD=4
+          VIEW=views
+          .
+:TOPINST.Press Enter to confirm your choices for 4=Delete.
+:TOPINST.Press F12 to return to change your choices.
+.*
+:LISTCOL  VAR=opt
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=6.
+Opt
+.*
+:LISTCOL  VAR=name
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=25.
+'Full Name'
+.*   (use quotes to prevent title breakage)
+.*   (maxwidth=* will truncate data if necessary)
+:LISTCOL  VAR=addr
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH='*'.
+'Street Address'
+.*
+:LISTCOL  VAR=city
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=20.
+City
+.*
+:LISTCOL  VAR=state
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH=5.
+State
+.*
+:LISTCOL  VAR=zip
+          USAGE=OUT
+          HELP=nohelp
+          MAXWIDTH='*'.
+'Zip Code'
+.*
+.* -------------------------------------
+.* Define multiple views for F11 to toggle between
+.* -------------------------------------
+:LISTVIEW COLS='opt name addr'.
+:LISTVIEW COLS='opt name city state zip'.
+.*
+:ELIST.
+:EPANEL.
+.*
+.* -----------------------------------------------------------------
+.* Define panel to Display ABU Name
+.* -----------------------------------------------------------------
+:PANEL    NAME=dspabu
+          HELP=nohelp
+          KEYL=basickeys
+          ENTER='RETURN 26'
+          USREXIT='CALL ABUEXIT'
+          TOPSEP=SPACE.
+Display Address Book Entry
+.*
+:DATA     DEPTH='*'
+          BOTSEP=SPACE
+          .
+.* -------------------------------------
+.* The first column is for the prompt text with leader dots.
+.* The second column is for the variable values.
+:DATACOL  WIDTH=32.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=name
+          USAGE=OUT
+          HELP=nohelp
+          .
+Full name
+:DATAI    VAR=addr
+          USAGE=OUT
+          HELP=nohelp
+          .
+Street address
+:DATAI    VAR=city
+          USAGE=OUT
+          HELP=nohelp
+          .
+City
+:DATAI    VAR=state
+          USAGE=OUT
+          HELP=nohelp
+          .
+State
+:DATAI    VAR=zip
+          USAGE=OUT
+          HELP=nohelp
+          .
+Zip code
+:BOTINST.Press Enter to continue.
+:EDATA.
+:EPANEL.
+.*
+.* -----------------------------------------------------------------
+.* Define Panel for Change
+.* -----------------------------------------------------------------
+:PANEL    NAME=chgabu
+          HELP=nohelp
+          KEYL=chgkeys
+          ENTER='RETURN 26'
+          USREXIT='CALL ABUEXIT'
+          TOPSEP=SPACE.
+Change Address Book Entry
+.*
+.* -------------------------------------
+.* Define a data presentation area for add/update of
+.* name, address, city state and zip of the customer.
+.*
+.* -------------------------------------
+:DATA     DEPTH=2
+          BOTSEP=NONE
+          .
+:DATACOL  WIDTH=32.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=name
+          USAGE=OUT
+          HELP=nohelp
+          .
+Full name
+:edata.
+.****************************************************************
+:DATA     DEPTH='*'
+          BODYSEP=BOTH
+          BOTSEP=SPACE
+          .
+:TOPINST.Type choices, press Enter.
+.* -------------------------------------
+.* The first column is for the prompt text with leader dots.
+.* The second column is for the variable values.
+:DATACOL  WIDTH=30.
+:DATACOL  WIDTH=14.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=addr
+          USAGE=INOUT
+          HELP=nohelp
+          .
+Street address
+:DATAC.
+Character
+:DATAI    VAR=city
+          USAGE=INOUT
+          HELP=nohelp
+          .
+City
+:DATAC.
+Character
+:DATAI    VAR=state
+          USAGE=INOUT
+          PROMPT='CALL ABUPROM'
+          HELP=nohelp
+          .
+State
+:DATAC.
+F4 for list
+:DATAI    VAR=zip
+          USAGE=INOUT
+          HELP=nohelp
+          .
+Zip code
+:DATAC.
+00000-99999
+:EDATA.
+.*
+:EPANEL.
+.*
+.* -----------------------------------------------------------------
+.* Define Panel for Add
+.* -----------------------------------------------------------------
+:PANEL    NAME=addabu
+          HELP=nohelp
+          KEYL=chgkeys
+          ENTER='RETURN 26'
+          USREXIT='CALL ABUEXIT'
+          TOPSEP=SPACE.
+Add Address Book Entry
+.*
+.* -------------------------------------
+.* Define a data presentation area for add/update of
+.* name, address, city state and zip of the customer.
+.*
+.* -------------------------------------
+:DATA     DEPTH='*'
+          BODYSEP=BOTH
+          BOTSEP=SPACE
+          .
+:TOPINST.Type choices, press Enter.
+.* -------------------------------------
+.* The first column is for the prompt text with leader dots.
+.* The second column is for the variable values.
+:DATACOL  WIDTH=30.
+:DATACOL  WIDTH=14.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=name
+          USAGE=INOUT
+          REQUIRED=YES
+          HELP=nohelp
+          .
+Full name
+:DATAC.
+Character
+:DATAI    VAR=addr
+          USAGE=INOUT
+          HELP=nohelp
+          .
+Street address
+:DATAC.
+Character
+:DATAI    VAR=city
+          USAGE=INOUT
+          HELP=nohelp
+          .
+City
+:DATAC.
+Character
+:DATAI    VAR=state
+          USAGE=INOUT
+          PROMPT='CALL ABUPROM'
+          HELP=nohelp
+          .
+State
+:DATAC.
+F4 for list
+:DATAI    VAR=zip
+          USAGE=INOUT
+          HELP=nohelp
+          .
+Zip code
+:DATAC.
+00000-99999
+:EDATA.
+.*
+:EPANEL.
+.*******************************************************************
+.*   Popup panel for F17 = Position-to
+.*******************************************************************
+:PANEL    NAME=posabu
+          HELP=nohelp
+          KEYL=selkeys
+          ENTER='RETURN 26'
+          WIDTH=74
+          DEPTH=8
+          TOPSEP=SPACE.
+Position the List
+.* -------------------------------------
+.* Define the data area
+.* -------------------------------------
+:DATA     DEPTH='*' botsep=none bodysep=both   compact.
+:TOPINST.Type choices, press Enter.
+.* -------------------------------------
+:DATACOL  WIDTH=18.
+:DATACOL  WIDTH=25.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=name
+          USAGE=INOUT
+          REQUIRED=YES
+          HELP=nohelp
+          .
+Full name
+:DATAC.
+Starting characters
+:EDATA.
+:EPANEL.
+.*
+.*------------------------------------------------------------------
+.*   Panel for Select State abbreviation
+.*------------------------------------------------------------------
+.*
+:panel name=selsta help=selstahelp keyl=selkeys
+    width=50 depth=20 topsep=space enter='return 26'.
+Select State
+:list depth='*' listdef=stalist actor=caller maxhead=4.
+:topinst.
+Type option, press Enter.
+:listact  option=1 help=nohelp.
+1=Select
+:listcol  var=opt1      maxwidth=4  usage=inout help=nohelp.
+Opt
+:listcol  var=state     maxwidth=10 usage=out   help=nohelp.
+State Code
+:listcol  var=stname    maxwidth='*' usage=out   help=nohelp.
+'State Name'
+:listview cols='opt1 state stname'.
+:elist.
+:epanel.
+.*
+.*------------------------------------------------------------------
+.*   Panel definitions for print header and print panel
+.*------------------------------------------------------------------
+:PRTHEAD NAME=prthdabu.Print Address Book Entry
+:PRTTRAIL.E N D  O F  L I S T I N G
+:EPRTHEAD.
+.*
+:PRTPNL   NAME=prtabu.Print Address Book Entry
+.*
+:DATA     DEPTH='*'
+          BOTSEP=SPACE
+          .
+.* -------------------------------------
+.* The first column is for the prompt text with leader dots.
+.* The second column is for the variable values.
+:DATACOL  WIDTH=32.
+:DATACOL  WIDTH='*'.
+.*
+:DATAI    VAR=name
+          USAGE=OUT
+          .
+Full name
+:DATAI    VAR=addr
+          USAGE=OUT
+          .
+Street address
+:DATAI    VAR=city
+          USAGE=OUT
+          .
+City
+:DATAI    VAR=state
+          USAGE=OUT
+          .
+State
+:DATAI    VAR=zip
+          USAGE=OUT
+          .
+Zip code
+:EDATA.
+:EPRTPNL.
+:EPNLGRP.
