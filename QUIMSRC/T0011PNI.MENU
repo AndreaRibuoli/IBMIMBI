@@ -1,0 +1,368 @@
+.*******************************************************************
+.*   T0011PNI  -  Panel group classes, variables, etc.
+.*****************************************************************
+.*  This source is an example of an imported panel group. This panel
+.*  contains only the var and class definitions for the example.
+.*
+.* -----------------------------------------------------------------
+.* Define all variable classes
+.* -----------------------------------------------------------------
+.* Option
+:CLASS    NAME=optcl
+          BASETYPE='ACTION'
+          WIDTH=1.
+:ECLASS.
+.* -----------------
+.* Name - must begin with an uppercase character.
+.*        special values *top *bot are allowed for position-to
+:CLASS    NAME=namecl
+          BASETYPE='CHAR 25'.
+:TL CASE=UPPER.
+:TI VALUE='"*TOP"'.*TOP
+:TI VALUE='"*BOT"'.*BOT
+:ETL.
+:CHECK    RANGE='"A" "Z9999999999"' MSGID=USR0011.
+:ECLASS.
+.* -----------------
+.* Address
+:CLASS    NAME=addrcl
+          BASETYPE='CHAR 30'.
+:ECLASS.
+.* -----------------
+.* City
+:CLASS    NAME=citycl
+          BASETYPE='CHAR 20'.
+:ECLASS.
+.* -----------------
+.* State
+:CLASS    NAME=statecl
+          BASETYPE='CHAR 2'
+          CASE=UPPER.
+:ECLASS.
+.* -----------------
+.* Zip
+.*    This is actually a zoned(5,0), but we declare it as char
+.*    and then do the input checking in the general exit program.
+.*    The reason is to support leading zeros.
+:CLASS    NAME=zipcl
+          BASETYPE='CHAR 5'.
+:ECLASS.
+.* -----------------
+.* Exit program specification for CALL dialog command
+:CLASS    NAME=pgmcl
+          BASETYPE='CHAR 20'.
+:ECLASS.
+.* -----------------
+.* View number
+:CLASS    NAME=viewcl
+          BASETYPE='BIN 15'.
+:ECLASS.
+.*
+.* ===========================================================
+.* Define all dialog variables
+.* ----------------------------------------------------------
+.* Name
+:VAR      NAME=name
+          CLASS=namecl.
+.* Address
+:VAR      NAME=addr
+          CLASS=addrcl.
+.* City
+:VAR      NAME=city
+          CLASS=citycl.
+.* State
+:VAR      NAME=state
+          CLASS=statecl.
+.* Zip
+:VAR      NAME=zip
+          CLASS=zipcl.
+.* State name
+:VAR      NAME=stname
+          CLASS=citycl.
+.* ----------------------------------------------------------
+.* View variable (used by F11)
+:VAR      NAME=views
+          CLASS=viewcl.
+.* ----------------------------------------------------------
+.* Note:  The following declares two OPT variables.  opt is for the
+.*        main wrk list and opt1 is for the popup selection list.
+.*
+.* Option for abulst
+:VAR      NAME=opt
+          CLASS=optcl.
+.* Option for stalist
+:VAR      NAME=opt1
+          CLASS=optcl.
+.* ----------------------------------------------------------
+.* Program to call for general panel exit
+:VAR      NAME=abuexit
+          CLASS=pgmcl.
+.* Program to call for incomplete list processing
+:VAR      NAME=abuincl
+          CLASS=pgmcl.
+.* Program to call for list actions
+:VAR      NAME=abuactn
+          CLASS=pgmcl.
+.* Program to call for command key processing
+:VAR      NAME=abufkey
+          CLASS=pgmcl.
+.* Program to call for cursor sensitive prompting
+:VAR      NAME=abuprom
+          CLASS=pgmcl.
+.* -----------------------------------------------------------------
+.* Define variable record for exit programs
+.* -----------------------------------------------------------------
+:VARRCD   NAME=pgmvar
+          VARS='abuactn abuexit abufkey abuincl abuprom'.
+.* -----------------------------------------------------------------
+.* Define a variable record for name and address information
+.* -----------------------------------------------------------------
+:VARRCD   NAME=datavar
+          VARS='opt name addr city state zip'.
+.* -----------------------------------------------------------------
+.* Define a variable record for selection list
+.* -----------------------------------------------------------------
+:VARRCD   NAME=selvar
+          VARS='opt1 state stname'.
+.* -----------------------------------------------------------------
+.* Define the list for work-with panel
+.* -----------------------------------------------------------------
+:LISTDEF  NAME=datalst MSGID=USR0012
+          VARS='opt name addr city state zip'.
+.* -----------------------------------------------------------------
+.* Define the list for confirmation panel
+.* -----------------------------------------------------------------
+:LISTDEF  NAME=rmvlst
+          VARS='opt name addr city state zip'.
+.* -----------------------------------------------------------------
+.* Define the list for select state code
+.* -----------------------------------------------------------------
+:LISTDEF  NAME=stalist
+          VARS='opt1 state stname'.
+.*
+.* -----------------------------------------------------------------
+.* Define all conditions
+.* -----------------------------------------------------------------
+.* Conditions for views of list
+:COND     NAME=view0 EXPR='views=0'.
+:COND     NAME=view1 EXPR='views=1'.
+.*
+.* -----------------------------------------------------------------
+.* Define truth table to specify that mbrview1 and mbrview2
+.* are mutually exclusive conditions
+.* This will cause UIM to reserve only one line of function
+.* keys on the work with members panel
+.* -----------------------------------------------------------------
+:TT       NAME=viewtt
+          CONDS='view0 view1'.
+:TTROW    VALUES=' 1     0  '.
+:TTROW    VALUES=' 0     1  '.
+:ETT.
+.*
+.* -----------------------------------------------------------------
+.* Define keys for WRKABU panel
+.* -----------------------------------------------------------------
+:KEYL     NAME=wrkkeys
+          HELP=keyl.
+:KEYI     KEY=F1
+          HELP=helpf1
+          ACTION=HELP.
+:KEYI     KEY=F3
+          HELP=exit
+          ACTION='EXIT SET'
+          VARUPD=NO.
+F3=Exit
+:KEYI     KEY=F5
+          HELP=exit
+          ACTION='CALL ABUFKEY'
+          VARUPD=NO.
+F5=Refresh
+:KEYI     KEY=F11
+          HELP=f11
+          ACTION=CHGVIEW
+          COND=view0.
+F11=Display city
+:KEYI     KEY=F11
+          HELP=f11
+          ACTION=CHGVIEW
+          COND=view1.
+F11=Display address
+:KEYI     KEY=F12
+          HELP=cancel
+          ACTION='CANCEL SET'
+          VARUPD=NO.
+F12=Cancel
+:KEYI     KEY=F17
+          HELP=nohelp
+          ACTION='CALL ABUFKEY'
+          VARUPD=NO.
+F17=Position to
+:KEYI     KEY=ENTER
+          HELP=enter
+          ACTION=ENTER.
+:KEYI     KEY=HELP
+          HELP=help
+          ACTION=HELP.
+:KEYI     KEY=PAGEDOWN
+          HELP=pagedown
+          ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP
+          HELP=pageup
+          ACTION=PAGEUP.
+:KEYI     KEY=PRINT
+          HELP=print
+          ACTION=PRINT.
+:KEYI     KEY=SYSREQ
+          HELP=sysreq.
+:EKEYL.
+.*
+.* -----------------------------------------------------------------
+.* Define keys for RMVABU panel
+.* -----------------------------------------------------------------
+:KEYL     NAME=nconfkeys
+          HELP=keyl.
+:KEYI     KEY=F1
+          HELP=f1
+          ACTION=HELP.
+:KEYI     KEY=F11
+          HELP=f11
+          ACTION=CHGVIEW
+          COND=view0.
+F11=Display city
+:KEYI     KEY=F11
+          HELP=f11
+          ACTION=CHGVIEW
+          COND=view1.
+F11=Display address
+:KEYI     KEY=F12
+          HELP=f12
+          ACTION='CANCEL SET'
+          VARUPD=NO.
+F12=Cancel
+:KEYI     KEY=ENTER
+          HELP=enter
+          ACTION=ENTER.
+:KEYI     KEY=HELP
+          HELP=help
+          ACTION=HELP.
+:KEYI     KEY=PAGEDOWN
+          HELP=pagedown
+          ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP
+          HELP=pageup
+          ACTION=PAGEUP.
+:KEYI     KEY=PRINT
+          HELP=print
+          ACTION=PRINT.
+:KEYI     KEY=SYSREQ
+          HELP=sysreq.
+:EKEYL.
+.*
+.* -----------------------------------------------------------------
+.* Define keys for DSPABU panel
+.* -----------------------------------------------------------------
+:KEYL     NAME=basickeys
+          HELP=keyl.
+:KEYI     KEY=F1
+          HELP=helpf1
+          ACTION=HELP.
+:KEYI     KEY=F3
+          HELP=exit
+          ACTION='EXIT SET'
+          VARUPD=NO.
+F3=Exit
+:KEYI     KEY=F12
+          HELP=cancel
+          ACTION='CANCEL SET'
+          VARUPD=NO.
+F12=Cancel
+:KEYI     KEY=ENTER
+          HELP=enter
+          ACTION=ENTER.
+:KEYI     KEY=HELP
+          HELP=help
+          ACTION=HELP.
+:KEYI     KEY=PAGEDOWN
+          HELP=pagedown
+          ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP
+          HELP=pageup
+          ACTION=PAGEUP.
+:KEYI     KEY=PRINT
+          HELP=print
+          ACTION=PRINT.
+:KEYI     KEY=SYSREQ
+          HELP=sysreq.
+:EKEYL.
+.* -----------------------------------------------------------------
+.* Define keys for SELSTA panel
+.* -----------------------------------------------------------------
+:KEYL     NAME=selkeys
+          HELP=keyl.
+:KEYI     KEY=F1
+          HELP=helpf1
+          ACTION=HELP.
+:KEYI     KEY=F12
+          HELP=cancel
+          ACTION='CANCEL SET'
+          VARUPD=NO.
+F12=Cancel
+:KEYI     KEY=ENTER
+          HELP=enter
+          ACTION=ENTER.
+:KEYI     KEY=HELP
+          HELP=help
+          ACTION=HELP.
+:KEYI     KEY=PAGEDOWN
+          HELP=pagedown
+          ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP
+          HELP=pageup
+          ACTION=PAGEUP.
+:KEYI     KEY=PRINT
+          HELP=print
+          ACTION=PRINT.
+:KEYI     KEY=SYSREQ
+          HELP=sysreq.
+:EKEYL.
+.*
+.* -----------------------------------------------------------------
+.* Define keys for CHGABU and ADDABU panel
+.* -----------------------------------------------------------------
+:KEYL     NAME=chgkeys
+          HELP=keyl.
+:KEYI     KEY=F1
+          HELP=f1help
+          ACTION=HELP.
+:KEYI     KEY=F3
+          HELP=exit
+          ACTION='EXIT SET'
+          VARUPD=NO.
+F3=Exit
+:KEYI     KEY=F4
+          HELP=prompt
+          ACTION='PROMPT'.
+F4=Prompt
+:KEYI     KEY=F12
+          HELP=cancel
+          ACTION='CANCEL SET'
+          VARUPD=NO.
+F12=Cancel
+:KEYI     KEY=ENTER
+          HELP=enter
+          ACTION=ENTER.
+:KEYI     KEY=HELP
+          HELP=help
+          ACTION=HELP.
+:KEYI     KEY=PAGEDOWN
+          HELP=pagedown
+          ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP
+          HELP=pageup
+          ACTION=PAGEUP.
+:KEYI     KEY=PRINT
+          HELP=print
+          ACTION=PRINT.
+:KEYI     KEY=SYSREQ
+          HELP=sysreq.
+:EKEYL.
