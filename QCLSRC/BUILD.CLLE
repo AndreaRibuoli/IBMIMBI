@@ -6,6 +6,7 @@
              DCL        VAR(&TGTLIB) TYPE(*CHAR) LEN(10) VALUE(IBMIMBI)
              DCL        VAR(&IFSPATH) TYPE(*CHAR) LEN(100)
              DCL        VAR(&F) TYPE(*CHAR) LEN(10) VALUE(T0011MG5)
+             DCL        VAR(&SPOOL) TYPE(*CHAR) LEN(10)
              CHGVAR     VAR(&DEVOPT) VALUE(&DEVOPT_P)
              MONMSG     MSGID(MCH3601) EXEC(CHGVAR VAR(&DEVOPT) VALUE(L))
              CRTLIB     LIB(&TGTLIB)
@@ -69,6 +70,18 @@
              ENDDO
              ADDLIBLE   LIB(&TGTLIB)
              MONMSG     MSGID(CPF2103)
+/*     installazione standard         */
+             IF         COND(&DEVOPT = 'N') THEN(DO)
+             CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
+             ENDDO
+/*     installazione per sviluppo     */
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
+             ENDDO
+/*     sola esecuzione in sviluppo    */
+             IF         COND(&DEVOPT = 'L') THEN(DO)
+             CHGVAR     VAR(&SPOOL) VALUE('*SOURCE')
+             ENDDO
              DLTF       FILE(&TGTLIB/T0011DD5)
              MONMSG     MSGID(CPF0000)
              CRTPF      FILE(&TGTLIB/T0011DD5) SRCFILE(&SRCLIB/QDDSSRC)
@@ -176,13 +189,13 @@
                           PMTFILE(*LIBL/T0011MG5) +
                           HLPPNLGRP(*LIBL/T0011PN6) HLPID(*CMD) +
                           PRDLIB(&TGTLIB)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RP5) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RF6) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RF5) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RE5) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RL5) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RA5) SRCFILE(&SRCLIB/QRPGSRC)
-             CRTRPGPGM  PGM(&TGTLIB/T0011RP6) SRCFILE(&SRCLIB/QRPGSRC)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RP5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RF6) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RF5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RE5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RL5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RA5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RP6) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
              DLTPGM     PGM(&TGTLIB/T0011DL5)
              MONMSG     MSGID(CPF2105)
              CRTCLPGM   PGM(&TGTLIB/T0011DL5) +
@@ -197,14 +210,4 @@
                           MODE(*ALL) ALLOW(*ALL) MAXPOS(2) AUT(*USE)
              SNDPGMMSG  MSG('** The build of example 3 completed +
                           successfully. Type T0011CM5.')
-
-             IF         COND(&DEVOPT = 'N') THEN(DO)
-/*     installazione standard         */
-             ENDDO
-             IF         COND(&DEVOPT = 'Y') THEN(DO)
-/*     installazione per sviluppo     */
-             ENDDO
-             IF         COND(&DEVOPT = 'L') THEN(DO)
-/*     sola esecuzione in sviluppo    */
-             ENDDO
 RETURN:      ENDPGM
