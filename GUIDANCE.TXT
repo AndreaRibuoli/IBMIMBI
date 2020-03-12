@@ -1,5 +1,4 @@
 QCLSRC    BUILD     CLLE      IBMIMBI development (CALL IBMIMBI/BUILD)
-QCLSRC    ESEMPIO   CLP       Prova di installazione
 QCLSRC    T0011CP5  CLP       Command processing program for T0011CM5    
 QCLSRC    T0011CR5  CLP       Installation program for creating all example objects     
 QCLSRC    T0011DL5  CLP       Program used by command to delete example objects                       
