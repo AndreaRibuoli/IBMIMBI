@@ -206,21 +206,6 @@
              CRTRPGPGM  PGM(&TGTLIB/T0011RL5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
              CRTRPGPGM  PGM(&TGTLIB/T0011RA5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
              CRTRPGPGM  PGM(&TGTLIB/T0011RP6) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
-             DLTPGM     PGM(&TGTLIB/T0011DL5)
-             MONMSG     MSGID(CPF2105)
-             CRTCLPGM   PGM(&TGTLIB/T0011DL5) +
-                          SRCFILE(&SRCLIB/QCLSRC) TEXT('PROGRAM +
-                          USED TO DELETE EXAMPLE 3 OBJECTS') +
-                          OUTPUT(&SPOOL_O)
-             DLTCMD     CMD(&TGTLIB/T0011DC5)
-             MONMSG     MSGID(CPF2105)
-             CRTCMD     CMD(&TGTLIB/T0011DC5) PGM(&TGTLIB/T0011DL5) +
-                          SRCFILE(&SRCLIB/QCMDSRC) TEXT('COMMAND TO +
-                          DELETE EXAMPLE 3 OBJECTS') VLDCKR(*NONE) +
-                          MODE(*ALL) ALLOW(*ALL) MAXPOS(2) AUT(*USE)
-             IF         COND(&DEVOPT *NE 'L') THEN(DLTSPLF    FILE(T0011DC5))
-             RMVLIBLE   LIB(&TGTLIB)
-             MONMSG     MSGID(CPF0000)
              SNDPGMMSG  MSG('** The build of example 3 completed +
                           successfully. Type T0011CM5.')
 RETURN:      ENDPGM
