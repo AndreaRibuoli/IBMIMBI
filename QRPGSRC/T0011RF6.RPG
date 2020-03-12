@@ -24,8 +24,8 @@
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
-     I/COPY QUSRTOOL/QATTRPG,T0011RI6
-     I/COPY QUSRTOOL/QATTRPG,T0011RI7
+     I/COPY QRPGSRC,T0011RI6
+     I/COPY QRPGSRC,T0011RI7
       *-------------------------------------------------------------
       *   Declare parameters to the QMHSNDPM system API
       *
@@ -46,7 +46,7 @@
      I                                    B   5   80FNCKEY
      I                                        5   8 FNCKE§
      I                                        9  33 KNAME
-     I/COPY QUSRTOOL/QATTRPG,T0011RI5
+     I/COPY QRPGSRC,T0011RI5
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR

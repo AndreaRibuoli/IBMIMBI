@@ -27,8 +27,8 @@
       *-------------------------------------------------------------
       *   Include the UIM constants, and declare the VARRCD
       *
-     I/COPY QUSRTOOL/QATTRPG,T0011RI6
-     I/COPY QUSRTOOL/QATTRPG,T0011RI7
+     I/COPY QRPGSRC,T0011RI6
+     I/COPY QRPGSRC,T0011RI7
       *-------------------------------------------------------------
       *   List of digits, used to check zip code
      I              '0123456789'          C         DIGITS
@@ -148,4 +148,4 @@
      C                     PARM           MSGKEY
      C                     PARM           ERRCOD
       *-------------------------------------------------------------
-     I/COPY QUSRTOOL/QATTRPG,T0011RI5
+     I/COPY QRPGSRC,T0011RI5

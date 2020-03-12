@@ -28,8 +28,8 @@
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
-     I/COPY QUSRTOOL/QATTRPG,T0011RI6
-     I/COPY QUSRTOOL/QATTRPG,T0011RI7
+     I/COPY QRPGSRC,T0011RI6
+     I/COPY QRPGSRC,T0011RI7
       **************************************************************
       *   Declare entry parameters (Binary not allowed in *ENTRY)
       ***************************************************************
@@ -111,4 +111,4 @@
      C                     MOVE *ON       *INLR
      C                     RETRN
       **************************************************************
-     I/COPY QUSRTOOL/QATTRPG,T0011RI5
+     I/COPY QRPGSRC,T0011RI5
