@@ -1,0 +1,108 @@
+      **************************************************************
+      * T0011RI6 - Variables for calling UIM APIs.
+      *
+      * These variables are to be used by the PLISTS in UIMPLIST.
+      * To use these members, copy T0011RI5 and T0011RI6 to QRPGSRC
+      * in your library.  Then type the following in your RPG
+      * program at the appropriate places:
+      *      /COPY T0011RI6
+      *      /COPY T0011RI5
+      * In your program, you will need to define a DS called VARRCD
+      * that contains all the dialog variables used to communicate
+      * with UIM (in the same order declared in UIM).
+      *
+      * Each of the following variables is used as a parameter to
+      * one or more UIM functions.  Some variables are given default
+      * values that are commonly used.  Variables that application
+      * must initialize are given the value xxxxxx.
+      **************************************************************
+     IUIMV        DS
+     I I            'NEXT'                    1   4 ADDOPT
+     I I            '*NONE'                   5  14 ALTFNM
+     I                                       15  22 APPHND
+     I I            'M'                      23  23 CLOOPT
+     I I            'Y'                      24  24 CPYOPT
+     I I            'D'                      25  25 CURPOS
+     I I            'Y'                      26  26 EJECT
+     I I            'NONE'                   27  30 ERRLE
+     I I            1                     B  31  340EXITIN
+     I I            'Y'                      35  35 EXTOPT
+     I                                    B  36  390FNCREQ
+     I I            'N'                      40  40 FULHLP
+     I I            19                    B  41  440LALEN
+     I I            'NONE'                   45  48 LASTLE
+     I                                       49  52 LEHNDL
+     I I            'xxxxxx'                 53  62 LSTNAM
+     I I            '    '                   63  66 MSGKEY
+     I I            '*CALLER'                67  76 MSGQUE
+     I I            'xxxxxx'                 77  86 PNLNAM
+     I I            'SAME'                   87  90 POSOPT
+     I I            'N'                      91  91 REDISP
+     I I            'L'                      92  92 RMVOPT
+     I I            -1                    B  93  960SCOPE
+     I I            'N'                      97  97 SHARE
+     I I            'EXTE'                   98 101 SLTHND
+     I I            0                     B 102 1050STKCNT
+     I I            'SAME'                  106 109 UPDOPT
+     I I            '*NONE'                 110 119 USRDTA
+     I I            'O'                     120 120 USRTSK
+     I I            0                     B 121 1240VARLEN
+     I I            '*NONE'                 125 134 VARNAM
+     I I            10                    B 135 1380WINCOL
+     I I            '*OFFSET'               139 148 WINLOC
+     I I            3                     B 149 1520WINROW
+     I I            -1                    B 153 1560WTIME
+      **************************************************************
+      *   This structure is used by QUIGETLE
+      **************************************************************
+     ISLTCRI      DS
+     I I            'EQ'                      1  10 CRIT
+     I I            'xxxxxx'                 11  20 VARNM
+      **************************************************************
+      *   This structure is used by QUIOPNPA
+      **************************************************************
+     IPRTFNM      DS
+     I I            'xxxxxx'                  1  10 PRTFN
+     I I            '*LIBL'                  11  20 PRTFL
+      **************************************************************
+      *   This structure is used by QUIOPNDA
+      **************************************************************
+     IPNLGRP      DS
+     I I            'xxxxxx'                  1  10 PNLGN
+     I I            '*LIBL'                  11  20 PNLGL
+      **************************************************************
+      *   This structure is used by QUIRTVLA and QUISETLA
+      **************************************************************
+     ILATTR       DS
+     I I            'SAME'                    1   4 CONTNT
+     I I            '*SAME'                   5  14 INCPGM
+     I I            'SAME'                   15  18 POSLE
+     I I            'S'                      19  19 ALWTRM
+      **************************************************************
+      *   This structure is by UIM to return error info.
+      *   If BYTes PROvided is zero, UIM will send exception msgs.
+      *   Otherwise, you should set BYTPRO to ERRSIZ.
+      **************************************************************
+     IERRCOD     IDS
+     I I            0                     B   1   40BYTPRO
+     I                                    B   5   80BYTAVA
+     I                                        9  15 MSGID
+     I                                       16  16 RSRV1
+     I                                       17 256 MSGDTA
+      **************************************************************
+      *   These are some binary constants you can use to test func-
+      *   tion with action=Enter, Exit, Cancel, or Prompt.
+      *   These values are returned by UIM in some places (like
+      *   QUIDSPP) or passed to the usrexit routine.  However, in
+      *   some places, other values may be used!
+      **************************************************************
+     IUIMKEY      DS
+     I I            26                    B   1   40ENTKEY
+     I I            -4                    B   5   80EXTKEY
+     I I            -8                    B   9  120CANKEY
+     I I            -10                   B  13  160PMTKEY
+      **************************************************************
+      *   Named Constants
+      **************************************************************
+     I              256                   C         ERRSIZ
+      ***  END OF UIM VARIABLES
