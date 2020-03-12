@@ -52,10 +52,10 @@
       *  Some acrobatics required since B parms not allowed on *ENTR
       **************************************************************
      C           *ENTRY    PLIST
-     C                     PARM           TYPCA#  4
-     C                     PARM           APPHN#  8
-     C                     PARM           PNLNA# 10
-     C                     PARM           FNCKE#  4
+     C                     PARM           TYPCA£  4
+     C                     PARM           APPHN£  8
+     C                     PARM           PNLNA£ 10
+     C                     PARM           FNCKE£  4
      C                     MOVE TYPCA#    TYPCA§
      C                     MOVE APPHN#    APPHND
      C                     MOVE PNLNA#    PNLNAM
