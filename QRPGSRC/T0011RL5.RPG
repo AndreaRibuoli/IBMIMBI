@@ -35,26 +35,26 @@
       ***************************************************************
      I            DS
      I                                    B   1   40TYPCAL
-     I                                        1   4 TYPCA@
+     I                                        1   4 TYPCA§
      I                                    B   5   80INCDIR
-     I                                        5   8 INCDI@
+     I                                        5   8 INCDI§
      I                                    B   9  120NUMREQ
-     I                                        9  12 NUMRE@
+     I                                        9  12 NUMRE§
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR
       **************************************************************
      C           *ENTRY    PLIST
-     C                     PARM           TYPCA#  4
-     C                     PARM           APPHN#  8
-     C                     PARM           LSTNA# 10
-     C                     PARM           INCDI#  4
-     C                     PARM           NUMRE#  4
-     C                     MOVE TYPCA#    TYPCA@
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE LSTNA#    LSTNAM
-     C                     MOVE INCDI#    INCDI@
-     C                     MOVE NUMRE#    NUMRE@
+     C                     PARM           TYPCA£  4
+     C                     PARM           APPHN£  8
+     C                     PARM           LSTNA£ 10
+     C                     PARM           INCDI£  4
+     C                     PARM           NUMRE£  4
+     C                     MOVE TYPCA£    TYPCA§
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE LSTNA£    LSTNAM
+     C                     MOVE INCDI£    INCDI§
+     C                     MOVE NUMRE£    NUMRE§
       **************************************************************
       *   Check the parameters, this routine only does call=6
       **************************************************************
