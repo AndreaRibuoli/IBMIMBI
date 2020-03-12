@@ -219,6 +219,8 @@
                           DELETE EXAMPLE 3 OBJECTS') VLDCKR(*NONE) +
                           MODE(*ALL) ALLOW(*ALL) MAXPOS(2) AUT(*USE)
              IF         COND(&DEVOPT *NE 'L') THEN(DLTSPLF    FILE(T0011DC5))
+             RMVLIBLE   LIB(&TGTLIB)
+             MONMSG     MSGID(CPF0000)
              SNDPGMMSG  MSG('** The build of example 3 completed +
                           successfully. Type T0011CM5.')
 RETURN:      ENDPGM
