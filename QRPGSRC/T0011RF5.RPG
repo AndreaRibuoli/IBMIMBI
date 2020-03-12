@@ -24,8 +24,8 @@
      C           *ENTRY    PLIST
      C                     PARM           APPHN£  8
      C                     PARM           LSTNA£ 10
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE LSTNA#    LSTNAM
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE LSTNA£    LSTNAM
       **************************************************************
       *   Test the list name.
       **************************************************************
