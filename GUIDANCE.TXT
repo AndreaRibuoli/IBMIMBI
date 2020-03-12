@@ -1,2 +1,2 @@
-QCLSRC    BUILD     CLP       IBMIMBI installer
+QCLSRC    BUILD     CLLE      IBMIMBI development (CALL IBMIMBI/BUILD)
 QCLSRC    ESEMPIO   CLP       Prova di installazione

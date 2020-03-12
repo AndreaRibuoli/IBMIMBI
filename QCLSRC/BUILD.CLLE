@@ -1,0 +1,84 @@
+             PGM        PARM(&DEVOPT_P)
+             DCL        VAR(&DEVOPT_P) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&DEVOPT) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&SRCLIB) TYPE(*CHAR) LEN(10) VALUE(QTEMP)
+             DCL        VAR(&BLDLIB) TYPE(*CHAR) LEN(10) VALUE(QTEMP)
+             DCL        VAR(&TGTLIB) TYPE(*CHAR) LEN(10) VALUE(IBMIMBI)
+             DCL        VAR(&IFSPATH) TYPE(*CHAR) LEN(100) 
+             CHGVAR     VAR(&DEVOPT) VALUE(&DEVOPT_P)
+             MONMSG     MSGID(MCH3601) EXEC(CHGVAR VAR(&DEVOPT) VALUE(L))
+             CRTLIB     LIB(&TGTLIB)
+             MONMSG     MSGID(CPF0000)
+             IF         COND(&DEVOPT = 'N') THEN(DO)
+             DLTPGM     PGM(&TGTLIB/BUILD)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCLSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCMDSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QRPGLESRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QSRVSRC)
+             MONMSG     MSGID(CPF0000)
+             ENDDO
+             IF         COND(&DEVOPT = 'Y') THEN(DO)   
+             CRTSRCPF   FILE(&TGTLIB/QCSRC) RCDLEN(132) 
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132) 
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QCMDSRC) RCDLEN(132) 
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QRPGLESRC) RCDLEN(132) 
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QSRVSRC) RCDLEN(132) 
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCSRC) TOFILE(&TGTLIB/QCSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCLSRC) TOFILE(&TGTLIB/QCLSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCMDSRC) TOFILE(&TGTLIB/QCMDSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QRPGLESRC) TOFILE(&TGTLIB/QRPGLESRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QSRVSRC) TOFILE(&TGTLIB/QSRVSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
+             ENDDO
+             IF         COND(&DEVOPT = 'L') THEN(DO)   
+             CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
+             ENDDO
+             IF         COND(&DEVOPT = 'Y') THEN(DO)   
+             CRTBNDCL   PGM(&TGTLIB/BUILD) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(BUILD) +
+                          OUTPUT(*NONE) ALWRTVSRC(*NO) 
+             MONMSG     MSGID(CPF0000)
+             ENDDO
+/*             CRTCLMOD   MODULE(&BLDLIB/GHINSTALL) +                    */
+/*                          SRCFILE(&SRCLIB/QCLSRC) SRCMBR(GHINSTALL) +  */
+/*                          INCFILE(&SRCLIB/QCLSRC) +                    */
+/*                          OUTPUT(*NONE) ALWRTVSRC(*NO)                 */
+/*             CRTSRVPGM  SRVPGM(&TGTLIB/LIBCURL) +                      */
+/*                          MODULE(&BLDLIB/EASY_INIT +                   */
+/*                          &BLDLIB/EASY_SETOP &BLDLIB/SLIST_APPE +      */
+/*                          &BLDLIB/EASY_PERFO &BLDLIB/EASY_CLEAN +      */
+/*                          &BLDLIB/EASY_LOAD &BLDLIB/CALL_BACK +        */
+/*                          &BLDLIB/VERS_INFO) +                         */
+/*                          SRCFILE(&SRCLIB/QSRVSRC) +                   */
+/*                          TEXT('Installer (4/4)')                      */
+/*             CRTPGM     PGM(&TGTLIB/GHINSTALL) +                       */
+/*                          MODULE(&BLDLIB/GHINSTALL) +                  */
+/*                          BNDSRVPGM((&TGTLIB/LIBCURL))                 */
+/*             CRTCMD     CMD(&TGTLIB/INSTALL) PGM(&TGTLIB/INSTALL)  +   */
+/*                          SRCFILE(&SRCLIB/QCMDSRC) SRCMBR(INSTALL)     */
+/*             DLTSPLF    FILE(INSTALL)                                  */
+             IF         COND(&DEVOPT = 'N') THEN(DO)
+/*     installazione standard         */
+             ENDDO
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+/*     installazione per sviluppo     */
+             ENDDO
+             IF         COND(&DEVOPT = 'L') THEN(DO)
+/*     sola esecuzione in sviluppo    */
+             ENDDO
+RETURN:      ENDPGM
