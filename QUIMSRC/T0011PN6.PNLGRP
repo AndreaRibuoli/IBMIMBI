@@ -11,18 +11,6 @@ and "User Interface Manager APIs" in
 :cit.System Programmer's Interface Reference:ecit.,
 (SC41-8223).
 :EHELP.
-.*  !"#$%&'()*+,-./
-.* 0123456789:;<=>?
-.* @ABCDEFGHIJKLMNO
-.* PQRSTUVWXYZ[\]^_
-.* `abcdefghijklmno
-.* pqrstuvwxyz{|}~   (rimosso DEL)
-.*  ¡¢£¤¥¦§¨©ª«¬­®¯
-.* °±²³´µ¶·¸¹º»¼½¾¿
-.* ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
-.* ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
-.* àáâãäåæçèéêëìíîï
-.* ðñòóôõö÷øùúûüýþÿ
 :HELP NAME=nohelp.
 No help for this item.
 :EHELP.
