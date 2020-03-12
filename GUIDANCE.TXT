@@ -8,7 +8,10 @@ QUIMSRC   T0011PNI  MENU      PNLGRP includes
 QUIMSRC   T0011PN5  PNLGRP    Help for example                
 QUIMSRC   T0011PN6  PNLGRP    Help for example 
 QRPGSRC   T0011RP5  RPG       Runs intial panel               
-QRPGSRC   T0011RE5  RPG       General exit program            
+QRPGSRC   T0011RE5  RPG       General exit program       
+QRPGSRC   T0011RI5  RPG       UIM PLISTS include        
+QRPGSRC   T0011RI6  RPG       UIM constants       
+QRPGSRC   T0011RI7  RPG       VARRCD include       
 QRPGSRC   T0011RL5  RPG       Incomplete list exit            
 QRPGSRC   T0011RP6  RPG       F4 on state selection handler                       
 QRPGSRC   T0011RF5  RPG       Called by T0011RP6              
