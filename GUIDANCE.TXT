@@ -5,7 +5,7 @@ QCLSRC    T0011CR5  CLP       Installation program for creating all example obje
 QCLSRC    T0011DL5  CLP       Program used by command to delete example objects                       
 QDDSSRC   T0011DD5  PF        Physical file description for address book file         
 QUIMSRC   T0011PNI  MENU      PNLGRP includes 
-QUIMSRC   T0011PN6  PNLGRP    Help for example                
+QUIMSRC   T0011PN5  PNLGRP    Help for example                
 QUIMSRC   T0011PN6  PNLGRP    Help for example                
 QRPGSRC   T0011RP5  RPG       Runs intial panel               
 QRPGSRC   T0011RE5  RPG       General exit program            
