@@ -1,0 +1,9 @@
+     A*   T0011DD5 -  ADDRESS BOOK DATA FILE DESCRIPTION
+     A                                      UNIQUE
+     A          R DD5REC
+     A            NAME          25          COLHDG('NAME')
+     A            ADDR          30          COLHDG('ADDRESS')
+     A            CITY          20          COLHDG('CITY')
+     A            STATE          2          COLHDG('STATE')
+     A            ZIP            5S 0       COLHDG('ZIP' 'CODE')
+     A          K NAME

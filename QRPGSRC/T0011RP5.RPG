@@ -1,0 +1,48 @@
+      **************************************************************
+      *  PROGRAM         T0011RP5
+      *  APPLICATION     UIM/RPG SAMPLE
+      *  PURPOSE         This is the main driver program for the
+      *                  Address Book UIM/RPG sample application.
+      **************************************************************
+      /COPY QUSRTOOL/QATTRPG,T0011RI6
+      **************************************************************
+      *  Declare the dialog variables data structure
+      **************************************************************
+     IVARRCD      DS
+     I I            'T0011RA5  *LIBL'         1  20 ACTN$
+     I I            'T0011RE5  *LIBL'        21  40 EXIT$
+     I I            'T0011RF6  *LIBL'        41  60 FKEY$
+     I I            'T0011RL5  *LIBL'        61  80 INCL$
+     I I            'T0011RP6  *LIBL'        81 100 PROM$
+      **************************************************************
+      *   Open the application.  We don't have to check the errcode
+      *   on return, bytpro is zero so the program will just abend.
+      **************************************************************
+     C                     MOVEL'T0011PN5'PNLGN     P
+     C                     CALL 'QUIOPNDA'OPNDA
+      **************************************************************
+      *   Put the exit program names to UIM
+      **************************************************************
+     C                     MOVEL'PGMVAR'  VARNAM    P
+     C                     Z-ADD100       VARLEN
+     C                     CALL 'QUIPUTV' PUTV
+      **************************************************************
+      *    Set the list attributes to incomplete so that UIM will
+      *    call the INCPGM before displaying the panel.
+      **************************************************************
+     C                     MOVEL'DATALST' LSTNAM    P
+     C                     MOVEL'TOP'     CONTNT    P
+     C                     MOVEL'ABUINCL' INCPGM    P
+     C                     MOVEL'Y'       ALWTRM
+     C                     CALL 'QUISETLA'SETLA
+      **************************************************************
+      *    Display the main panel.  When it returns, end the program
+      *    Note: usrtsk=N will cause the F3=Exit to stop on this pan
+      **************************************************************
+     C                     MOVEL'WRKABU'  PNLNAM    P
+     C                     MOVE 'N'       USRTSK            New Task
+     C                     CALL 'QUIDSPP' DSPP
+     C                     CALL 'QUICLOA' CLOA
+     C                     MOVE *ON       *INLR
+     C                     RETRN
+      /COPY QUSRTOOL/QATTRPG,T0011RI5
