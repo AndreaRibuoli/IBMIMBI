@@ -56,10 +56,10 @@
      C                     PARM           APPHN£  8
      C                     PARM           PNLNA£ 10
      C                     PARM           FNCKE£  4
-     C                     MOVE TYPCA#    TYPCA§
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE PNLNA#    PNLNAM
-     C                     MOVE FNCKE#    FNCKE§
+     C                     MOVE TYPCA£    TYPCA§
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE PNLNA£    PNLNAM
+     C                     MOVE FNCKE£    FNCKE§
       **************************************************************
       *   Check the parameters, this routine only does call=1.
       **************************************************************
