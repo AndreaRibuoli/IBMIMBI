@@ -18,25 +18,25 @@
       **************************************************************
      I            DS
      I                                    B   1   40TYPCAL
-     I                                        1   4 TYPCA@
+     I                                        1   4 TYPCA§
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR
       **************************************************************
      C           *ENTRY    PLIST
-     C                     PARM           TYPCA#  4
-     C                     PARM           APPHN#  8
-     C                     PARM           PNLNA# 10
+     C                     PARM           TYPCA£  4
+     C                     PARM           APPHN£  8
+     C                     PARM           PNLNA£ 10
      C                     PARM           ELETYP  1
-     C                     PARM           VARNM# 10
-     C                     PARM           LSTNA# 10
-     C                     PARM           SLTHN#  4
-     C                     MOVE TYPCA#    TYPCA@
-     C                     MOVE APPHN#    APPHND
-     C                     MOVE PNLNA#    PNLNAM
-     C                     MOVE VARNM#    VARNM
-     C                     MOVE LSTNA#    LSTNAM
-     C                     MOVE SLTHN#    SLTHND
+     C                     PARM           VARNM£ 10
+     C                     PARM           LSTNA£ 10
+     C                     PARM           SLTHN£  4
+     C                     MOVE TYPCA£    TYPCA§
+     C                     MOVE APPHN£    APPHND
+     C                     MOVE PNLNA£    PNLNAM
+     C                     MOVE VARNM£    VARNM
+     C                     MOVE LSTNA£    LSTNAM
+     C                     MOVE SLTHN£    SLTHND
       **************************************************************
       *   Check the parameters, this routine only does call=8.
       **************************************************************
