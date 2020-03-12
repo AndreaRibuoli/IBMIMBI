@@ -72,14 +72,17 @@
              MONMSG     MSGID(CPF2103)
 /*     installazione standard         */
              IF         COND(&DEVOPT = 'N') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*NONE')
              CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
              ENDDO
 /*     installazione per sviluppo     */
              IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*NONE')
              CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
              ENDDO
 /*     sola esecuzione in sviluppo    */
              IF         COND(&DEVOPT = 'L') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*PRINT')
              CHGVAR     VAR(&SPOOL) VALUE('*SOURCE')
              ENDDO
              DLTF       FILE(&TGTLIB/T0011DD5)
@@ -182,7 +185,7 @@
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
              CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN5) +
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
-             CRTCLPGM   PGM(&TGTLIB/T0011CP5) SRCFILE(&SRCLIB/QCLSRC) OPTION(&SPOOL)
+             CRTCLPGM   PGM(&TGTLIB/T0011CP5) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
              CRTCMD     CMD(&TGTLIB/T0011CM5) PGM(&TGTLIB/T0011CP5) +
                           SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +
                           *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
@@ -201,7 +204,7 @@
              CRTCLPGM   PGM(&TGTLIB/T0011DL5) +
                           SRCFILE(&SRCLIB/QCLSRC) TEXT('PROGRAM +
                           USED TO DELETE EXAMPLE 3 OBJECTS') +
-                          OPTION(&SPOOL)
+                          OUTPUT(&SPOOL_O)
              DLTCMD     CMD(&TGTLIB/T0011DC5)
              MONMSG     MSGID(CPF2105)
              CRTCMD     CMD(&TGTLIB/T0011DC5) PGM(&TGTLIB/T0011DL5) +
