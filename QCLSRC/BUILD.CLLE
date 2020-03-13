@@ -5,7 +5,7 @@
              DCL        VAR(&BLDLIB) TYPE(*CHAR) LEN(10) VALUE(QTEMP)
              DCL        VAR(&TGTLIB) TYPE(*CHAR) LEN(10) VALUE(IBMIMBI)
              DCL        VAR(&IFSPATH) TYPE(*CHAR) LEN(100)
-             DCL        VAR(&F) TYPE(*CHAR) LEN(10) VALUE(T0011MG5)
+             DCL        VAR(&F) TYPE(*CHAR) LEN(10) VALUE(CONTATTI)
              DCL        VAR(&SPOOL) TYPE(*CHAR) LEN(10)
              DCL        VAR(&SPOOL_L) TYPE(*CHAR) LEN(10)
              DCL        VAR(&SPOOL_O) TYPE(*CHAR) LEN(10)
@@ -191,17 +191,10 @@
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
              CRTCLPGM   PGM(&TGTLIB/CONTATTI) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
              
-      /*       CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +  */
-      /*                    SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +   */
-      /*                    *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +        */
-      /*                    PMTFILE(*LIBL/T0011MG5) +                    */
-      /*                    HLPPNLGRP(*LIBL/T0011PN6) HLPID(*CMD) +      */
-      /*                    PRDLIB(&TGTLIB)                              */
-
-              CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +
+             CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +
                           SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +
                           *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
-                          PMTFILE(*LIBL/T0011MG5) +
+                          PMTFILE(*LIBL/CONTATTI) +
                           HLPPNLGRP(*LIBL/CONTATTI) HLPID(*CMD) +
                           PRDLIB(&TGTLIB)
              IF         COND(&DEVOPT *NE 'L') THEN(DLTSPLF FILE(CONTATTI))
