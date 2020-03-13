@@ -20,7 +20,7 @@
       * *ESCAPE message to UIM.  This program uses IN60 to detect
       * reentrancy.
       **************************************************************
-     FT0011DD5  IF   E           K DISK
+     FCONTATTI  IF   E           K DISK
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
@@ -107,8 +107,8 @@
      C                   CALL      'QUIGETLE'    GETLE
      C                   CALL      'QUIDLTL'     DLTL
       *   IN50 means errors occurred reading the datafile record.
-     C     NAME          SETGT     T0011DD5                             50
-     C  N50              READP     T0011DD5                             5050
+     C     NAME          SETGT     CONTATTI                             50
+     C  N50              READP     CONTATTI                             5050
      C  N50              CALL      'QUIADDLE'    ADDLE
      C  N50              MOVE      LEHNDL        POSLE
      C  N50              MOVE      'MORE'        CONTNT
@@ -162,19 +162,19 @@
      C   40              MOVE      *HIVAL        NAME
       *   Calculate the MAX value of name with the given prefix
      C     ' ':'9'       XLATE     NAME          PNAME            25
-     C     NAME          SETLL     T0011DD5                             50
-     C  N50              READ      T0011DD5                             5051
+     C     NAME          SETLL     CONTATTI                             50
+     C  N50              READ      CONTATTI                             5051
       *   If EOF condition, then read the last database record.
      C  N50
-     CAN 51*HIVAL        SETLL     T0011DD5                             50
+     CAN 51*HIVAL        SETLL     CONTATTI                             50
      C  N50
-     CAN 51              READP     T0011DD5                             5050
+     CAN 51              READP     CONTATTI                             5050
       *   Else, check if name is greater than max prefix (case 3)
      C  N50
      CANN51PNAME         COMP      NAME                                 52
      C  N50
      CANN51
-     CAN 52              READP     T0011DD5                             5053
+     CAN 52              READP     CONTATTI                             5053
       *   If any error occurred, or file empty, send error message
      C   50              MOVE      'USR0103'     MSGID
      C   50              EXSR      ERREND                                       No return

@@ -90,9 +90,9 @@
              CHGVAR     VAR(&SPOOL) VALUE('*SOURCE')
              CHGVAR     VAR(&SPOOL_L) VALUE('*LIST')
              ENDDO
-             DLTF       FILE(&TGTLIB/T0011DD5)
+             DLTF       FILE(&TGTLIB/CONTATTI)
              MONMSG     MSGID(CPF0000)
-             CRTPF      FILE(&TGTLIB/T0011DD5) SRCFILE(&SRCLIB/QDDSSRC) +
+             CRTPF      FILE(&TGTLIB/CONTATTI) SRCFILE(&SRCLIB/QDDSSRC) +
                OPTION(&SPOOL &SPOOL_L)
              MONMSG     MSGID(CPF0000)
              DLTMSGF    MSGF(&TGTLIB/&F)
@@ -115,41 +115,41 @@
                           alphabetic character, A through Z, +
                           inclusive.') SEV(40)
              ADDMSGD    MSGID(USR0012) MSGF(&TGTLIB/&F) MSG('No +
-                          records found in T0011DD5 database') +
+                          records found in CONTATTI database') +
                           SECLVL('The database may be empty, or +
                           possibly someone has deleted it, or +
                           renamed it, or it may be that you do not +
                           have authority to view the database.')
 /*  Questi messaggi sono emessi dai programmi RPG ILE  */
              ADDMSGD    MSGID(USR0100) MSGF(&TGTLIB/&F) MSG('Unable +
-                          to read from the t0011DD5 database.') +
+                          to read from the CONTATTI database.') +
                           SECLVL('An error occurred when attempting +
                           to read the database by key.  Another +
                           user may currently be changing the record +
                           or you may not have sufficient authority +
-                          to the file T0011DD5.') SEV(40)
+                          to the file CONTATTI.') SEV(40)
              ADDMSGD    MSGID(USR0101) MSGF(&TGTLIB/&F) MSG('Unable +
-                          to update the T0011DD5 database.') +
+                          to update the CONTATTI database.') +
                           SECLVL('An error occurred when attempting +
                           to update the database. You may not have +
                           sufficient authority to the file +
-                          T0011DD5.') SEV(40)
+                          CONTATTI.') SEV(40)
              ADDMSGD    MSGID(USR0102) MSGF(&TGTLIB/&F) MSG('Unable +
                           to add record; the specified name may +
-                          already exist in the T0011DD5 database.') +
+                          already exist in the CONTATTI database.') +
                           SECLVL('An error occurred when attempting +
-                          to write a new record to the T0011DD5 +
+                          to write a new record to the CONTATTI +
                           database.  It may be that a record with +
                           the specified name already exists in the +
                           database.  You may change the name and +
                           try to add the record again, or press F12 +
                           to cancel.  You may not have sufficient +
-                          authority to the file T0011DD5.') SEV(40)
+                          authority to the file CONTATTI.') SEV(40)
              ADDMSGD    MSGID(USR0103) MSGF(&TGTLIB/&F) MSG('Record +
-                          not found in the T0011DD5 database.') +
+                          not found in the CONTATTI database.') +
                           SECLVL('You specified an action for a +
                           record that no longer exists in the +
-                          T0011DD5 database.  Someone else may have +
+                          CONTATTI database.  Someone else may have +
                           recently deleted the record.  Press +
                           F5=Refresh to update the display to +
                           reflect the current content of the +
@@ -161,17 +161,17 @@
                           list.  The name you typed does not appear +
                           in the list.') SEV(40)
              ADDMSGD    MSGID(USR0105) MSGF(&TGTLIB/&F) MSG('Unable +
-                          to delete a record from the T0011DD5 +
+                          to delete a record from the CONTATTI +
                           database.') SECLVL('An error occurred +
                           when attempting to delete a record from +
                           the database.  You may not have +
                           sufficient authority to the file +
-                          T0011DD5.') SEV(40)
+                          CONTATTI.') SEV(40)
              ADDMSGD    MSGID(USR0106) MSGF(&TGTLIB/&F) MSG('A +
                           record cannot be deleted, because it is +
                           deleted already.') SECLVL('You specified +
                           an action for a record that no longer +
-                          exists in the T0011DD5 database.  Someone +
+                          exists in the CONTATTI database.  Someone +
                           else may have recently deleted the +
                           record.  Press F5=Refresh to update the +
                           display to reflect the current content of +

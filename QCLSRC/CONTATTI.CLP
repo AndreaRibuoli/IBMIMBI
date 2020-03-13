@@ -1,6 +1,6 @@
              PGM        PARM(&ALWCHG)
              DCL        VAR(&ALWCHG) TYPE(*CHAR) LEN(1)
-             ALCOBJ     OBJ((T0011DD5 *FILE *SHRUPD *FIRST))
+             ALCOBJ     OBJ((CONTATTI *FILE *SHRUPD *FIRST))
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF1999) MSGF(QCPFMSG)
              RETURN
@@ -14,9 +14,9 @@
    /*        negli altri comandi OVRDBF immessi precedentemente.                        */
    /*                                                                                   */
              IF         COND(&ALWCHG = '1') THEN(OVRDBF +
-                          FILE(T0011DD5) WAITFILE(3) WAITRCD(3) +
+                          FILE(CONTATTI) WAITFILE(3) WAITRCD(3) +
                           SEQONLY(*NO))
-             ELSE       CMD(OVRDBF FILE(T0011DD5) WAITFILE(3) +
+             ELSE       CMD(OVRDBF FILE(CONTATTI) WAITFILE(3) +
                           WAITRCD(3) INHWRT(*YES) SEQONLY(*NO))
              CALL       PGM(CONT_MAIN)
              MONMSG     MSGID(CPF0000 MCH0000 RPG0000 CPD0000) +
@@ -27,5 +27,5 @@
    /*     Libreria . . . . . . . . . :     QSYS                                         */
    /*   Testo del messaggio  . . . . :   Si sono verificati degli errori nel comando.   */
    /*                                                                                   */
-             DLCOBJ     OBJ((T0011DD5 *FILE *SHRUPD *FIRST))
+             DLCOBJ     OBJ((CONTATTI *FILE *SHRUPD *FIRST))
              ENDPGM

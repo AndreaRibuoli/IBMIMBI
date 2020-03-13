@@ -1,7 +1,7 @@
 QCLSRC    BUILD     CLLE      IBMIMBI in sviluppo (CALL IBMIMBI/BUILD)
 QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI    
 QCMDSRC   CONTATTI  CMD       Command iniziale           
-QDDSSRC   T0011DD5  PF        File fisico dei contatti         
+QDDSSRC   CONTATTI  PF        File fisico dei contatti         
 QUIMSRC   CONTATTI  PNLGRP    Aiuto per comando CONTATTI
 QUIMSRC   CONT_MAIN PNLGRP    Help for example                
 QUIMSRC   CONT_PNGI MENU      PNLGRP includes 

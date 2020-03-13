@@ -24,7 +24,7 @@
       *    50  file record error or not found
       *    52  list content is MORE
       **************************************************************
-     FT0011DD5  IF   E           K DISK
+     FCONTATTI  IF   E           K DISK
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
@@ -83,11 +83,11 @@
       *   Repeat numreq times, get record, add to list.
       **************************************************************
      C                   MOVE      POSOPT        ADDOPT
-     C   40NAME          SETGT     T0011DD5
-     C  N40NAME          SETLL     T0011DD5
+     C   40NAME          SETGT     CONTATTI
+     C  N40NAME          SETLL     CONTATTI
      C                   DO        NUMREQ
-     C   40              READ      T0011DD5                             5050
-     C  N40              READP     T0011DD5                             5050
+     C   40              READ      CONTATTI                             5050
+     C  N40              READP     CONTATTI                             5050
      C   50              LEAVE
      C                   CALL      'QUIADDLE'    ADDLE
      C                   ENDDO

@@ -5,7 +5,7 @@
       *  Indicators
       *    40  indicates extended action list entry actions.
       *
-     FT0011DD5  UF   E           K DISK
+     FCONTATTI  UF   E           K DISK
      D/COPY VAR4PLIST
      D/COPY UIMVARRCD
      D ROCH            C                   CONST('Pesaro')
@@ -191,7 +191,7 @@
       *
       *   Read the datafile record by key, and LOCK the record.
       *
-     C     NAME          CHAIN     T0011DD5                           5051
+     C     NAME          CHAIN     CONTATTI                           5051
      C   50              MOVE      'USR0103'     MSGID                          Not found
      C   50              EXSR      ERREND
      C   51              MOVE      'USR0100'     MSGID                          Read erro
@@ -275,7 +275,7 @@
      C                   ENDIF
      C                   CALL      'QUIGETLE'    GETLE
       *   Read the datafile record by key.
-     C     NAME          CHAIN(N)  T0011DD5                           5051      Don't loc
+     C     NAME          CHAIN(N)  CONTATTI                           5051      Don't loc
      C   50              MOVE      'USR0104'     MSGID                          Not found
      C   50              EXSR      ERREND
      C   51              MOVE      'USR0100'     MSGID                          Read erro
@@ -310,7 +310,7 @@
      C                   ENDIF
      C                   CALL      'QUIGETLE'    GETLE
       *   Read the datafile record by key.
-     C     NAME          CHAIN(N)  T0011DD5                           5051      Don't loc
+     C     NAME          CHAIN(N)  CONTATTI                           5051      Don't loc
      C     *IN50         IFEQ      *ON
      C                   MOVE      'USR0104'     MSGID                          Not found
      C                   EXSR      ERREND

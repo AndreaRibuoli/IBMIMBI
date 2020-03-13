@@ -20,7 +20,7 @@
       * *ESCAPE message to UIM.  This program uses IN60 to detect
       * reentrancy.
       *   Open the datafile for read/write.
-     FT0011DD5  IF A E           K DISK
+     FCONTATTI  IF A E           K DISK
       *-------------------------------------------------------------
       *   Array used to check zip code
      D ZARO            S              1    DIM(5)
@@ -100,7 +100,7 @@
       *-------------------------------------------------------------
       *   The following statement is never run, but it avoids some
       *   compiler errors and runtime error CPF4030.
-     C     NAME          CHAIN     T0011DD5                           50
+     C     NAME          CHAIN     CONTATTI                           50
       *-------------------------------------------------------------
       *   Exit routine to process add record
       *
