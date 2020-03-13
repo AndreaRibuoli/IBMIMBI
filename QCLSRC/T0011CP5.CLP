@@ -6,12 +6,12 @@
              RETURN
              ENDDO
    /*                                                                                   */
-   /*  INHWRT:  Specifica se i record elaborati vengono scritti,                        */
-   /*  cancellati o aggiornati nel file di database. Il parametro                       */
-   /*  di inibizione scrittura consente di provare un programma                         */
-   /*  senza memorizzare nel database i record elaborati. Questo                        */
-   /*  parametro sostituisce temporaneamente il parametro INHWRT                        */
-   /*  negli altri comandi OVRDBF immessi precedentemente.                              */
+   /*        INHWRT:  Specifica se i record elaborati vengono scritti,                  */
+   /*        cancellati o aggiornati nel file di database. Il parametro                 */
+   /*        di inibizione scrittura consente di provare un programma                   */
+   /*        senza memorizzare nel database i record elaborati. Questo                  */
+   /*        parametro sostituisce temporaneamente il parametro INHWRT                  */
+   /*        negli altri comandi OVRDBF immessi precedentemente.                        */
    /*                                                                                   */
              IF         COND(&ALWCHG = '1') THEN(OVRDBF +
                           FILE(T0011DD5) WAITFILE(3) WAITRCD(3) +
