@@ -82,4 +82,4 @@
      C                   CALL      'QUIPUTV'     PUTV
      C                   ENDSR
       **************************************************************
-     I/COPY T0011RI5
+     I/COPY UIMPLIST
