@@ -6,7 +6,7 @@
       *    40  indicates extended action list entry actions.
       *
      FT0011DD5  UF   E           K DISK
-     D/COPY T0011RI6
+     D/COPY VAR4PLIST
      D/COPY T0011RI7
      D ROCH            C                   CONST('Pesaro')
       *
