@@ -9,7 +9,7 @@
       *  Declare the dialog variables data structure
       **************************************************************
      D VARRCD          DS
-     D  ACTN$                  1     20    INZ('T0011RA5  *LIBL')
+     D  ACTN$                  1     20    INZ('CONT_ACTN *LIBL')
      D  EXIT$                 21     40    INZ('T0011RE5  *LIBL')
      D  FKEY$                 41     60    INZ('T0011RF6  *LIBL')
      D  INCL$                 61     80    INZ('T0011RL5  *LIBL')
