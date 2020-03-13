@@ -18,7 +18,7 @@
       *   Open the application.  We don't have to check the errcode
       *   on return, bytpro is zero so the program will just abend.
       **************************************************************
-     C                   MOVEL(P)  'T0011PN5'    PNLGN
+     C                   MOVEL(P)  'CONT_MAIN'   PNLGN
      C                   CALL      'QUIOPNDA'    OPNDA
       **************************************************************
       *   Put the exit program names to UIM
