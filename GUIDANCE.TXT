@@ -14,4 +14,4 @@ QRPGLESRC CONT_PROM RPGLE     F4 on state selection handler
 QRPGLESRC CONT_FILL RPGLE     Called by CONT_PROM              
 QRPGLESRC UIMPLIST  RPGLE     UIM PLISTS include        
 QRPGLESRC VAR4PLIST RPGLE     UIM include       
-QRPGLESRC T0011RI7  RPGLE     VARRCD include       
+QRPGLESRC UIMVARRCD RPGLE     VARRCD include       

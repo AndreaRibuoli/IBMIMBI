@@ -7,7 +7,7 @@
       *
      FT0011DD5  UF   E           K DISK
      D/COPY VAR4PLIST
-     D/COPY T0011RI7
+     D/COPY UIMVARRCD
      D ROCH            C                   CONST('Pesaro')
       *
       *    parameters for QMHSNDPM system API

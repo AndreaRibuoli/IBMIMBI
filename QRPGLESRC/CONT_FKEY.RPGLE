@@ -25,7 +25,7 @@
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
      D/COPY VAR4PLIST
-     D/COPY T0011RI7
+     D/COPY UIMVARRCD
       *-------------------------------------------------------------
       *   Declare parameters to the QMHSNDPM system API
       *

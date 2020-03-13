@@ -28,7 +28,7 @@
       *   Include the UIM constants, and declare the VARRCD
       *
      D/COPY VAR4PLIST
-     D/COPY T0011RI7
+     D/COPY UIMVARRCD
       *-------------------------------------------------------------
       *   List of digits, used to check zip code
      D DIGITS          C                   CONST('0123456789')

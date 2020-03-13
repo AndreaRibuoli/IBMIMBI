@@ -12,7 +12,7 @@
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
      D/COPY VAR4PLIST
-     D/COPY T0011RI7
+     D/COPY UIMVARRCD
       **************************************************************
       *   Declare entry parameters (Binary not allowed in *ENTRY)
       **************************************************************
