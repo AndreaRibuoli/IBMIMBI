@@ -18,7 +18,7 @@
                           SEQONLY(*NO))
              ELSE       CMD(OVRDBF FILE(T0011DD5) WAITFILE(3) +
                           WAITRCD(3) INHWRT(*YES) SEQONLY(*NO))
-             CALL       PGM(T0011RP5)
+             CALL       PGM(CONT_MAIN)
              MONMSG     MSGID(CPF0000 MCH0000 RPG0000 CPD0000) +
                           EXEC(SNDPGMMSG MSGID(CPF1999) MSGF(QCPFMSG))
    /*                                                                                   */
