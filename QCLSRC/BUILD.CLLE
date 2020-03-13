@@ -100,7 +100,7 @@
              CRTMSGF    MSGF(&TGTLIB/&F)
              ADDMSGD    MSGID(USR0001) MSGF(&TGTLIB/&F) MSG('Address +
                           Book Utility:  Sample RPG-UIM program.')
-/*  These are messages used in UIM panels */
+/*  Questi messaggi sono utilizzati dai pannelli UIM  */
              ADDMSGD    MSGID(USR0010) MSGF(&TGTLIB/&F) MSG('Data +
                           must be provided on the extended list +
                           entry for this action.') SECLVL('You must +
@@ -120,7 +120,7 @@
                           possibly someone has deleted it, or +
                           renamed it, or it may be that you do not +
                           have authority to view the database.')
-/*  These are messages sent by the RPG programs  */
+/*  Questi messaggi sono emessi dai programmi RPG ILE  */
              ADDMSGD    MSGID(USR0100) MSGF(&TGTLIB/&F) MSG('Unable +
                           to read from the t0011DD5 database.') +
                           SECLVL('An error occurred when attempting +
@@ -182,7 +182,7 @@
                           digit, non-negative number for the zip +
                           code. If you do not know the zip code, +
                           type 00000.') SEV(40)
-/*  These are messages used for prompts in the T0011CM5 command.*/
+/*  Questi messaggi sono utilizzati nei prompt del comando CONTATTI.  */
              ADDMSGD    MSGID(USR0200) MSGF(&TGTLIB/&F) MSG('Start +
                           Address Book Utility')
              ADDMSGD    MSGID(USR0201) MSGF(&TGTLIB/&F) MSG('Allow +
