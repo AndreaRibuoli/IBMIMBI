@@ -46,7 +46,7 @@
      D  FNCKEY                 5      8B 0
      D  FNCKE§                 5      8
      D  KNAME                  9     33
-     I/COPY T0011RI5
+     I/COPY UIMPLIST
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR
