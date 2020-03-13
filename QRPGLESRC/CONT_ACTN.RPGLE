@@ -19,7 +19,7 @@
      D  PGMSTK                25     28B 0 INZ(1)
       *
      D MSGF            DS
-     D  MSGFN                  1     10    INZ('T0011MG5')
+     D  MSGFN                  1     10    INZ('CONTATTI')
      D  MSGFL                 11     20    INZ('*LIBL')
       *
       *   entry parameters (binary not allowed in *ENTRY)
