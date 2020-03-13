@@ -68,14 +68,14 @@ specific field on the display.
 :ehelp.
 :HELP NAME=k3help.
 :parml.
-:pt.F3=Exit
+:pt.F3=Fine
 :pd.Ends the current task and returns to the display from which the
 task was started.
 :eparml.
 :ehelp.
 :HELP NAME=k4help.
 :parml.
-:pt.F4=Prompt
+:pt.F4=Richiesta
 :pd.Provides assistance in entering information for a data item.
 :eparml.
 :ehelp.
@@ -94,7 +94,7 @@ display with more columns.
 :ehelp.
 :HELP NAME=k12help.
 :parml.
-:pt.F12=Cancel
+:pt.F12=Annullamento
 :pd.Returns to the previous menu or display.
 :eparml.
 :ehelp.
