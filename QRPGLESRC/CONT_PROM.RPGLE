@@ -57,7 +57,7 @@
       **************************************************************
      C     STAPMT        BEGSR
       *   Call fill routine to fill the popup list
-     C                   CALL      'T0011RF5'
+     C                   CALL      'CONT_FILL'
      C                   PARM                    APPHND
      C                   PARM      'STALIST'     LSTNAM
       *   Pop-up window to prompt for state.
