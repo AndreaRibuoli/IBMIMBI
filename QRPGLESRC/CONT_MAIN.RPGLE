@@ -4,7 +4,7 @@
       *  PURPOSE         This is the main driver program for the
       *                  Address Book UIM/RPG sample application.
       **************************************************************
-      /COPY VAR4PLIST
+     D/COPY VAR4PLIST
       **************************************************************
       *  Declare the dialog variables data structure
       **************************************************************
