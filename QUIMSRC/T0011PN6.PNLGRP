@@ -16,8 +16,8 @@ No help for this item.
 :EHELP.
 :HELP NAME=STRABU.
 :p.
-Use the Start Address Book Utility (T0011CM5) command to view and
-change the address book database.
+Utilizza il comando Avvia Utilità Contatti (CONTATTI) per visualizzare
+e modificare il database degli indirizzi.
 :ehelp.
 :HELP NAME='STRABU/ALWCHG'.
 :parml.
