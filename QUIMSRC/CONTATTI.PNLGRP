@@ -11,40 +11,37 @@ per IBM i. Per informazioni ulteriori circa UIM consulta
 e il capitolo "User Interface Manager APIs" in
 :cit.System Programmer's Interface Reference:ecit. (SC41-8223).
 .* Describe the function provided by the command.
-:p.:hp2.Restrictions::ehp2.
-:ul.
-:li.
-You must have <...>
-.* List all special authorities required to run the command.
-:li.
-You must have <...>
-.* List object or data authorities required to run the command.
-:li.
-This command is conditionally threadsafe, <...>
-.* If conditionally threadsafe, list threadsafe conditions or restrictions.
-:li.
-<...> 
-.* Describe other command-level restrictions.
-.* Parameter-level restrictions belong in parameter help sections, not here.
-:eul.
+.* :p.:hp2.Restrictions::ehp2.
+.* :ul.
+.* :li.
+.* You must have <...>
+.* .* List all special authorities required to run the command.
+.* :li.
+.* You must have <...>
+.* .* List object or data authorities required to run the command.
+.* :li.
+.* This command is conditionally threadsafe, <...>
+.* .* If conditionally threadsafe, list threadsafe conditions or restrictions.
+.* :li.
+.* <...> 
+.* .* Describe other command-level restrictions.
+.* .* Parameter-level restrictions belong in parameter help sections, not here.
+.* :eul.
 :ehelp.
 .*******************************************
 .*   Help for parameter ALWCHG
 .*******************************************
 :help name='CONTATTI/ALWCHG'.
-&msg(USR0201). (ALWCHG) - Help
+&msg(USR0201). (ALWCHG) - Aiuto
 :xh3.&msg(USR0201). (ALWCHG)
-:p.Specifies <...>
-.* Describe the function provided by the parameter.
+:p.Use this parameter to disallow writing to the address book database.  
 :parml.
 :pt.:pk def.*YES:epk.
 :pd.
-<...> 
-.* Describe the function provided by the pre-defined parameter value.
+If *YES is specified, then records in the database may be deleted, or added.
 :pt.:pk.*NO:epk.
 :pd.
-<...> 
-.* Describe the function provided by the pre-defined parameter value.
+If *NO is specified, then all writes and updates to the database are ignored.
 :eparml.
 :ehelp.
 .**************************************************
