@@ -28,8 +28,8 @@
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
-     D/COPY QRPGSRC,T0011RI6
-     D/COPY QRPGSRC,T0011RI7
+     D/COPY T0011RI6
+     D/COPY T0011RI7
       **************************************************************
       *   Declare entry parameters (Binary not allowed in *ENTRY)
       ***************************************************************
@@ -113,4 +113,4 @@
      C                   MOVE      *ON           *INLR
      C                   RETURN
       **************************************************************
-     I/COPY QRPGSRC,T0011RI5
+     I/COPY T0011RI5

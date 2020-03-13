@@ -27,8 +27,8 @@
       *-------------------------------------------------------------
       *   Include the UIM constants, and declare the VARRCD
       *
-     D/COPY QRPGSRC,T0011RI6
-     D/COPY QRPGSRC,T0011RI7
+     D/COPY T0011RI6
+     D/COPY T0011RI7
       *-------------------------------------------------------------
       *   List of digits, used to check zip code
      D DIGITS          C                   CONST('0123456789')
@@ -148,4 +148,4 @@
      C                   PARM                    MSGKEY
      C                   PARM                    ERRCOD
       *-------------------------------------------------------------
-     I/COPY QRPGSRC,T0011RI5
+     I/COPY T0011RI5

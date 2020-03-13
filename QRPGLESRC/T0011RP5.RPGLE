@@ -4,7 +4,7 @@
       *  PURPOSE         This is the main driver program for the
       *                  Address Book UIM/RPG sample application.
       **************************************************************
-      /COPY QRPGSRC,T0011RI6
+      /COPY T0011RI6
       **************************************************************
       *  Declare the dialog variables data structure
       **************************************************************
@@ -45,4 +45,4 @@
      C                   CALL      'QUICLOA'     CLOA
      C                   MOVE      *ON           *INLR
      C                   RETURN
-      /COPY QRPGSRC,T0011RI5
+      /COPY T0011RI5

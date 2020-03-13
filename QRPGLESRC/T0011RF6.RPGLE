@@ -24,8 +24,8 @@
       **************************************************************
       *   Include the UIM constants, and declare the VARRCD
       **************************************************************
-     D/COPY QRPGSRC,T0011RI6
-     D/COPY QRPGSRC,T0011RI7
+     D/COPY T0011RI6
+     D/COPY T0011RI7
       *-------------------------------------------------------------
       *   Declare parameters to the QMHSNDPM system API
       *
@@ -46,7 +46,7 @@
      D  FNCKEY                 5      8B 0
      D  FNCKE§                 5      8
      D  KNAME                  9     33
-     I/COPY QRPGSRC,T0011RI5
+     I/COPY T0011RI5
       **************************************************************
       *  Declare and copy the entry parameters.
       *  Some acrobatics required since B parms not allowed on *ENTR
