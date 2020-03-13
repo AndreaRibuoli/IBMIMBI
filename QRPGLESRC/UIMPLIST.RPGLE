@@ -1,19 +1,21 @@
-      *****************************************************************
-      * UIMPLIST - PLISTS for calling UIM APIs from RPG
+      ***********************************************************************
+      * UIMPLIST - PLISTS per richiamare le API UIM APIs da RPG ILE
       *
-      * This code requires the variables declared in T0011RI6.
-      * To use these members, copy T0011RI5 and T0011RI6 to QRPGSRC
-      * in your library.  Then type the following in your RPG
-      * program at the appropriate places:
-      *      /COPY T0011RI6
-      *      /COPY T0011RI5
-      * In your program, you will need to define a DS called VARRCD
-      * that contains all the dialog variables used to communicate
-      * with UIM (in the same order declared in UIM).
+      * Questo codice richiede le variabili dichiarate in VAR4PLIST.
+      * Per usare questi membri sorgente, copia VAR4PLIST e UIMPLIST
+      * nel file QRPGLESRC della tua libreira di sviluppo.
+      * Digita le seguenti istruzioni nel codice del tuo programma
+      * RPG ILE in posizione corretta:
+      *      /COPY VAR4PLIST
+      *      /COPY UIMPLIST
+      * Nel tuo programma avrai anche necessità di definire una DS
+      * chiamata VARRCD e che contenga tutte le variabili di dialogo
+      * utilizzate per comunicare con UIM (nello stesso ordine in cui
+      * sono definite in UIM).
       *
-      *****************************************************************
-      *   NOTE:  Parms marked with (*) are OUTPUT (changed by UIM)
-      *****************************************************************
+      ************************************************************************
+      *   NOTA:  I parametri marcati (con *) sono OUTPUT (modificati da UIM)
+      ************************************************************************
       *          QUIADDLE
      C     ADDLE         PLIST
      C                   PARM                    APPHND                         APPL HANDLE
