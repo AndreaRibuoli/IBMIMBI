@@ -23,7 +23,7 @@
      FT0011DD5  IF A E           K DISK
       *-------------------------------------------------------------
       *   Array used to check zip code
-     D ZAR             S              1    DIM(5)
+     D*ZAR             S              1    DIM(5)
       *-------------------------------------------------------------
       *   Include the UIM constants, and declare the VARRCD
       *
