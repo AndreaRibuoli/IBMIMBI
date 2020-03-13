@@ -1,0 +1,211 @@
+             PGM        PARM(&DEVOPT_P)
+             DCL        VAR(&DEVOPT_P) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&DEVOPT) TYPE(*CHAR) LEN(1)
+             DCL        VAR(&SRCLIB) TYPE(*CHAR) LEN(10) VALUE(QTEMP)
+             DCL        VAR(&BLDLIB) TYPE(*CHAR) LEN(10) VALUE(QTEMP)
+             DCL        VAR(&TGTLIB) TYPE(*CHAR) LEN(10) VALUE(IBMIMBI)
+             DCL        VAR(&IFSPATH) TYPE(*CHAR) LEN(100)
+             DCL        VAR(&F) TYPE(*CHAR) LEN(10) VALUE(T0011MG5)
+             DCL        VAR(&SPOOL) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SPOOL_L) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SPOOL_O) TYPE(*CHAR) LEN(10)
+             CHGVAR     VAR(&DEVOPT) VALUE(&DEVOPT_P)
+             MONMSG     MSGID(MCH3601) EXEC(CHGVAR VAR(&DEVOPT) VALUE(L))
+             CRTLIB     LIB(&TGTLIB)
+             MONMSG     MSGID(CPF0000)
+             IF         COND(&DEVOPT = 'N') THEN(DO)
+             DLTPGM     PGM(&TGTLIB/BUILD)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCLSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QCMDSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QRPGSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QSRVSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QUIMSRC)
+             MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QDDSSRC)
+             MONMSG     MSGID(CPF0000)
+             ENDDO
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CRTSRCPF   FILE(&TGTLIB/QCSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QCMDSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QRPGSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QSRVSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QUIMSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CRTSRCPF   FILE(&TGTLIB/QDDSSRC) RCDLEN(132)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCSRC) TOFILE(&TGTLIB/QCSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCLSRC) TOFILE(&TGTLIB/QCLSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QCMDSRC) TOFILE(&TGTLIB/QCMDSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QRPGSRC) TOFILE(&TGTLIB/QRPGSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QSRVSRC) TOFILE(&TGTLIB/QSRVSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QUIMSRC) TOFILE(&TGTLIB/QUIMSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QDDSSRC) TOFILE(&TGTLIB/QDDSSRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
+             ENDDO
+             IF         COND(&DEVOPT = 'L') THEN(DO)
+             CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
+             ENDDO
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CRTBNDCL   PGM(&TGTLIB/BUILD) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(BUILD) +
+                          OUTPUT(*NONE) ALWRTVSRC(*NO)
+             MONMSG     MSGID(CPF0000)
+             ENDDO
+             ADDLIBLE   LIB(&TGTLIB)
+             MONMSG     MSGID(CPF2103)
+/*     installazione standard         */
+             IF         COND(&DEVOPT = 'N') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*NONE')
+             CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
+             CHGVAR     VAR(&SPOOL_L) VALUE('*NOLIST')
+             ENDDO
+/*     installazione per sviluppo     */
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*NONE')
+             CHGVAR     VAR(&SPOOL) VALUE('*NOSOURCE')
+             CHGVAR     VAR(&SPOOL_L) VALUE('*NOLIST')
+             ENDDO
+/*     sola esecuzione in sviluppo    */
+             IF         COND(&DEVOPT = 'L') THEN(DO)
+             CHGVAR     VAR(&SPOOL_O) VALUE('*PRINT')
+             CHGVAR     VAR(&SPOOL) VALUE('*SOURCE')
+             CHGVAR     VAR(&SPOOL_L) VALUE('*LIST')
+             ENDDO
+             DLTF       FILE(&TGTLIB/T0011DD5)
+             MONMSG     MSGID(CPF0000)
+             CRTPF      FILE(&TGTLIB/T0011DD5) SRCFILE(&SRCLIB/QDDSSRC) +
+               OPTION(&SPOOL &SPOOL_L)
+             MONMSG     MSGID(CPF0000)
+             DLTMSGF    MSGF(&TGTLIB/&F)
+             MONMSG     MSGID(CPF2105)
+             CRTMSGF    MSGF(&TGTLIB/&F)
+             ADDMSGD    MSGID(USR0001) MSGF(&TGTLIB/&F) MSG('Address +
+                          Book Utility:  Sample RPG-UIM program.')
+/*  These are messages used in UIM panels */
+             ADDMSGD    MSGID(USR0010) MSGF(&TGTLIB/&F) MSG('Data +
+                          must be provided on the extended list +
+                          entry for this action.') SECLVL('You must +
+                          type data in the entry fields provided +
+                          whenever you use this action on the +
+                          extended list entry (the top list entry +
+                          on the display.)') SEV(40)
+             ADDMSGD    MSGID(USR0011) MSGF(&TGTLIB/&F) MSG('The +
+                          value specified for the Name is not +
+                          valid.') SECLVL('The Name cannot be blank +
+                          and it must start with an uppercase +
+                          alphabetic character, A through Z, +
+                          inclusive.') SEV(40)
+             ADDMSGD    MSGID(USR0012) MSGF(&TGTLIB/&F) MSG('No +
+                          records found in T0011DD5 database') +
+                          SECLVL('The database may be empty, or +
+                          possibly someone has deleted it, or +
+                          renamed it, or it may be that you do not +
+                          have authority to view the database.')
+/*  These are messages sent by the RPG programs  */
+             ADDMSGD    MSGID(USR0100) MSGF(&TGTLIB/&F) MSG('Unable +
+                          to read from the t0011DD5 database.') +
+                          SECLVL('An error occurred when attempting +
+                          to read the database by key.  Another +
+                          user may currently be changing the record +
+                          or you may not have sufficient authority +
+                          to the file T0011DD5.') SEV(40)
+             ADDMSGD    MSGID(USR0101) MSGF(&TGTLIB/&F) MSG('Unable +
+                          to update the T0011DD5 database.') +
+                          SECLVL('An error occurred when attempting +
+                          to update the database. You may not have +
+                          sufficient authority to the file +
+                          T0011DD5.') SEV(40)
+             ADDMSGD    MSGID(USR0102) MSGF(&TGTLIB/&F) MSG('Unable +
+                          to add record; the specified name may +
+                          already exist in the T0011DD5 database.') +
+                          SECLVL('An error occurred when attempting +
+                          to write a new record to the T0011DD5 +
+                          database.  It may be that a record with +
+                          the specified name already exists in the +
+                          database.  You may change the name and +
+                          try to add the record again, or press F12 +
+                          to cancel.  You may not have sufficient +
+                          authority to the file T0011DD5.') SEV(40)
+             ADDMSGD    MSGID(USR0103) MSGF(&TGTLIB/&F) MSG('Record +
+                          not found in the T0011DD5 database.') +
+                          SECLVL('You specified an action for a +
+                          record that no longer exists in the +
+                          T0011DD5 database.  Someone else may have +
+                          recently deleted the record.  Press +
+                          F5=Refresh to update the display to +
+                          reflect the current content of the +
+                          database.') SEV(40)
+             ADDMSGD    MSGID(USR0104) MSGF(&TGTLIB/&F) MSG('The +
+                          specified name is not found in list.') +
+                          SECLVL('The action you specified requires +
+                          you to type the name of an entry in the +
+                          list.  The name you typed does not appear +
+                          in the list.') SEV(40)
+             ADDMSGD    MSGID(USR0105) MSGF(&TGTLIB/&F) MSG('Unable +
+                          to delete a record from the T0011DD5 +
+                          database.') SECLVL('An error occurred +
+                          when attempting to delete a record from +
+                          the database.  You may not have +
+                          sufficient authority to the file +
+                          T0011DD5.') SEV(40)
+             ADDMSGD    MSGID(USR0106) MSGF(&TGTLIB/&F) MSG('A +
+                          record cannot be deleted, because it is +
+                          deleted already.') SECLVL('You specified +
+                          an action for a record that no longer +
+                          exists in the T0011DD5 database.  Someone +
+                          else may have recently deleted the +
+                          record.  Press F5=Refresh to update the +
+                          display to reflect the current content of +
+                          the database.') SEV(40)
+             ADDMSGD    MSGID(USR0107) MSGF(&TGTLIB/&F) MSG('The +
+                          value specified for Zip code is not +
+                          valid.') SECLVL('You must specify a five +
+                          digit, non-negative number for the zip +
+                          code. If you do not know the zip code, +
+                          type 00000.') SEV(40)
+/*  These are messages used for prompts in the T0011CM5 command.*/
+             ADDMSGD    MSGID(USR0200) MSGF(&TGTLIB/&F) MSG('Start +
+                          Address Book Utility')
+             ADDMSGD    MSGID(USR0201) MSGF(&TGTLIB/&F) MSG('Allow +
+                          write to database')
+             CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN6) +
+                          SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
+             CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN5) +
+                          SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
+             CRTCLPGM   PGM(&TGTLIB/T0011CP5) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
+             CRTCMD     CMD(&TGTLIB/T0011CM5) PGM(&TGTLIB/T0011CP5) +
+                          SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +
+                          *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
+                          PMTFILE(*LIBL/T0011MG5) +
+                          HLPPNLGRP(*LIBL/T0011PN6) HLPID(*CMD) +
+                          PRDLIB(&TGTLIB)
+             IF         COND(&DEVOPT *NE 'L') THEN(DLTSPLF FILE(T0011CM5))
+             CRTRPGPGM  PGM(&TGTLIB/T0011RP5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RF6) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RF5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RE5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RL5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RA5) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             CRTRPGPGM  PGM(&TGTLIB/T0011RP6) SRCFILE(&SRCLIB/QRPGSRC) OPTION(&SPOOL)
+             SNDPGMMSG  MSG('** The build of example 3 completed +
+                          successfully. Type T0011CM5.')
+RETURN:      ENDPGM
