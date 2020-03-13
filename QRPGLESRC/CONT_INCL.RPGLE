@@ -113,4 +113,4 @@
      C                   MOVE      *ON           *INLR
      C                   RETURN
       **************************************************************
-     I/COPY T0011RI5
+     I/COPY UIMPLIST
