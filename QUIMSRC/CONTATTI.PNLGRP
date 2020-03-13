@@ -3,8 +3,13 @@
 .*  Help for command CONTATTI
 .************************************************************************
 :help name='CONTATTI'.
-&msg(USR0200). - Help
-:p.The &msg(USR0200). (CONTATTI) command <...>
+&msg(USR0200). - Aiuto
+:p.Il comando &msg(USR0200). (CONTATTI) dimostra l'utilizzo dello
+User Interface Manager (UIM) per lo sviluppo di applicazioni interattive
+per IBM i. Per informazioni ulteriori circa UIM consulta
+:cit.Guide to Programming Application and Help Displays:ecit. (SC41-0011)
+e il capitolo "User Interface Manager APIs" in
+:cit.System Programmer's Interface Reference:ecit. (SC41-8223).
 .* Describe the function provided by the command.
 :p.:hp2.Restrictions::ehp2.
 :ul.
