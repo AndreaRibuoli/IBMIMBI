@@ -28,7 +28,7 @@ Type options, press Enter.
 :LISTACT  OPTION=2
           NOEXT=MSG
           EXTMSGID='USR0010'
-          EXTMSGF='*LIBL/T0011MG5'
+          EXTMSGF='*LIBL/CONTATTI'
           HELP=nohelp
           ENTER='CALL ABUACTN'.
 2=Change
@@ -41,14 +41,14 @@ Type options, press Enter.
 :LISTACT  OPTION=5
           NOEXT=MSG
           EXTMSGID='USR0010'
-          EXTMSGF='*LIBL/T0011MG5'
+          EXTMSGF='*LIBL/CONTATTI'
           HELP=nohelp
           ENTER='CALL ABUACTN'.
 5=Display
 :LISTACT  OPTION=6
           NOEXT=MSG
           EXTMSGID='USR0010'
-          EXTMSGF='*LIBL/T0011MG5'
+          EXTMSGF='*LIBL/CONTATTI'
           HELP=nohelp
           ENTER='CALL ABUACTN'.
 6=Print
