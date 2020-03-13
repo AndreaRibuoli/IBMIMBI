@@ -13,6 +13,6 @@ QRPGLESRC T0011RI7  RPGLE     VARRCD include
 QRPGLESRC T0011RL5  RPGLE     Incomplete list exit            
 QRPGLESRC T0011RP6  RPGLE     F4 on state selection handler                       
 QRPGLESRC T0011RF5  RPGLE     Called by T0011RP6              
-QRPGLESRC T0011RA5  RPGLE     List option exit                
+QRPGLESRC CONT_ACTN RPGLE     List option exit                
 QRPGLESRC T0011RF6  RPGLE     Function key exit               
 QRPGLESRC T0011RA5  RPGLE     List option exit                
