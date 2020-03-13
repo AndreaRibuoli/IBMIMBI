@@ -23,7 +23,7 @@
      FT0011DD5  IF A E           K DISK
       *-------------------------------------------------------------
       *   Array used to check zip code
-     D*ZAR             S              1    DIM(5)
+     D*ZARO            S              1    DIM(5)
       *-------------------------------------------------------------
       *   Include the UIM constants, and declare the VARRCD
       *
@@ -116,7 +116,8 @@
      C     CHKZIP        BEGSR
      C                   CALL      'QUIGETV'     GETV
      C                   DO        5             X                 1 0
-     C     ZAR(X)        SCAN      DIGITS                                 50
+     C                   MOVE      ZAR           ZARO
+     C     ZARO(X)       SCAN      DIGITS                                 50
      C  N50              LEAVE
      C                   ENDDO
      C  N50              MOVEL(P)  'USR0107'     MSGID                          Error
