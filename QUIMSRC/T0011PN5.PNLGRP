@@ -1,6 +1,6 @@
 :PNLGRP DFTMSGF='*LIBL/T0011MG5'.
 :IMPORT NAME='*' PNLGRP=t0011pn6.
-.im t0011pni
+.im CONT_PNGI
 :PANEL    NAME=wrkabu
           HELP=nohelp
           KEYL=wrkkeys
