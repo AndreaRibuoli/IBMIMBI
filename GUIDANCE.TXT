@@ -1,6 +1,6 @@
-QCLSRC    BUILD     CLLE      IBMIMBI development (CALL IBMIMBI/BUILD)
-QCLSRC    T0011CP5  CLP       Command processing program for T0011CM5    
-QCMDSRC   CONTATTI  CMD       Invokes initial panel           
+QCLSRC    BUILD     CLLE      IBMIMBI in sviluppo (CALL IBMIMBI/BUILD)
+QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI    
+QCMDSRC   CONTATTI  CMD       Command iniziale           
 QDDSSRC   T0011DD5  PF        Physical file description for address book file         
 QUIMSRC   T0011PNI  MENU      PNLGRP includes 
 QUIMSRC   T0011PN5  PNLGRP    Help for example                
