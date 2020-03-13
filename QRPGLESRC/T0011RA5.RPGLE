@@ -17,7 +17,7 @@
      D  MSGTYP                 5     14    INZ('*INFO')
      D  PGMQUE                15     24    INZ('*')
      D  PGMSTK                25     28B 0 INZ(1)
-     *
+      *
      D MSGF            DS
      D  MSGFN                  1     10    INZ('T0011MG5')
      D  MSGFL                 11     20    INZ('*LIBL')
