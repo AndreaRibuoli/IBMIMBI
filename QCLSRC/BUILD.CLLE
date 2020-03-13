@@ -187,16 +187,26 @@
                           Address Book Utility')
              ADDMSGD    MSGID(USR0201) MSGF(&TGTLIB/&F) MSG('Allow +
                           write to database')
-             CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN6) +
+             CRTPNLGRP  PNLGRP(&TGTLIB/CONTATTI) +
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
+      /*       CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN6) +                     */
+      /*                    SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)      */
              CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN5) +
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
              CRTCLPGM   PGM(&TGTLIB/CONTATTI) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
-             CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +
+             
+      /*       CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +  */
+      /*                    SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +   */
+      /*                    *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +        */
+      /*                    PMTFILE(*LIBL/T0011MG5) +                    */
+      /*                    HLPPNLGRP(*LIBL/T0011PN6) HLPID(*CMD) +      */
+      /*                    PRDLIB(&TGTLIB)                              */
+
+              CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/CONTATTI) +
                           SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +
                           *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
                           PMTFILE(*LIBL/T0011MG5) +
-                          HLPPNLGRP(*LIBL/T0011PN6) HLPID(*CMD) +
+                          HLPPNLGRP(*LIBL/CONTATTI) HLPID(*CMD) +
                           PRDLIB(&TGTLIB)
              IF         COND(&DEVOPT *NE 'L') THEN(DLTSPLF FILE(CONTATTI))
              CRTBNDRPG  PGM(&TGTLIB/T0011RP5) SRCFILE(&SRCLIB/QRPGLESRC) OUTPUT(&SPOOL_O)
