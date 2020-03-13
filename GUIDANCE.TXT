@@ -13,5 +13,5 @@ QRPGLESRC CONT_INCL RPGLE     Incomplete list exit
 QRPGLESRC CONT_PROM RPGLE     F4 on state selection handler                       
 QRPGLESRC CONT_FILL RPGLE     Called by CONT_PROM              
 QRPGLESRC UIMPLIST  RPGLE     UIM PLISTS include        
-QRPGLESRC T0011RI6  RPGLE     UIM include       
+QRPGLESRC VAR4PLIST RPGLE     UIM include       
 QRPGLESRC T0011RI7  RPGLE     VARRCD include       
