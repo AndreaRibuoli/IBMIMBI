@@ -374,4 +374,4 @@
      C                   PARM                    MSGKEY
      C                   PARM                    ERRCOD
       **************************************************************
-     I/COPY T0011RI5
+     I/COPY UIMPLIST
