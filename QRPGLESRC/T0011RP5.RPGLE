@@ -10,10 +10,10 @@
       **************************************************************
      D VARRCD          DS
      D  ACTN$                  1     20    INZ('CONT_ACTN *LIBL')
-     D  EXIT$                 21     40    INZ('T0011RE5  *LIBL')
-     D  FKEY$                 41     60    INZ('T0011RF6  *LIBL')
-     D  INCL$                 61     80    INZ('T0011RL5  *LIBL')
-     D  PROM$                 81    100    INZ('T0011RP6  *LIBL')
+     D  EXIT$                 21     40    INZ('CONT_EXIT *LIBL')
+     D  FKEY$                 41     60    INZ('CONT_FKEY *LIBL')
+     D  INCL$                 61     80    INZ('CONT_INCL *LIBL')
+     D  PROM$                 81    100    INZ('CONT_PROM *LIBL')
       **************************************************************
       *   Open the application.  We don't have to check the errcode
       *   on return, bytpro is zero so the program will just abend.
