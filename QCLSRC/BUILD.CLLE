@@ -192,7 +192,7 @@
              CRTPNLGRP  PNLGRP(&TGTLIB/T0011PN5) +
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
              CRTCLPGM   PGM(&TGTLIB/T0011CP5) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
-             CRTCMD     CMD(&TGTLIB/T0011CM5) PGM(&TGTLIB/T0011CP5) +
+             CRTCMD     CMD(&TGTLIB/CONTATTI) PGM(&TGTLIB/T0011CP5) +
                           SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT +
                           *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
                           PMTFILE(*LIBL/T0011MG5) +
@@ -206,6 +206,6 @@
              CRTBNDRPG  PGM(&TGTLIB/T0011RL5) SRCFILE(&SRCLIB/QRPGLESRC) OUTPUT(&SPOOL_O)
              CRTBNDRPG  PGM(&TGTLIB/T0011RA5) SRCFILE(&SRCLIB/QRPGLESRC) OUTPUT(&SPOOL_O)
              CRTBNDRPG  PGM(&TGTLIB/T0011RP6) SRCFILE(&SRCLIB/QRPGLESRC) OUTPUT(&SPOOL_O)
-             SNDPGMMSG  MSG('** The build of example 3 completed +
-                          successfully. Type T0011CM5.')
+             SNDPGMMSG  MSG('** La build della demo RPG ILE & UIM si è completata + 
+                          con successo. Esegui digitando CONTATTI.')
 RETURN:      ENDPGM
