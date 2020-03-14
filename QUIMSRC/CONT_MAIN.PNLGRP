@@ -13,7 +13,7 @@ Type options, press Enter.
 :LISTACT OPTION=5  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.5=Visualiz.
 :LISTACT OPTION=6  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.6=Stampa
 :LISTCOL VAR=opt   HELP=nohelp USAGE=INOUT EXTACT=YES MAXWIDTH=6   .Opz
-:LISTCOL VAR=name  HELP=nohelp USAGE=OUT   EXTACT=YES MAXWIDTH=25  .Nome e Cognome
+:LISTCOL VAR=name  HELP=nohelp USAGE=OUT   EXTACT=YES MAXWIDTH=25  .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
 :LISTCOL VAR=city  HELP=nohelp USAGE=OUT              MAXWIDTH=20  .Città
 :LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Prov
@@ -29,7 +29,7 @@ Confirm Delete of Address Book Entries
 :TOPINST.Press Enter to confirm your choices for 4=Delete.
 :TOPINST.Press F12 to return to change your choices.
 :LISTCOL VAR=opt   HELP=nohelp USAGE=OUT              MAXWIDTH=6   .Opz
-:LISTCOL VAR=name  HELP=nohelp USAGE=OUT              MAXWIDTH=25  .Nome e Cognome
+:LISTCOL VAR=name  HELP=nohelp USAGE=OUT              MAXWIDTH=25  .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
 :LISTCOL VAR=city  HELP=nohelp USAGE=OUT              MAXWIDTH=20  .Città
 :LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Prov
@@ -45,7 +45,7 @@ Display Address Book Entry
 :DATACOL  WIDTH=32.
 :DATACOL  WIDTH='*'.
 :DATAI VAR=name  USAGE=OUT HELP=nohelp.Nome e Cognome
-:DATAI VAR=addr  USAGE=OUT HELP=nohelp.'Indirizzo e n° civico'
+:DATAI VAR=addr  USAGE=OUT HELP=nohelp.Indirizzo e n° civico
 :DATAI VAR=city  USAGE=OUT HELP=nohelp.Città
 :DATAI VAR=state USAGE=OUT HELP=nohelp.Provincia
 :DATAI VAR=zip   USAGE=OUT HELP=nohelp.CAP
@@ -65,7 +65,7 @@ Change Address Book Entry
 :DATACOL  WIDTH=30.
 :DATACOL  WIDTH=14.
 :DATACOL  WIDTH='*'.
-:DATAI VAR=addr  USAGE=INOUT HELP=nohelp.'Indirizzo e n° civico'
+:DATAI VAR=addr  USAGE=INOUT HELP=nohelp.Indirizzo e n° civico
 :DATAC.
 Character
 :DATAI VAR=city  USAGE=INOUT HELP=nohelp.Città
@@ -87,10 +87,10 @@ Add Address Book Entry
 :DATACOL  WIDTH=30.
 :DATACOL  WIDTH=14.
 :DATACOL  WIDTH='*'.
-:DATAI VAR=name  USAGE=INOUT HELP=nohelp REQUIRED=YES.'Nome e Cognome'
+:DATAI VAR=name  USAGE=INOUT HELP=nohelp REQUIRED=YES.Nome e Cognome
 :DATAC.
 Character
-:DATAI VAR=addr  USAGE=INOUT HELP=nohelp.'Indirizzo e n° civico'
+:DATAI VAR=addr  USAGE=INOUT HELP=nohelp.Indirizzo e n° civico
 :DATAC.
 Character
 :DATAI VAR=city  USAGE=INOUT HELP=nohelp.Città
@@ -112,7 +112,7 @@ Position the List
 :DATACOL  WIDTH=18.
 :DATACOL  WIDTH=25.
 :DATACOL  WIDTH='*'.
-:DATAI VAR=name  USAGE=INOUT HELP=nohelp REQUIRED=YES.'Nome e Cognome'
+:DATAI VAR=name  USAGE=INOUT HELP=nohelp REQUIRED=YES.Nome e Cognome
 :DATAC.
 Starting characters
 :EDATA.
