@@ -3,17 +3,17 @@
 .im CONT_PNGI
 .* _____________________________________________________________________________________________________________________
 :PANEL  NAME=WRKABU HELP=nohelp KEYL=wrkkeys TT=viewtt USREXIT='CALL ABUEXIT' TOPSEP=SYSNAM ENTER='RETURN 26'.
-Work with Address Book Entries
+Gestione Contatti
 :LIST   DEPTH='*' LISTDEF=datalst ACTOR=UIM EXTACT=YES MAXHEAD=4 MAXACTL=3 VIEW=views.
 :TOPINST.
-Type options, press Enter.
+Immettere le opzioni e premere Invio.
 :LISTACT OPTION=1  HELP=nohelp ACTFOR=EXTACTE                                        ENTER='CALL ABUACTN'.1=Inserimento
 :LISTACT OPTION=2  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.2=Modifica
 :LISTACT OPTION=4  HELP=nohelp ACTFOR=LISTE         CONFIRM=rmvabu                   ENTER='CALL ABUACTN'.4=Cancel.
 :LISTACT OPTION=5  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.5=Visualiz.
 :LISTACT OPTION=6  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.6=Stampa
 :LISTCOL VAR=opt   HELP=nohelp USAGE=INOUT EXTACT=YES MAXWIDTH=6   .Opz
-:LISTCOL VAR=name  HELP=nohelp USAGE=OUT   EXTACT=YES MAXWIDTH=25  .'Nome e Cognome'
+:LISTCOL VAR=name  HELP=nohelp USAGE=OUT   EXTACT=YES MAXWIDTH=25 .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
 :LISTCOL VAR=city  HELP=nohelp USAGE=OUT              MAXWIDTH=20  .Città
 :LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Prov
@@ -24,12 +24,12 @@ Type options, press Enter.
 :EPANEL.
 .* _____________________________________________________________________________________________________________________
 :PANEL NAME=rmvabu HELP=nohelp KEYL=nconfkeys USREXIT='CALL ABUEXIT' TOPSEP=space ENTER='RETURN 100'.
-Confirm Delete of Address Book Entries
+Conferma cancellazione voce da Contatti
 :LIST DEPTH='*' LISTDEF=rmvlst ACTOR=NONE MAXHEAD=4 VIEW=views.
-:TOPINST.Press Enter to confirm your choices for 4=Delete.
-:TOPINST.Press F12 to return to change your choices.
+:TOPINST.Premere Invio per confermare la cancellazione del contatto.
+:TOPINST.Premere F12=Annullamento per modificare le scelte.
 :LISTCOL VAR=opt   HELP=nohelp USAGE=OUT              MAXWIDTH=6   .Opz
-:LISTCOL VAR=name  HELP=nohelp USAGE=OUT              MAXWIDTH=25  .'Nome e Cognome'
+:LISTCOL VAR=name  HELP=nohelp USAGE=OUT              MAXWIDTH=25 .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
 :LISTCOL VAR=city  HELP=nohelp USAGE=OUT              MAXWIDTH=20  .Città
 :LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Prov
@@ -40,7 +40,7 @@ Confirm Delete of Address Book Entries
 :EPANEL.
 .* _____________________________________________________________________________________________________________________
 :PANEL NAME=dspabu HELP=nohelp KEYL=basickeys USREXIT='CALL ABUEXIT' TOPSEP=space ENTER='RETURN 26'.
-Display Address Book Entry
+Visualizzazione voce da elenco Contatti
 :DATA DEPTH='*' BOTSEP=SPACE.
 :DATACOL  WIDTH=32.
 :DATACOL  WIDTH='*'.
@@ -49,12 +49,12 @@ Display Address Book Entry
 :DATAI VAR=city  USAGE=OUT HELP=nohelp.Città
 :DATAI VAR=state USAGE=OUT HELP=nohelp.Provincia
 :DATAI VAR=zip   USAGE=OUT HELP=nohelp.CAP
-:BOTINST.Press Enter to continue.
+:BOTINST.Premere Invio per continuare.
 :EDATA.
 :EPANEL.
 .* _____________________________________________________________________________________________________________________
 :PANEL NAME=chgabu HELP=nohelp KEYL=chgkeys USREXIT='CALL ABUEXIT' TOPSEP=space ENTER='RETURN 26'.
-Change Address Book Entry
+Modifica voce da elenco Contatti
 :DATA DEPTH=2 BOTSEP=NONE.
 :DATACOL  WIDTH=32.
 :DATACOL  WIDTH='*'.
@@ -81,8 +81,8 @@ F4 for list
 :EPANEL.
 .* _____________________________________________________________________________________________________________________
 :PANEL NAME=addabu HELP=nohelp KEYL=chgkeys USREXIT='CALL ABUEXIT' TOPSEP=space ENTER='RETURN 26'.
-Add Address Book Entry
-:DATA DEPTH='*' BODYSEP=BOTH BOTSEP=space.
+Aggiunta voce ad elenco Contatti
+BOTH BOTSEP=space.
 :TOPINST.Type choices, press Enter.
 :DATACOL  WIDTH=30.
 :DATACOL  WIDTH=14.
@@ -125,40 +125,24 @@ Select State
 :LISTACT  OPTION=1 HELP=nohelp.1=Select
 :LISTCOL  var=opt1      maxwidth=4  usage=inout help=nohelp.Opz
 :LISTCOL  var=state     maxwidth=10 usage=out   help=nohelp.Targa
-:LISTCOL  var=stname    maxwidth='*' usage=out   help=nohelp.Provincia
+:LISTCOL  var=stname    maxwidth='*' usage=out  help=nohelp.Provincia
 :LISTVIEW cols='opt1 state stname'.
 :ELIST.
 :EPANEL.
 .* _____________________________________________________________________________________________________________________
-:PRTHEAD NAME=prthdabu.Print Address Book Entry
+:PRTHEAD NAME=prthdabu.Stampa Scheda Contatto
 :PRTTRAIL.E N D  O F  L I S T I N G
 :EPRTHEAD.
-:PRTPNL   NAME=prtabu.Print Address Book Entry
-:DATA     DEPTH='*'
-          BOTSEP=SPACE
-          .
+:PRTPNL   NAME=prtabu.Stampa Scheda Contatto
+:DATA DEPTH='*' BOTSEP=SPACE.
 :DATACOL  WIDTH=32.
 :DATACOL  WIDTH='*'.
-:DATAI    VAR=name
-          USAGE=OUT
-          .
-Full name
-:DATAI    VAR=addr
-          USAGE=OUT
-          .
-Street address
-:DATAI    VAR=city
-          USAGE=OUT
-          .
-City
-:DATAI    VAR=state
-          USAGE=OUT
-          .
-State
-:DATAI    VAR=zip
-          USAGE=OUT
-          .
-Zip code
+:DATAI VAR=name  USAGE=OUT .Nome e Cognome
+:DATAI VAR=addr  USAGE=OUT .Indirizzo e n° civico
+:DATAI VAR=city  USAGE=OUT .Città
+:DATAI VAR=state USAGE=OUT .Provincia
+:DATAI VAR=zip   USAGE=OUT .CAP
 :EDATA.
 :EPRTPNL.
+.* _____________________________________________________________________________________________________________________
 :EPNLGRP.
