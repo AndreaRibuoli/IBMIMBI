@@ -123,9 +123,9 @@ Select State
 :LIST DEPTH='*' LISTDEF=stalist ACTOR=caller MAXHEAD=4.
 :TOPINST.Type option, press Enter.
 :LISTACT  OPTION=1 HELP=nohelp.1=Select
-:LISTACT  var=opt1      maxwidth=4  usage=inout help=nohelp.Opz
-:LISTACT  var=state     maxwidth=10 usage=out   help=nohelp.Targa
-:LISTACT  var=stname    maxwidth='*' usage=out   help=nohelp.Provincia
+:LISTCOL  var=opt1      maxwidth=4  usage=inout help=nohelp.Opz
+:LISTCOL  var=state     maxwidth=10 usage=out   help=nohelp.Targa
+:LISTCOL  var=stname    maxwidth='*' usage=out   help=nohelp.Provincia
 :LISTVIEW cols='opt1 state stname'.
 :ELIST.
 :EPANEL.
