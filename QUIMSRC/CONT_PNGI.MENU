@@ -1,6 +1,5 @@
 .* _____________________________________________________________________________________________________________________
-:CLASS NAME=optcl   BASETYPE='ACTION' WIDTH=1.
-:ECLASS.
+:CLASS NAME=optcl   BASETYPE='ACTION' WIDTH=1.     :ECLASS.
 .*
 :CLASS NAME=namecl  BASETYPE='CHAR 25'.
 :TL CASE=UPPER.
