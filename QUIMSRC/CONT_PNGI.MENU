@@ -1,268 +1,121 @@
-:CLASS    NAME=optcl
-          BASETYPE='ACTION'
-          WIDTH=1.
+.* _____________________________________________________________________________________________________________________
+:CLASS NAME=optcl   BASETYPE='ACTION' WIDTH=1.
 :ECLASS.
-:CLASS    NAME=namecl
-          BASETYPE='CHAR 25'.
+.*
+:CLASS NAME=namecl  BASETYPE='CHAR 25'.
 :TL CASE=UPPER.
 :TI VALUE='"*TOP"'.*TOP
 :TI VALUE='"*BOT"'.*BOT
 :ETL.
-:CHECK    RANGE='"A" "Z9999999999"' MSGID=USR0011.
+:CHECK RANGE='"A" "Z9999999999"' MSGID=USR0011.
 :ECLASS.
-:CLASS    NAME=addrcl
-          BASETYPE='CHAR 30'.
+.*
+:CLASS NAME=addrcl  BASETYPE='CHAR 30'.
 :ECLASS.
-:CLASS    NAME=citycl
-          BASETYPE='CHAR 20'.
+.*
+:CLASS NAME=citycl BASETYPE='CHAR 20'.
 :ECLASS.
-:CLASS    NAME=statecl
-          BASETYPE='CHAR 2'
-          CASE=UPPER.
+.*
+:CLASS NAME=statecl BASETYPE='CHAR 2' CASE=UPPER.
 :ECLASS.
-:CLASS    NAME=zipcl
-          BASETYPE='CHAR 5'.
+.*
+:CLASS    NAME=zipcl BASETYPE='CHAR 5'.
 :ECLASS.
-:CLASS    NAME=pgmcl
-          BASETYPE='CHAR 20'.
+.*
+:CLASS NAME=pgmcl BASETYPE='CHAR 20'.
 :ECLASS.
-:CLASS    NAME=viewcl
-          BASETYPE='BIN 15'.
+.*
+:CLASS NAME=viewcl BASETYPE='BIN 15'.
 :ECLASS.
-:VAR      NAME=name
-          CLASS=namecl.
-:VAR      NAME=addr
-          CLASS=addrcl.
-:VAR      NAME=city
-          CLASS=citycl.
-:VAR      NAME=state
-          CLASS=statecl.
-:VAR      NAME=zip
-          CLASS=zipcl.
-:VAR      NAME=stname
-          CLASS=citycl.
-:VAR      NAME=views
-          CLASS=viewcl.
-:VAR      NAME=opt
-          CLASS=optcl.
-:VAR      NAME=opt1
-          CLASS=optcl.
-:VAR      NAME=abuexit
-          CLASS=pgmcl.
-:VAR      NAME=abuincl
-          CLASS=pgmcl.
-:VAR      NAME=abuactn
-          CLASS=pgmcl.
-:VAR      NAME=abufkey
-          CLASS=pgmcl.
-:VAR      NAME=abuprom
-          CLASS=pgmcl.
-:VARRCD   NAME=pgmvar
-          VARS='abuactn abuexit abufkey abuincl abuprom'.
-:VARRCD   NAME=datavar
-          VARS='opt name addr city state zip'.
-:VARRCD   NAME=selvar
-          VARS='opt1 state stname'.
-:LISTDEF  NAME=datalst MSGID=USR0012
-          VARS='opt name addr city state zip'.
-:LISTDEF  NAME=rmvlst
-          VARS='opt name addr city state zip'.
-:LISTDEF  NAME=stalist
-          VARS='opt1 state stname'.
-:COND     NAME=view0 EXPR='views=0'.
-:COND     NAME=view1 EXPR='views=1'.
-:TT       NAME=viewtt
-          CONDS='view0 view1'.
+.* _____________________________________________________________________________________________________________________
+:VAR      NAME=name          CLASS=namecl.
+:VAR      NAME=addr          CLASS=addrcl.
+:VAR      NAME=city          CLASS=citycl.
+:VAR      NAME=state         CLASS=statecl.
+:VAR      NAME=zip           CLASS=zipcl.
+:VAR      NAME=stname        CLASS=citycl.
+:VAR      NAME=views         CLASS=viewcl.
+:VAR      NAME=opt           CLASS=optcl.
+:VAR      NAME=opt1          CLASS=optcl.
+:VAR      NAME=abuexit       CLASS=pgmcl.
+:VAR      NAME=abuincl       CLASS=pgmcl.
+:VAR      NAME=abuactn       CLASS=pgmcl.
+:VAR      NAME=abufkey       CLASS=pgmcl.
+:VAR      NAME=abuprom       CLASS=pgmcl.
+:VARRCD   NAME=pgmvar                  VARS='abuactn abuexit abufkey abuincl abuprom'.
+:VARRCD   NAME=datavar                 VARS='opt name addr city state zip'.
+:VARRCD   NAME=selvar                  VARS='opt1 state stname'.
+:LISTDEF  NAME=datalst  MSGID=USR0012  VARS='opt name addr city state zip'.
+:LISTDEF  NAME=rmvlst                  VARS='opt name addr city state zip'.
+:LISTDEF  NAME=stalist                 VARS='opt1 state stname'.
+:COND     NAME=view0    EXPR='views=0'.
+:COND     NAME=view1    EXPR='views=1'.
+:TT       NAME=viewtt   CONDS='view0 view1'.
 :TTROW    VALUES=' 1     0  '.
 :TTROW    VALUES=' 0     1  '.
 :ETT.
-:KEYL     NAME=wrkkeys
-          HELP=keyl.
-:KEYI     KEY=F1
-          HELP=helpf1
-          ACTION=HELP.
-:KEYI     KEY=F3
-          HELP=exit
-          ACTION='EXIT SET'
-          VARUPD=NO.
-F3=Fine
-:KEYI     KEY=F5
-          HELP=exit
-          ACTION='CALL ABUFKEY'
-          VARUPD=NO.
-F5=Rivisualizzazione
-:KEYI     KEY=F11
-          HELP=f11
-          ACTION=CHGVIEW
-          COND=view0.
-F11=Mostra città
-:KEYI     KEY=F11
-          HELP=f11
-          ACTION=CHGVIEW
-          COND=view1.
-F11=Mostra indirizzo
-:KEYI     KEY=F12
-          HELP=cancel
-          ACTION='CANCEL SET'
-          VARUPD=NO.
-F12=Annullamento
-:KEYI     KEY=F17
-          HELP=nohelp
-          ACTION='CALL ABUFKEY'
-          VARUPD=NO.
-F17=Position to
-:KEYI     KEY=ENTER
-          HELP=enter
-          ACTION=ENTER.
-:KEYI     KEY=HELP
-          HELP=help
-          ACTION=HELP.
-:KEYI     KEY=PAGEDOWN
-          HELP=pagedown
-          ACTION=PAGEDOWN.
-:KEYI     KEY=PAGEUP
-          HELP=pageup
-          ACTION=PAGEUP.
-:KEYI     KEY=PRINT
-          HELP=print
-          ACTION=PRINT.
-:KEYI     KEY=SYSREQ
-          HELP=sysreq.
+.* _____________________________________________________________________________________________________________________
+:KEYL     NAME=wrkkeys    HELP=keyl.
+:KEYI     KEY=F1          HELP=helpf1          ACTION=HELP.
+:KEYI     KEY=F3          HELP=exit            ACTION='EXIT SET'          VARUPD=NO   .F3=Fine
+:KEYI     KEY=F5          HELP=exit            ACTION='CALL ABUFKEY'      VARUPD=NO   .F5=Rivisualizzazione
+:KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view0  .F11=Mostra città
+:KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view1  .F11=Mostra indirizzo
+:KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento
+:KEYI     KEY=F17         HELP=nohelp          ACTION='CALL ABUFKEY'      VARUPD=NO   .F17=Posizionamento a
+:KEYI     KEY=ENTER       HELP=enter           ACTION=ENTER.
+:KEYI     KEY=HELP        HELP=help            ACTION=HELP.
+:KEYI     KEY=PAGEDOWN    HELP=pagedown        ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP      HELP=pageup          ACTION=PAGEUP.
+:KEYI     KEY=PRINT       HELP=print           ACTION=PRINT.
+:KEYI     KEY=SYSREQ      HELP=sysreq.
 :EKEYL.
-:KEYL     NAME=nconfkeys
-          HELP=keyl.
-:KEYI     KEY=F1
-          HELP=f1
-          ACTION=HELP.
-:KEYI     KEY=F11
-          HELP=f11
-          ACTION=CHGVIEW
-          COND=view0.
-F11=Mostra città
-:KEYI     KEY=F11
-          HELP=f11
-          ACTION=CHGVIEW
-          COND=view1.
-F11=Mostra indirizzo
-:KEYI     KEY=F12
-          HELP=f12
-          ACTION='CANCEL SET'
-          VARUPD=NO.
-F12=Annullamento
-:KEYI     KEY=ENTER
-          HELP=enter
-          ACTION=ENTER.
-:KEYI     KEY=HELP
-          HELP=help
-          ACTION=HELP.
-:KEYI     KEY=PAGEDOWN
-          HELP=pagedown
-          ACTION=PAGEDOWN.
-:KEYI     KEY=PAGEUP
-          HELP=pageup
-          ACTION=PAGEUP.
-:KEYI     KEY=PRINT
-          HELP=print
-          ACTION=PRINT.
-:KEYI     KEY=SYSREQ
-          HELP=sysreq.
+.* _____________________________________________________________________________________________________________________
+:KEYL     NAME=nconfkeys  HELP=keyl.
+:KEYI     KEY=F1          HELP=f1              ACTION=HELP.
+:KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view0  .F11=Mostra città
+:KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view1  .F11=Mostra indirizzo
+:KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento
+:KEYI     KEY=ENTER       HELP=enter           ACTION=ENTER.
+:KEYI     KEY=HELP        HELP=help            ACTION=HELP.
+:KEYI     KEY=PAGEDOWN    HELP=pagedown        ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP      HELP=pageup          ACTION=PAGEUP.
+:KEYI     KEY=PRINT       HELP=print           ACTION=PRINT.
+:KEYI     KEY=SYSREQ      HELP=sysreq.
 :EKEYL.
-:KEYL     NAME=basickeys
-          HELP=keyl.
-:KEYI     KEY=F1
-          HELP=helpf1
-          ACTION=HELP.
-:KEYI     KEY=F3
-          HELP=exit
-          ACTION='EXIT SET'
-          VARUPD=NO.
-F3=Fine
-:KEYI     KEY=F12
-          HELP=cancel
-          ACTION='CANCEL SET'
-          VARUPD=NO.
-F12=Annullamento
-:KEYI     KEY=ENTER
-          HELP=enter
-          ACTION=ENTER.
-:KEYI     KEY=HELP
-          HELP=help
-          ACTION=HELP.
-:KEYI     KEY=PAGEDOWN
-          HELP=pagedown
-          ACTION=PAGEDOWN.
-:KEYI     KEY=PAGEUP
-          HELP=pageup
-          ACTION=PAGEUP.
-:KEYI     KEY=PRINT
-          HELP=print
-          ACTION=PRINT.
-:KEYI     KEY=SYSREQ
-          HELP=sysreq.
+.* _____________________________________________________________________________________________________________________
+:KEYL     NAME=basickeys  HELP=keyl.
+:KEYI     KEY=F1          HELP=helpf1          ACTION=HELP.
+:KEYI     KEY=F3          HELP=exit            ACTION='EXIT SET'          VARUPD=NO   .F3=Fine
+:KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento
+:KEYI     KEY=ENTER       HELP=enter           ACTION=ENTER.
+:KEYI     KEY=HELP        HELP=help            ACTION=HELP.
+:KEYI     KEY=PAGEDOWN    HELP=pagedown        ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP      HELP=pageup          ACTION=PAGEUP.
+:KEYI     KEY=PRINT       HELP=print           ACTION=PRINT.
+:KEYI     KEY=SYSREQ      HELP=sysreq.
 :EKEYL.
-:KEYL     NAME=selkeys
-          HELP=keyl.
-:KEYI     KEY=F1
-          HELP=helpf1
-          ACTION=HELP.
-:KEYI     KEY=F12
-          HELP=cancel
-          ACTION='CANCEL SET'
-          VARUPD=NO.
-F12=Cancel
-:KEYI     KEY=ENTER
-          HELP=enter
-          ACTION=ENTER.
-:KEYI     KEY=HELP
-          HELP=help
-          ACTION=HELP.
-:KEYI     KEY=PAGEDOWN
-          HELP=pagedown
-          ACTION=PAGEDOWN.
-:KEYI     KEY=PAGEUP
-          HELP=pageup
-          ACTION=PAGEUP.
-:KEYI     KEY=PRINT
-          HELP=print
-          ACTION=PRINT.
-:KEYI     KEY=SYSREQ
-          HELP=sysreq.
+.* _____________________________________________________________________________________________________________________
+:KEYL     NAME=selkeys    HELP=keyl.
+:KEYI     KEY=F1          HELP=helpf1          ACTION=HELP.
+:KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento
+:KEYI     KEY=ENTER       HELP=enter           ACTION=ENTER.
+:KEYI     KEY=HELP        HELP=help            ACTION=HELP.
+:KEYI     KEY=PAGEDOWN    HELP=pagedown        ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP      HELP=pageup          ACTION=PAGEUP.
+:KEYI     KEY=PRINT       HELP=print           ACTION=PRINT.
+:KEYI     KEY=SYSREQ      HELP=sysreq.
 :EKEYL.
-:KEYL     NAME=chgkeys
-          HELP=keyl.
-:KEYI     KEY=F1
-          HELP=f1help
-          ACTION=HELP.
-:KEYI     KEY=F3
-          HELP=exit
-          ACTION='EXIT SET'
-          VARUPD=NO.
-F3=Fine
-:KEYI     KEY=F4
-          HELP=prompt
-          ACTION='PROMPT'.
-F4=Richiesta
-:KEYI     KEY=F12
-          HELP=cancel
-          ACTION='CANCEL SET'
-          VARUPD=NO.
-F12=Annullamento
-:KEYI     KEY=ENTER
-          HELP=enter
-          ACTION=ENTER.
-:KEYI     KEY=HELP
-          HELP=help
-          ACTION=HELP.
-:KEYI     KEY=PAGEDOWN
-          HELP=pagedown
-          ACTION=PAGEDOWN.
-:KEYI     KEY=PAGEUP
-          HELP=pageup
-          ACTION=PAGEUP.
-:KEYI     KEY=PRINT
-          HELP=print
-          ACTION=PRINT.
-:KEYI     KEY=SYSREQ
-          HELP=sysreq.
+.* _____________________________________________________________________________________________________________________
+:KEYL     NAME=chgkeys    HELP=keyl.
+:KEYI     KEY=F1          HELP=helpf1          ACTION=HELP.
+:KEYI     KEY=F3          HELP=exit            ACTION='EXIT SET'          VARUPD=NO   .F3=Fine
+:KEYI     KEY=F4          HELP=prompt          ACTION='PROMPT'            VARUPD=NO   .F4=Richiesta
+:KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento
+:KEYI     KEY=ENTER       HELP=enter           ACTION=ENTER.
+:KEYI     KEY=HELP        HELP=help            ACTION=HELP.
+:KEYI     KEY=PAGEDOWN    HELP=pagedown        ACTION=PAGEDOWN.
+:KEYI     KEY=PAGEUP      HELP=pageup          ACTION=PAGEUP.
+:KEYI     KEY=PRINT       HELP=print           ACTION=PRINT.
+:KEYI     KEY=SYSREQ      HELP=sysreq.
 :EKEYL.
-
