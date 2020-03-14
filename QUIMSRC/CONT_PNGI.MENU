@@ -1,7 +1,8 @@
 .* _____________________________________________________________________________________________________________________
-:CLASS NAME=optcl   BASETYPE='ACTION' WIDTH=1.     :ECLASS.
+:CLASS NAME=optcl BASETYPE='ACTION' WIDTH=1.
+:ECLASS.
 .*
-:CLASS NAME=namecl  BASETYPE='CHAR 25'.
+:CLASS NAME=namecl BASETYPE='CHAR 25'.
 :TL CASE=UPPER.
 :TI VALUE='"*TOP"'.*TOP
 :TI VALUE='"*BOT"'.*BOT
@@ -9,7 +10,7 @@
 :CHECK RANGE='"A" "Z9999999999"' MSGID=USR0011.
 :ECLASS.
 .*
-:CLASS NAME=addrcl  BASETYPE='CHAR 30'.
+:CLASS NAME=addrcl BASETYPE='CHAR 30'.
 :ECLASS.
 .*
 :CLASS NAME=citycl BASETYPE='CHAR 20'.
@@ -18,7 +19,7 @@
 :CLASS NAME=statecl BASETYPE='CHAR 2' CASE=UPPER.
 :ECLASS.
 .*
-:CLASS    NAME=zipcl BASETYPE='CHAR 5'.
+:CLASS NAME=zipcl BASETYPE='CHAR 5'.
 :ECLASS.
 .*
 :CLASS NAME=pgmcl BASETYPE='CHAR 20'.

@@ -1,8 +1,8 @@
      A                                      UNIQUE
      A          R DD5REC
-     A            NAME          25          COLHDG('Nome')
+     A            NAME          25          COLHDG('Nome' 'Completo')
      A            ADDR          30          COLHDG('Indirizzo')
      A            CITY          20          COLHDG('Città')
      A            STATE          2          COLHDG('Provincia')
-     A            ZIP            5S 0       COLHDG('Codice' 'Postale')
+     A            ZIP            5S 0       COLHDG('CAP')
      A          K NAME
