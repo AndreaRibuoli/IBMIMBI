@@ -32,7 +32,7 @@ Confirm Delete of Address Book Entries
 :LISTCOL VAR=name  HELP=nohelp USAGE=OUT              MAXWIDTH=25 .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
 :LISTCOL VAR=city  HELP=nohelp USAGE=OUT              MAXWIDTH=20  .Città
-:LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Provincia
+:LISTCOL VAR=state HELP=nohelp USAGE=OUT              MAXWIDTH=5   .Prov
 :LISTCOL VAR=zip   HELP=nohelp USAGE=OUT              MAXWIDTH='*' .CAP
 :LISTVIEW COLS='opt name addr'.
 :LISTVIEW COLS='opt name city state zip'.
