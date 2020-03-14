@@ -53,14 +53,14 @@
       *   is an example.
       **************************************************************
      C                   Z-ADD     0             OPT1
-     C                   MOVEL(P)  'Florida'     STNAME
-     C                   MOVE      'FL'          STATE
+     C                   MOVEL(P)  'Pesaro e Urbino' STNAME
+     C                   MOVE      'PU'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Texas'       STNAME
-     C                   MOVE      'TX'          STATE
+     C                   MOVEL(P)  'Ancona'      STNAME
+     C                   MOVE      'AN'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Oregon'      STNAME
-     C                   MOVE      'OR'          STATE
+     C                   MOVEL(P)  'Ascoli Piceno' STNAME
+     C                   MOVE      'AP'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
      C                   MOVEL(P)  'Virginia'    STNAME
      C                   MOVE      'VA'          STATE
