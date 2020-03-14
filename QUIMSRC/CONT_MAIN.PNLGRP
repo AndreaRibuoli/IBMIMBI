@@ -82,7 +82,7 @@ F4 for list
 .* _____________________________________________________________________________________________________________________
 :PANEL NAME=addabu HELP=nohelp KEYL=chgkeys USREXIT='CALL ABUEXIT' TOPSEP=space ENTER='RETURN 26'.
 Aggiunta voce ad elenco Contatti
-BOTH BOTSEP=space.
+:DATA DEPTH='*' BODYSEP=BOTH BOTSEP=space.
 :TOPINST.Type choices, press Enter.
 :DATACOL  WIDTH=30.
 :DATACOL  WIDTH=14.
