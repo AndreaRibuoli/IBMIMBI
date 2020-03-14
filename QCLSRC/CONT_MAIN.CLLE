@@ -1,0 +1,42 @@
+             PGM
+             DCL        VAR(&APPHND) TYPE(*CHAR) LEN(8)
+             DCL        VAR(&PNLGRP) TYPE(*CHAR) LEN(20) VALUE('CONT_MAIN *LIBL')
+             DCL        VAR(&SCOPE)  TYPE(*CHAR) LEN(4) VALUE(X'FFFFFFFF')
+             DCL        VAR(&EXITIN) TYPE(*CHAR) LEN(4) VALUE(X'00000001')
+             DCL        VAR(&FULHLP) TYPE(*CHAR) LEN(1) VALUE(N)
+             DCL        VAR(&ERRCOD) TYPE(*PTR)  ADDRESS(*NULL)
+             DCL        VAR(&CLOOPT) TYPE(*CHAR) LEN(1) VALUE(M)
+             DCL        VAR(&VARBUF) TYPE(*CHAR) LEN(100) +
+                          VALUE('CONT_ACTN *LIBL     +
+                          CONT_EXIT *LIBL     +
+                          CONT_FKEY *LIBL     +
+                          CONT_INCL *LIBL     +
+                          CONT_PROM *LIBL     ')
+             DCL        VAR(&VARRCD) TYPE(*PTR) ADDRESS(&VARBUF)
+             DCL        VAR(&VARLEN) TYPE(*CHAR) LEN(4) VALUE(X'00000064')
+             DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10) VALUE(PGMVAR)
+             DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) VALUE(DATALST)
+             DCL        VAR(&CONTNT) TYPE(*CHAR) LEN(4) VALUE(TOP)
+             DCL        VAR(&INCPGM) TYPE(*CHAR) LEN(10) VALUE(ABUINCL)
+             DCL        VAR(&POSLE)  TYPE(*CHAR) LEN(4) VALUE(SAME)
+             DCL        VAR(&ALWTRM) TYPE(*CHAR) LEN(1) VALUE(Y)
+             DCL        VAR(&FNCREQ) TYPE(*CHAR) LEN(4) VALUE(X'00000000')
+             DCL        VAR(&PNLNAM) TYPE(*CHAR) LEN(10) VALUE(WRKABU)
+             DCL        VAR(&REDISP) TYPE(*CHAR) LEN(1) VALUE(N)
+             DCL        VAR(&USRTSK) TYPE(*CHAR) LEN(1) VALUE(N)
+             DCL        VAR(&STKCNT) TYPE(*CHAR) LEN(4) VALUE(X'00000000')
+             DCL        VAR(&MSGQUE) TYPE(*CHAR) LEN(10) VALUE(*CALLER)
+             DCL        VAR(&MSGKEY) TYPE(*CHAR) LEN(4) VALUE('    ')
+             DCL        VAR(&CURPOS) TYPE(*CHAR) LEN(1) VALUE(D)
+             DCL        VAR(&LASTLE) TYPE(*CHAR) LEN(4) VALUE(NONE)
+             DCL        VAR(&ERRLE)  TYPE(*CHAR) LEN(4) VALUE(NONE)
+             DCL        VAR(&WTIME)  TYPE(*CHAR) LEN(4) VALUE(X'FFFFFFFF')
+             ADDLIBLE   LIB(IBMIMBI)
+             MONMSG     MSGID(CPF2103)
+             CALL       PGM(QUIOPNDA) PARM(&APPHND &PNLGRP &SCOPE &EXITIN &FULHLP &ERRCOD)
+             CALL       PGM(QUIPUTV) PARM(&APPHND &VARBUF &VARLEN &VARNAM &ERRCOD)
+             CALL       PGM(QUISETLA) PARM(&APPHND &LSTNAM &CONTNT &INCPGM &POSLE  &ALWTRM &ERRCOD)
+             CALL       PGM(QUIDSPP) PARM(&APPHND &FNCREQ &PNLNAM &REDISP &ERRCOD &USRTSK &STKCNT +
+                                          &MSGQUE &MSGKEY &CURPOS &LASTLE &ERRLE  &WTIME)
+             CALL       PGM(QUICLOA) PARM(&APPHND &CLOOPT &ERRCOD)
+RETURN:      ENDPGM
