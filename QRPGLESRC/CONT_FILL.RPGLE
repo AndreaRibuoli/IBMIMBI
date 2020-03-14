@@ -53,29 +53,17 @@
       *   is an example.
       **************************************************************
      C                   Z-ADD     0             OPT1
-     C                   MOVEL(P)  'Pesaro e Urbino' STNAME
+     C                   MOVEL(P)  'Pesaro'      STNAME
      C                   MOVE      'PU'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
      C                   MOVEL(P)  'Ancona'      STNAME
      C                   MOVE      'AN'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Ascoli Piceno' STNAME
+     C                   MOVEL(P)  'Ascoli'      STNAME
      C                   MOVE      'AP'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Virginia'    STNAME
-     C                   MOVE      'VA'          STATE
-     C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Ohio'        STNAME
-     C                   MOVE      'OH'          STATE
-     C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Alabama'     STNAME
-     C                   MOVE      'AL'          STATE
-     C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'Kentucky'    STNAME
-     C                   MOVE      'KY'          STATE
-     C                   CALL      'QUIADDLE'    ADDLE
-     C                   MOVEL(P)  'New York'    STNAME
-     C                   MOVE      'NY'          STATE
+     C                   MOVEL(P)  'Macerata'    STNAME
+     C                   MOVE      'MC'          STATE
      C                   CALL      'QUIADDLE'    ADDLE
       *   Restore the previous value of STATE
      C                   MOVE      STATE2        STATE
