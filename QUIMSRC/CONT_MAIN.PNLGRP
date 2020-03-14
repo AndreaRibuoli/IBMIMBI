@@ -1,23 +1,9 @@
 :PNLGRP DFTMSGF='*LIBL/CONTATTI'.
 :IMPORT NAME='*' PNLGRP=CONTATTI.
-.* :IMPORT NAME='*' PNLGRP=T0011PN6.
 .im CONT_PNGI
-:PANEL    NAME=wrkabu
-          HELP=nohelp
-          KEYL=wrkkeys
-          TT=viewtt
-          ENTER='RETURN 26'
-          USREXIT='CALL ABUEXIT'
-          TOPSEP=SYSNAM.
+:PANEL  NAME=WRKABU HELP=nohelp KEYL=wrkkeys TT=viewtt ENTER='RETURN 26' USREXIT='CALL ABUEXIT' TOPSEP=SYSNAM.
 Work with Address Book Entries
-:LIST     DEPTH='*'
-          LISTDEF=datalst
-          ACTOR=UIM
-          EXTACT=YES
-          MAXHEAD=4
-          MAXACTL=3
-          VIEW=views
-          .
+:LIST   DEPTH='*' LISTDEF=datalst ACTOR=UIM EXTACT=YES MAXHEAD=4 MAXACTL=3 VIEW=views.
 :TOPINST.
 Type options, press Enter.
 :LISTACT  OPTION=1
@@ -311,7 +297,7 @@ Full name
 Starting characters
 :EDATA.
 :EPANEL.
-:panel name=selsta help=selstahelp keyl=selkeys
+:PANEL name=selsta help=selstahelp keyl=selkeys
     width=50 depth=20 topsep=space enter='return 26'.
 Select State
 :list depth='*' listdef=stalist actor=caller maxhead=4.
@@ -327,7 +313,7 @@ State Code
 'State Name'
 :listview cols='opt1 state stname'.
 :elist.
-:epanel.
+:EPANEL.
 :PRTHEAD NAME=prthdabu.Print Address Book Entry
 :PRTTRAIL.E N D  O F  L I S T I N G
 :EPRTHEAD.

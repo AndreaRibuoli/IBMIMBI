@@ -13,19 +13,12 @@
      C                   Z-ADD     100           VARLEN
      C                   CALL      'QUIPUTV'     PUTV
       *
-      *************************************************************
-      *    Set the list attributes to incomplete so that UIM will
-      *    call the INCPGM before displaying the panel.
-      **************************************************************
      C                   MOVEL(P)  'DATALST'     LSTNAM
      C                   MOVEL(P)  'TOP'         CONTNT
      C                   MOVEL(P)  'ABUINCL'     INCPGM
      C                   MOVEL     'Y'           ALWTRM
      C                   CALL      'QUISETLA'    SETLA
-      **************************************************************
-      *    Display the main panel.  When it returns, end the program
-      *    Note: usrtsk=N will cause the F3=Exit to stop on this pan
-      **************************************************************
+      *
      C                   MOVEL(P)  'WRKABU'      PNLNAM
      C                   MOVE      'N'           USRTSK                          New Task
      C                   CALL      'QUIDSPP'     DSPP
