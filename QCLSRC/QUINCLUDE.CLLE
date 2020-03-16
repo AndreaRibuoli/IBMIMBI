@@ -4,7 +4,7 @@
              DCL        VAR(&EXITIN) TYPE(*INT) LEN(4) VALUE(1)
              DCL        VAR(&FULHLP) TYPE(*CHAR) LEN(1) VALUE(N)
              DCL        VAR(&CLOOPT) TYPE(*CHAR) LEN(1) VALUE(M)
-             DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) VALUE(DATALST)
+             DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) 
              DCL        VAR(&CONTNT) TYPE(*CHAR) LEN(4) VALUE(TOP)
              DCL        VAR(&INCPGM) TYPE(*CHAR) LEN(10) VALUE(ABUINCL)
              DCL        VAR(&POSLE)  TYPE(*CHAR) LEN(4) VALUE(SAME)
