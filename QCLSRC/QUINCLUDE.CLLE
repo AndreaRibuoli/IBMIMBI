@@ -13,7 +13,7 @@
              
              DCL        VAR(&LASTLE) TYPE(*CHAR) LEN(4) VALUE(NONE)
              DCL        VAR(&LEHNDL) TYPE(*CHAR) LEN(4)
-             DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) VAULE(XXXXXX)
+             DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) VALUE(XXXXXX)
              DCL        VAR(&MSGKEY) TYPE(*CHAR) LEN(4)  VALUE('    ')
              DCL        VAR(&MSGQUE) TYPE(*CHAR) LEN(10) VALUE(*CALLER)
              DCL        VAR(&PNLNAM) TYPE(*CHAR) LEN(10) VALUE(XXXXXX)
