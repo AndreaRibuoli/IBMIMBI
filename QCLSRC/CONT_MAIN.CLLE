@@ -6,13 +6,12 @@
              DCL        VAR(&FULHLP) TYPE(*CHAR) LEN(1) VALUE(N)
              DCL        VAR(&ERRCOD) TYPE(*PTR)  ADDRESS(*NULL)
              DCL        VAR(&CLOOPT) TYPE(*CHAR) LEN(1) VALUE(M)
-             DCL        VAR(&VARBUF) TYPE(*CHAR) LEN(100) +
+             DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(100) +
                           VALUE('CONT_ACTN *LIBL     +
                           CONT_EXIT *LIBL     +
                           CONT_FKEY *LIBL     +
                           CONT_INCL *LIBL     +
                           CONT_PROM *LIBL     ')
-             DCL        VAR(&VARRCD) TYPE(*PTR) ADDRESS(&VARBUF)
              DCL        VAR(&VARLEN) TYPE(*CHAR) LEN(4) VALUE(X'00000064')
              DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10) VALUE(PGMVAR)
              DCL        VAR(&LSTNAM) TYPE(*CHAR) LEN(10) VALUE(DATALST)
@@ -33,10 +32,9 @@
              DCL        VAR(&WTIME)  TYPE(*CHAR) LEN(4) VALUE(X'FFFFFFFF')
              ADDLIBLE   LIB(IBMIMBI)
              MONMSG     MSGID(CPF2103)
-             CALL       PGM(QUIOPNDA) PARM(&APPHND &PNLGRP &SCOPE &EXITIN &FULHLP &ERRCOD)
-             CALL       PGM(QUIPUTV) PARM(&APPHND &VARBUF &VARLEN &VARNAM &ERRCOD)
-             CALL       PGM(QUISETLA) PARM(&APPHND &LSTNAM &CONTNT &INCPGM &POSLE  &ALWTRM &ERRCOD)
-             CALL       PGM(QUIDSPP) PARM(&APPHND &FNCREQ &PNLNAM &REDISP &ERRCOD &USRTSK &STKCNT +
-                                          &MSGQUE &MSGKEY &CURPOS &LASTLE &ERRLE  &WTIME)
-             CALL       PGM(QUICLOA) PARM(&APPHND &CLOOPT &ERRCOD)
+             INCLUDE    SRCMBR(QUIOPNDA)
+             INCLUDE    SRCMBR(QUIPUTV)
+             INCLUDE    SRCMBR(QUISETLA)
+             INCLUDE    SRCMBR(QUIDSPP1)
+             INCLUDE    SRCMBR(QUICLOA)
 RETURN:      ENDPGM

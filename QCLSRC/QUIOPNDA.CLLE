@@ -1,0 +1,7 @@
+             CALL       PGM(QUIOPNDA) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &PNLGRP   /* Qualified panel group name      */ +
+                          &SCOPE    /* Application scope               */ +
+                          &EXITIN   /* Exit parameter interface        */ +
+                          &FULHLP   /* Full-screen help                */ +
+                          &ERRCOD   /* Error code                      */ )

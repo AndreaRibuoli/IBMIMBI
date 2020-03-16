@@ -1,0 +1,6 @@
+             CALL       PGM(QUIDSPP) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &FNCREQ   /* Function required               */ +
+                          &PNLNAM   /* Panel name                      */ +
+                          &REDISP   /* Redisplay option                */ +
+                          &ERRCOD   /* Error code                      */ )

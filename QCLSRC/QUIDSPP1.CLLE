@@ -1,0 +1,14 @@
+             CALL       PGM(QUIDSPP) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &FNCREQ   /* Function required               */ +
+                          &PNLNAM   /* Panel name                      */ +
+                          &REDISP   /* Redisplay option                */ +
+                          &ERRCOD   /* Error code                      */ +
+                          &USRTSK   /* User task                       */ +
+                          &STKCNT   /* Call stack counter              */ +
+                          &MSGQUE   /* Call message queue              */ +
+                          &MSGKEY   /* Message reference key           */ +
+                          &CURPOS   /* Cursor position option          */ +
+                          &LASTLE   /* Last list entry                 */ +
+                          &ERRLE    /* Enter list entry                */ +
+                          &WTIME    /* Error code                      */ )

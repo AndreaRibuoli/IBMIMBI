@@ -1,0 +1,8 @@
+             CALL       PGM(QUISETLA) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &LSTNAM   /* List name                       */ +
+                          &CONTNT   /* List contents                   */ +
+                          &INCPGM   /* Program dialog variable         */ +
+                          &POSLE    /* Display position attribute      */ +
+                          &ALWTRM   /* Allow trim attribute            */ +
+                          &ERRCOD   /* Error code                      */ )
