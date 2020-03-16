@@ -3,6 +3,12 @@ QCLSRC    CONT_MAIN CLLE      Runs intial panel
 QCLSRC    CONT_PROM CLLE      F4 on state selection handler               
 QCLSRC    CONT_FILL CLLE      Called by CONT_PROM              
 QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI    
+QCLSRC    QUICLOA   CLLE      QUICLOA   
+QCLSRC    QUIDSPP   CLLE      QUIDSPP   
+QCLSRC    QUIDSPP1  CLLE      QUIDSPP1   
+QCLSRC    QUIOPNDA  CLLE      QUIOPNDA   
+QCLSRC    QUIPUTV   CLLE      QUIPUTV   
+QCLSRC    QUISETLA  CLLE      QUISETLA   
 QCMDSRC   CONTATTI  CMD       Command iniziale           
 QDDSSRC   CONTATTI  PF        File fisico dei contatti         
 QUIMSRC   CONTATTI  PNLGRP    Aiuto per comando CONTATTI
