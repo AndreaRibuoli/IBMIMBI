@@ -10,6 +10,7 @@
              DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10) VALUE(PGMVAR)
              ADDLIBLE   LIB(IBMIMBI)
              MONMSG     MSGID(CPF2103)
+             CHGVAR     VAR(&LSTNAM) VALUE(DATALST)
              INCLUDE    SRCMBR(QUIOPNDA)
              INCLUDE    SRCMBR(QUIPUTV)
              INCLUDE    SRCMBR(QUISETLA)
