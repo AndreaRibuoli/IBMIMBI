@@ -1,0 +1,6 @@
+             CALL       PGM(QUIGETV) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &VARRCD   /* Variable buffer                 */ +
+                          &VARLEN   /* Variable buffer length          */ +
+                          &VARNAM   /* Variable record name            */ +
+                          &ERRCOD   /* Error code                      */ )

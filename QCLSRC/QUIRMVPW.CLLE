@@ -1,0 +1,4 @@
+             CALL       PGM(QUIRMVPW) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &RMVOPT   /* Remove option                   */ +
+                          &ERRCOD   /* Error code                      */ )

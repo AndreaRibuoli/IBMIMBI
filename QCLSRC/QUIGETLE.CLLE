@@ -1,0 +1,13 @@
+             CALL       PGM(QUIGETLE) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &VARRCD   /* Variable buffer                 */ +
+                          &VARLEN   /* Variable buffer length          */ +
+                          &VARNAM   /* Variable record name            */ +
+                          &LSTNAM   /* List name                       */ +
+                          &POSOPT   /* Positioning option              */ +
+                          &CPYOPT   /* Copy option                     */ +
+                          &SLTCRI   /* Selection criteria              */ +
+                          &SLTHND   /* Selection handle                */ +
+                          &EXTOPT   /* Extend option                   */ +
+                          &LEHNDL   /* List entry handle               */ +
+                          &ERRCOD   /* Error code                      */ )

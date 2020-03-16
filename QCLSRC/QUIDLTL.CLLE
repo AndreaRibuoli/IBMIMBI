@@ -1,0 +1,4 @@
+             CALL       PGM(QUIDLTL) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &LSTNAM   /* List name                       */ +
+                          &ERRCOD   /* Error code                      */ )
