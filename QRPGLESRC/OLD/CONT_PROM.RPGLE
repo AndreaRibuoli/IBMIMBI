@@ -72,7 +72,7 @@
       *   If enter is pressed, get the state.
       *   Notice that this is one of the places that ENTER=0, becaus
       *   we set actfor=caller on the list tag.
-      **************************************************************
+      ************************************************* *************
      C     FNCREQ        IFEQ      *ZERO                                        Enter key
      C                   MOVE      'FSLT'        POSOPT
      C                   MOVEL(P)  'NE'          CRIT
