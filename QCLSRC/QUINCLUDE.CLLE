@@ -31,10 +31,6 @@
              DCL        VAR(&WINROW) TYPE(*INT)  LEN(4)  VALUE(3)
              DCL        VAR(&WTIME)  TYPE(*INT)  LEN(4)  VALUE(-1)
 
-             DCL        VAR(&ELETYP) TYPE(*CHAR) LEN(1)
-             DCL        VAR(&TYPCAL) TYPE(*INT) LEN(4)
-
-
              /*     setting the first 4 bytes to 0 equals to setting &BYTPRO to 0    */
              /*     *DEFINED CL variables cannot be assigned a VALUE during DCL      */
              DCL        VAR(&ERRCOD) TYPE(*CHAR) LEN(256) VALUE(X'00000000')
