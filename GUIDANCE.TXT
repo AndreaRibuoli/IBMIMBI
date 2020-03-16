@@ -1,5 +1,6 @@
 QCLSRC    BUILD     CLLE      IBMIMBI in sviluppo (CALL IBMIMBI/BUILD)
 QCLSRC    CONT_MAIN CLLE      Runs intial panel               
+QCLSRC    CONT_PROM CLLE      F4 on state selection handler               
 QCLSRC    CONT_FILL CLLE      Called by CONT_PROM              
 QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI    
 QCMDSRC   CONTATTI  CMD       Command iniziale           
@@ -11,7 +12,6 @@ QRPGLESRC CONT_ACTN RPGLE     List option exit
 QRPGLESRC CONT_EXIT RPGLE     General exit program       
 QRPGLESRC CONT_FKEY RPGLE     Function key exit               
 QRPGLESRC CONT_INCL RPGLE     Incomplete list exit            
-QRPGLESRC CONT_PROM RPGLE     F4 on state selection handler                       
 QRPGLESRC UIMPLIST  RPGLE     UIM PLISTS include        
 QRPGLESRC VAR4PLIST RPGLE     UIM include       
 QRPGLESRC UIMVARRCD RPGLE     VARRCD include       
