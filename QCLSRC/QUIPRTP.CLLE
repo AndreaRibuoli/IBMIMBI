@@ -1,0 +1,5 @@
+             CALL       PGM(QUIPRTP) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &PNLNAM   /* Print panel name                */ +
+                          &EJECT    /* Eject option                    */ +
+                          &ERRCOD   /* Error code                      */ )

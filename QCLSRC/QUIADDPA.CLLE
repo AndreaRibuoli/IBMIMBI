@@ -1,0 +1,7 @@
+             CALL       PGM(QUIADDPA) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &PRTFNM   /* Qualified printer file name     */ +
+                          &ALTFNM   /* Alternative file name           */ +
+                          &SHARE    /* Share open data path            */ +
+                          &USRDTA   /* User data                       */ +
+                          &ERRCOD   /* Error code                      */ )

@@ -1,0 +1,9 @@
+             CALL       PGM(QUIUPDLE) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &VARRCD   /* Variable buffer                 */ +
+                          &VARLEN   /* Variable buffer length          */ +
+                          &VARNAM   /* Variable record name            */ +
+                          &LSTNAM   /* List name                       */ +
+                          &UPDOPT   /* Option                          */ +
+                          &LEHNDL   /* List entry handle               */ +
+                          &ERRCOD   /* Error code                      */ )

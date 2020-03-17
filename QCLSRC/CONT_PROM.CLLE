@@ -16,7 +16,7 @@
              DCL        VAR(&ZIP)   TYPE(*CHAR) STG(*DEFINED) LEN(5)  DEFVAR(&VARRCD 80)
              DCL        VAR(&VARLEN) TYPE(*INT) LEN(4)
              DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10)
-             
+
              CHGVAR     VAR(&APPHND) VALUE(&APPHN£)
              CHGVAR     VAR(&PNLNAM) VALUE(&PNLNA£)
              CHGVAR     VAR(&VARNM)  VALUE(&VARNM£)

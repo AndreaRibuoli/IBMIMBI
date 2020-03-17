@@ -1,0 +1,6 @@
+             CALL       PGM(QUIRTVLA) PARM(+
+                          &APPHND   /* Application handle              */ +
+                          &LSTNAM   /* List name                       */ +
+                          &LATTR    /* Receiver                        */ +
+                          &LALEN    /* Receiver length                 */ +
+                          &ERRCOD   /* Error code                      */ )
