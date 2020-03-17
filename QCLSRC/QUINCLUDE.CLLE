@@ -58,3 +58,10 @@
              DCL        VAR(&SLTCRI) TYPE(*CHAR) LEN(20) VALUE('EQ        XXXXXX')
              DCL        VAR(&CRIT)  TYPE(*CHAR) STG(*DEFINED) LEN(10) DEFVAR(&SLTCRI 1)
              DCL        VAR(&VARNM) TYPE(*CHAR) STG(*DEFINED) LEN(10) DEFVAR(&SLTCRI 11)
+
+                                                             /*        26      -4      -8     -10     */
+             DCL        VAR(&UIMKEY) TYPE(*CHAR) LEN(16) VALUE(X'0000001AFFFFFFFCFFFFFFF8FFFFFFF6')
+             DCL        VAR(&ENTKEY) TYPE(*INT) STG(*DEFINED) LEN(4)    DEFVAR(&UIMKEY  1)
+             DCL        VAR(&EXTKEY) TYPE(*INT) STG(*DEFINED) LEN(4)    DEFVAR(&UIMKEY  1)
+             DCL        VAR(&CANKEY) TYPE(*INT) STG(*DEFINED) LEN(4)    DEFVAR(&UIMKEY  1)
+             DCL        VAR(&PMTKEY) TYPE(*INT) STG(*DEFINED) LEN(4)    DEFVAR(&UIMKEY  1)

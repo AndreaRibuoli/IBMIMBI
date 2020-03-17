@@ -1,12 +1,15 @@
              PGM        PARM(&TYPCA£ &APPHN£ &PNLNA£ &LSTNA£ &SLTHN£ &OPTNU£ &FNCQU£)
-             DCL        VAR(&TYPCA£) TYPE(*INT) LEN(4)
+             DCL        VAR(&TYPCA£) TYPE(*INT)  LEN(4)
              DCL        VAR(&APPHN£) TYPE(*CHAR) LEN(8)
              DCL        VAR(&PNLNA£) TYPE(*CHAR) LEN(10)
              DCL        VAR(&LSTNA£) TYPE(*CHAR) LEN(10)
-             DCL        VAR(&SLTHN£) TYPE(*CHAR) LEN(1)
-             DCL        VAR(&OPTNU£) TYPE(*CHAR) LEN(10)
-             DCL        VAR(&FNCQU£) TYPE(*CHAR) LEN(4)
+             DCL        VAR(&SLTHN£) TYPE(*CHAR) LEN(4)
+             DCL        VAR(&OPTNU£) TYPE(*INT)  LEN(4)
+             DCL        VAR(&FNCQU£) TYPE(*INT)  LEN(4)
              INCLUDE    SRCMBR(QUINCLUDE)
+             DCL        VAR(&TYPCAL) TYPE(*INT)  LEN(4)
+             DCL        VAR(&OPTNUM) TYPE(*INT)  LEN(4)
+             DCL        VAR(&FNCQUA) TYPE(*INT)  LEN(4)
              DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(84)
              DCL        VAR(&OPT)   TYPE(*INT) STG(*DEFINED)  LEN(2)  DEFVAR(&VARRCD  1)
              DCL        VAR(&NAME)  TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD  3)
@@ -14,18 +17,158 @@
              DCL        VAR(&CITY)  TYPE(*CHAR) STG(*DEFINED) LEN(20) DEFVAR(&VARRCD 58)
              DCL        VAR(&STATE) TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD 78)
              DCL        VAR(&ZIP)   TYPE(*CHAR) STG(*DEFINED) LEN(5)  DEFVAR(&VARRCD 80)
-             DCL        VAR(&VARLEN) TYPE(*INT) LEN(4)
-             DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&VARLEN) TYPE(*INT) LEN(4) VALUE(84)
+             DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10) VALUE(DATAVAR)
+             CHGVAR     VAR(&TYPCAL) VALUE(&TYPCA£)
+             CHGVAR     VAR(&APPHND) VALUE(&APPHN£)
+             CHGVAR     VAR(&PNLNAM) VALUE(&PNLNA£)
+             CHGVAR     VAR(&LSTNAM) VALUE(&LSTNA£)
+             CHGVAR     VAR(&SLTHND) VALUE(&SLTHN£)
+             CHGVAR     VAR(&OPTNUM) VALUE(&OPTNU£)
+             CHGVAR     VAR(&FNCQUA) VALUE(&FNCQU£)
 
-             INCLUDE    SRCMBR(QUIADDLE)
-             INCLUDE    SRCMBR(QUIADDPA)
-             INCLUDE    SRCMBR(QUIDSPP)
+             IF         COND(&TYPCAL *EQ 3) THEN(DO)
+   /*        SNDPGMMSG  MSG('Il valore di &OPTNUM è: ' *CAT %CHAR(&OPTNUM))     */
+   /*        SNDPGMMSG  MSG('Il valore di &PNLNAM è: "' *CAT &PNLNAM *CAT '"')  */
+   /*        SNDPGMMSG  MSG('Il valore di &LSTNAM è: "' *CAT &LSTNAM *CAT '"')  */
+             SELECT
+/**              **/
+/**    O N E     **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 1) THEN(DO)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
              INCLUDE    SRCMBR(QUIGETLE)
-             INCLUDE    SRCMBR(QUIGETV)
-             INCLUDE    SRCMBR(QUIPRTP)
+             CHGVAR     VAR(&OPT)   VALUE(0)
+             CHGVAR     VAR(&ADDR)  VALUE(' ')
+             CHGVAR     VAR(&CITY)  VALUE('Pesaro')
+             CHGVAR     VAR(&STATE) VALUE(PU)
+             CHGVAR     VAR(&ZIP)   VALUE('61122')
              INCLUDE    SRCMBR(QUIPUTV)
-             INCLUDE    SRCMBR(QUIRMVLE)
-             INCLUDE    SRCMBR(QUIRMVPA)
+             CHGVAR     VAR(&PNLNAM) VALUE(ADDABU)
+             INCLUDE    SRCMBR(QUIDSPP)
+             IF         COND(&FNCREQ *EQ &ENTKEY) THEN(DO)
+             INCLUDE    SRCMBR(QUIGETV)
              INCLUDE    SRCMBR(QUIRTVLA)
+             CHGVAR     VAR(&VARNAM) VALUE(*NONE)
+             CHGVAR     VAR(&CPYOPT) VALUE(N)
+             CHGVAR     VAR(&EXTOPT) VALUE(N)
+             CHGVAR     VAR(&POSOPT) VALUE(FSLT)
+             CHGVAR     VAR(&CRIT)   VALUE(GE)
+             CHGVAR     VAR(&VARNM)  VALUE(NAME)
+             CHGVAR     VAR(&BYTPRO) VALUE(256)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&BYTPRO) VALUE(0)
+             IF         COND(&BYTAVA *NE 0) THEN(DO)
+             IF         COND((&CONTNT *EQ 'ALL ') *OR (&CONTNT *EQ 'TOP ')) THEN(DO)
+             CHGVAR     VAR(&ADDOPT)  VALUE(FRST)
+             INCLUDE    SRCMBR(QUIADDLE)
+             ENDDO
+             GOTO       CMDLBL(ADDEND)
+             ENDDO
+             CHGVAR     VAR(&ADDOPT)  VALUE(NEXT)
+             INCLUDE    SRCMBR(QUIADDLE)
+             ENDDO
+ ADDEND:     CHGVAR     VAR(&UPDOPT) VALUE(EXTE)
+             CHGVAR     VAR(&NAME) VALUE(' ')
+             CHGVAR     VAR(&VARNAM) VALUE(DATAVAR)
              INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+/**              **/
+/**    T W O     **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 2) THEN(DO)
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(CHGVAR VAR(&POSOPT) VALUE('HNDL'))
+             INCLUDE    SRCMBR(QUIGETLE)
+ /*   Qui andrebbe la CHAIN e la gestione errori USR0103, USR0100   */
+             CHGVAR     VAR(&OPT) VALUE(0)
+             INCLUDE    SRCMBR(QUIPUTV)
+             CHGVAR     VAR(&PNLNAM) VALUE(CHGABU)
+             INCLUDE    SRCMBR(QUIDSPP)
+             IF         COND(&FNCREQ *EQ &ENTKEY) THEN(DO)
+             INCLUDE    SRCMBR(QUIGETV)
+ /*   Qui andrebbe la UPDATE e la gestione errori USR0101            */
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(DO)
+             CHGVAR     VAR(&VARNAM) VALUE(*NONE)
+             CHGVAR     VAR(&CPYOPT) VALUE(N)
+             CHGVAR     VAR(&EXTOPT) VALUE(N)
+             CHGVAR     VAR(&POSOPT) VALUE(FSLT)
+             CHGVAR     VAR(&CRIT)   VALUE(EQ)
+             CHGVAR     VAR(&VARNM)  VALUE(NAME)
+             CHGVAR     VAR(&BYTPRO) VALUE(256)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&BYTPRO) VALUE(0)
+             IF         COND(&BYTAVA *NE 0) THEN(GOTO CMDLBL(CHGEND))
+             ENDDO   /* IF COND(&SLTHND *EQ 'EXTE') THEN(DO)  */
+             CHGVAR     VAR(&VARNAM) VALUE(*NONE)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO   /* IF COND(&FNCREQ *EQ &ENTKEY) THEN(DO) */
+ CHGEND:     IF         COND(&SLTHND *EQ 'EXTE') THEN(DO)
+             CHGVAR     VAR(&UPDOPT) VALUE(EXTE)
+             CHGVAR     VAR(&NAME) VALUE(' ')
+             CHGVAR     VAR(&VARNAM) VALUE(DATAVAR)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO   /* CHGEND: IF COND(&SLTHND *EQ 'EXTE') THEN(DO) */
+             ENDDO   /* WHEN */
+/**              **/
+/**   F O U R    **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 4) THEN(DO)
+             CHGVAR     VAR(&POSOPT) VALUE('HNDL')
+             INCLUDE    SRCMBR(QUIGETLE)
+ /*   Qui andrebbe la DELETE e la gestione errori USR0105, USR0106   */
+             CHGVAR     VAR(&EXTOPT) VALUE('N')
+             INCLUDE    SRCMBR(QUIRMVLE)
+             ENDDO
+/**              **/
+/**   F I V E    **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 5) THEN(DO)
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(CHGVAR VAR(&POSOPT) VALUE('HNDL'))
+             INCLUDE    SRCMBR(QUIGETLE)
+ /*   Qui andrebbe la CHAIN e la gestione errori USR0104, USR0100   */
+             CHGVAR     VAR(&OPT) VALUE(0)
+             INCLUDE    SRCMBR(QUIPUTV)
+             CHGVAR     VAR(&PNLNAM) VALUE(DSPABU)
+             INCLUDE    SRCMBR(QUIDSPP)
+             IF         COND((&FNCREQ *EQ &ENTKEY) *AND (&SLTHND *NE 'EXTE')) THEN(DO)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(DO)
+             CHGVAR     VAR(&UPDOPT) VALUE(EXTE)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+             ENDDO
+/**              **/
+/**    S I X     **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 6) THEN(DO)
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(CHGVAR VAR(&POSOPT) VALUE('HNDL'))
+             INCLUDE    SRCMBR(QUIGETLE)
+ /*   Qui andrebbe la CHAIN e la gestione errori USR0104, USR0100   */
+             CHGVAR     VAR(&OPT) VALUE(0)
+             INCLUDE    SRCMBR(QUIPUTV)
+             CHGVAR     VAR(&PRTFN) VALUE(QSYSPRT)
+             CHGVAR     VAR(&ALTFNM) VALUE(*NONE)
+             CHGVAR     VAR(&SHARE) VALUE(Y)
+             CHGVAR     VAR(&USRDTA) VALUE(*FILE)
+             INCLUDE    SRCMBR(QUIADDPA)
+             CHGVAR     VAR(&PNLNAM) VALUE(PRTHDABU)
+             CHGVAR     VAR(&EJECT) VALUE(Y)
+             INCLUDE    SRCMBR(QUIPRTP)
+             CHGVAR     VAR(&PNLNAM) VALUE(PRTABU)
+             CHGVAR     VAR(&EJECT) VALUE(Y)
+             INCLUDE    SRCMBR(QUIPRTP)
+             CHGVAR     VAR(&RMVOPT) VALUE(M)
+             INCLUDE    SRCMBR(QUIRMVPA)
+             IF         COND(&SLTHND *NE 'EXTE') THEN(DO)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+             IF         COND(&SLTHND *EQ 'EXTE') THEN(DO)
+             CHGVAR     VAR(&UPDOPT) VALUE(EXTE)
+             CHGVAR     VAR(&NAME) VALUE(' ')
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+             ENDDO
+             ENDSELECT
+             ENDDO
 RETURN:      ENDPGM
