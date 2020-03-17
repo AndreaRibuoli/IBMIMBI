@@ -2,8 +2,10 @@ QCLSRC    BUILD     CLLE      IBMIMBI in sviluppo (CALL IBMIMBI/BUILD)
 QCLSRC    CONT_MAIN CLLE      Runs intial panel               
 QCLSRC    CONT_PROM CLLE      F4 on state selection handler               
 QCLSRC    CONT_FILL CLLE      Called by CONT_PROM              
+QCLSRC    CONT_ACTN CLLE      List option exit                
 QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI    
 QCLSRC    QUIADDLE  CLLE      QUIADDLE   
+QCLSRC    QUIADDPA  CLLE      QUIADDPA  
 QCLSRC    QUIADDPW  CLLE      QUIADDPW  
 QCLSRC    QUICLOA   CLLE      QUICLOA   
 QCLSRC    QUIDLTL   CLLE      QUIDLTL   
@@ -13,15 +15,19 @@ QCLSRC    QUIGETLE  CLLE      QUIGETLE
 QCLSRC    QUIGETV   CLLE      QUIGETV   
 QCLSRC    QUINCLUDE CLLE      QUINCLUDE   
 QCLSRC    QUIOPNDA  CLLE      QUIOPNDA 
+QCLSRC    QUIPRTP   CLLE      QUIPRTP   
 QCLSRC    QUIPUTV   CLLE      QUIPUTV   
+QCLSRC    QUIRMVLE  CLLE      QUIRMVLE  
+QCLSRC    QUIRMVPA  CLLE      QUIRMVPA  
 QCLSRC    QUIRMVPW  CLLE      QUIRMVPW  
+QCLSRC    QUIRTVLA  CLLE      QUIRTVLA  
 QCLSRC    QUISETLA  CLLE      QUISETLA   
+QCLSRC    QUIUPDLE  CLLE      QUIUPDLE   
 QCMDSRC   CONTATTI  CMD       Command iniziale           
 QDDSSRC   CONTATTI  PF        File fisico dei contatti         
 QUIMSRC   CONTATTI  PNLGRP    Aiuto per comando CONTATTI
 QUIMSRC   CONT_MAIN PNLGRP    Help for example                
 QUIMSRC   CONT_PNGI MENU      PNLGRP includes 
-QRPGLESRC CONT_ACTN RPGLE     List option exit                
 QRPGLESRC CONT_EXIT RPGLE     General exit program       
 QRPGLESRC CONT_FKEY RPGLE     Function key exit               
 QRPGLESRC CONT_INCL RPGLE     Incomplete list exit            
