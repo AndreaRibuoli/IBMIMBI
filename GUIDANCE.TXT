@@ -5,6 +5,7 @@ QCLSRC    CONT_FILL CLLE      Called by CONT_PROM
 QCLSRC    CONT_ACTN CLLE      List option exit                
 QCLSRC    CONT_EXIT CLLE      General exit program       
 QCLSRC    CONT_FKEY CLLE      Function key exit               
+QCLSRC    CONT_INCL CLLE      Incomplete list exit            
 QCLSRC    QUIADDLE  CLLE      QUIADDLE   
 QCLSRC    QUIADDPA  CLLE      QUIADDPA  
 QCLSRC    QUIADDPW  CLLE      QUIADDPW  
@@ -30,7 +31,3 @@ QDDSSRC   CONTATTI  PF        File fisico dei contatti
 QUIMSRC   CONTATTI  PNLGRP    Aiuto per comando CONTATTI
 QUIMSRC   CONT_MAIN PNLGRP    Help for example                
 QUIMSRC   CONT_PNGI MENU      PNLGRP includes 
-QRPGLESRC CONT_INCL RPGLE     Incomplete list exit            
-QRPGLESRC UIMPLIST  RPGLE     UIM PLISTS include        
-QRPGLESRC VAR4PLIST RPGLE     UIM include       
-QRPGLESRC UIMVARRCD RPGLE     VARRCD include       
