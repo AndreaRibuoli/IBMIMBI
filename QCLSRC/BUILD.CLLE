@@ -16,13 +16,9 @@
              IF         COND(&DEVOPT = 'N') THEN(DO)
              DLTPGM     PGM(&TGTLIB/BUILD)
              MONMSG     MSGID(CPF0000)
-             DLTF       FILE(&TGTLIB/QCSRC)
-             MONMSG     MSGID(CPF0000)
              DLTF       FILE(&TGTLIB/QCLSRC)
              MONMSG     MSGID(CPF0000)
              DLTF       FILE(&TGTLIB/QCMDSRC)
-             MONMSG     MSGID(CPF0000)
-             DLTF       FILE(&TGTLIB/QRPGLESRC)
              MONMSG     MSGID(CPF0000)
              DLTF       FILE(&TGTLIB/QSRVSRC)
              MONMSG     MSGID(CPF0000)
@@ -32,13 +28,9 @@
              MONMSG     MSGID(CPF0000)
              ENDDO
              IF         COND(&DEVOPT = 'Y') THEN(DO)
-             CRTSRCPF   FILE(&TGTLIB/QCSRC) RCDLEN(132)
-             MONMSG     MSGID(CPF0000)
              CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
              CRTSRCPF   FILE(&TGTLIB/QCMDSRC) RCDLEN(132)
-             MONMSG     MSGID(CPF0000)
-             CRTSRCPF   FILE(&TGTLIB/QRPGLESRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
              CRTSRCPF   FILE(&TGTLIB/QSRVSRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
@@ -46,13 +38,9 @@
              MONMSG     MSGID(CPF0000)
              CRTSRCPF   FILE(&TGTLIB/QDDSSRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
-             CPYSRCF    FROMFILE(&SRCLIB/QCSRC) TOFILE(&TGTLIB/QCSRC) FROMMBR(*ALL)
-             MONMSG     MSGID(CPF0000)
              CPYSRCF    FROMFILE(&SRCLIB/QCLSRC) TOFILE(&TGTLIB/QCLSRC) FROMMBR(*ALL)
              MONMSG     MSGID(CPF0000)
              CPYSRCF    FROMFILE(&SRCLIB/QCMDSRC) TOFILE(&TGTLIB/QCMDSRC) FROMMBR(*ALL)
-             MONMSG     MSGID(CPF0000)
-             CPYSRCF    FROMFILE(&SRCLIB/QRPGLESRC) TOFILE(&TGTLIB/QRPGLESRC) FROMMBR(*ALL)
              MONMSG     MSGID(CPF0000)
              CPYSRCF    FROMFILE(&SRCLIB/QSRVSRC) TOFILE(&TGTLIB/QSRVSRC) FROMMBR(*ALL)
              MONMSG     MSGID(CPF0000)
@@ -211,8 +199,9 @@
                           OUTPUT(&SPOOL_O) ALWRTVSRC(*NO)
              CRTBNDCL   PGM(&TGTLIB/CONT_FKEY) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(CONT_FKEY) +
                           OUTPUT(&SPOOL_O) ALWRTVSRC(*NO)
+             CRTBNDCL   PGM(&TGTLIB/CONT_INCL) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(CONT_INCL) +
+                          OUTPUT(&SPOOL_O) ALWRTVSRC(*NO)
 
-             CRTBNDRPG  PGM(&TGTLIB/CONT_INCL) SRCFILE(&SRCLIB/QRPGLESRC) OUTPUT(&SPOOL_O)
              SNDPGMMSG  MSG('** La build della demo RPG ILE & UIM si è completata +
                           con successo. Esegui digitando CONTATTI.')
 RETURN:      ENDPGM
