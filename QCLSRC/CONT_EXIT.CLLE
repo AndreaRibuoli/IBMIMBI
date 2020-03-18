@@ -1,0 +1,34 @@
+             PGM        PARM(&TYPCA£ &APPHN£ &PNLNA£ &FNCKEY &FNCQUA &OPTNUM)
+             DCL        VAR(&TYPCA£) TYPE(*INT) LEN(4)
+             DCL        VAR(&APPHN£) TYPE(*CHAR) LEN(8)
+             DCL        VAR(&PNLNA£) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&FNCKEY) TYPE(*INT)  LEN(4)
+             DCL        VAR(&FNCQUA) TYPE(*INT)  LEN(4)
+             DCL        VAR(&OPTNUM) TYPE(*INT) LEN(4)
+             INCLUDE    SRCMBR(QUINCLUDE)
+             DCL        VAR(&TYPCAL) TYPE(*INT) LEN(4)
+             DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(84)
+             DCL        VAR(&OPT)   TYPE(*INT) STG(*DEFINED)  LEN(2)  DEFVAR(&VARRCD  1)
+             DCL        VAR(&NAME)  TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD  3)
+             DCL        VAR(&ADDR)  TYPE(*CHAR) STG(*DEFINED) LEN(30) DEFVAR(&VARRCD 28)
+             DCL        VAR(&CITY)  TYPE(*CHAR) STG(*DEFINED) LEN(20) DEFVAR(&VARRCD 58)
+             DCL        VAR(&STATE) TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD 78)
+             DCL        VAR(&ZIP)   TYPE(*CHAR) STG(*DEFINED) LEN(5)  DEFVAR(&VARRCD 80)
+             DCL        VAR(&VARLEN) TYPE(*INT) LEN(4) VALUE(84)
+             DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10) VALUE(DATAVAR)
+             CHGVAR     VAR(&TYPCAL) VALUE(&TYPCA£)
+             CHGVAR     VAR(&APPHND) VALUE(&APPHN£)
+             CHGVAR     VAR(&PNLNAM) VALUE(&PNLNA£)
+             IF         COND(&TYPCAL *EQ 4) THEN(DO)
+             SELECT
+             WHEN       COND((&FNCKEY *EQ &ENTKEY) *AND (&PNLNAM *EQ 'ADDABU')) THEN(DO)
+             /* provvede a controllare il CAP ed effettua la WRITE */
+             /* nei casi di errore: CPF6A02 */
+             ENDDO
+             WHEN       COND((&FNCKEY *EQ &ENTKEY) *AND (&PNLNAM *EQ 'CHGABU')) THEN(DO)
+             /* provvede a controllare il CAP */
+             /* nei casi di errore: CPF6A02 */
+             ENDDO
+             ENDSELECT
+             ENDDO
+RETURN:      ENDPGM
