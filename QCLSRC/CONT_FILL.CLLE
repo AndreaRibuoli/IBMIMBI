@@ -10,12 +10,117 @@
              DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10)
              DCL        VAR(&STATE2) TYPE(*CHAR) LEN(2)
              DCL        VAR(&CURR_P) TYPE(*PTR) ADDRESS(*NULL)
-             DCL        VAR(&BUFFER) TYPE(*CHAR) LEN(168) VALUE('+
+             DCL        VAR(&BUFFER) TYPE(*CHAR) LEN(3108) VALUE('+
+                          AO Aosta                    +
+                          AL Alessandria              +
+                          AT Asti                     +
+                          BI Biella                   +
+                          CN Cuneo                    +
+                          NO Novara                   +
+                          TO Torino                   +
+                          VB Verbano-Cusio-Ossola     +
+                          VC Vercelli                 +
+                          BG Bergamo                  +
+                          BS Brescia                  +
+                          CO Como                     +
+                          CR Cremona                  +
+                          LC Lecco                    +
+                          LO Lodi                     +
+                          MB Monza e della Brianza    +
+                          MI Milano                   +
+                          MN Mantova                  +
+                          PV Pavia                    +
+                          SO Sondrio                  +
+                          VA Varese                   +
+                          GE Genova                   +
+                          IM Imperia                  +
+                          SP La Spezia                +
+                          SV Savona                   +
+                          BZ Bolzano                  +
+                          TN Trento                   +
+                          BL Belluno                  +
+                          PD Padova                   +
+                          RO Rovigo                   +
+                          TV Treviso                  +
+                          VE Venezia                  +
+                          VI Vicenza                  +
+                          VR Verona                   +
+                          GO Gorizia                  +
+                          PN Pordenone                +
+                          TS Trieste                  +
+                          UD Udine                    +
+                          AR Arezzo                   +
+                          FI Firenze                  +
+                          GR Grosseto                 +
+                          LI Livorno                  +
+                          LU Lucca                    +
+                          MS Massa Carrara            +
+                          PI Pisa                     +
+                          PO Prato                    +
+                          PT Pistoia                  +
+                          SI Siena                    +
+                          BO Bologna                  +
+                          FC Forlì-Cesena             +
+                          FE Ferrara                  +
+                          MO Modena                   +
+                          PC Piacenza                 +
+                          PR Parma                    +
+                          RA Ravenna                  +
+                          RE Reggio nell’Emilia       +
+                          RN Rimini                   +
+                          PG Perugia                  +
+                          TR Terni                    +
                           AN Ancona                   +
                           AP Ascoli Piceno            +
                           FM Fermo                    +
                           MC Macerata                 +
                           PU Pesaro e Urbino          +
+                          AQ L’Aquila                 +
+                          CH Chieti                   +
+                          PE Pescara                  +
+                          TE Teramo                   +
+                          FR Frosinone                +
+                          LT Latina                   +
+                          RI Rieti                    +
+                          RM Roma                     +
+                          VT Viterbo                  +
+                          AV Avellino                 +
+                          BN Benevento                +
+                          CE Caserta                  +
+                          NA Napoli                   +
+                          SA Salerno                  +
+                          CB Campobasso               +
+                          IS Isernia                  +
+                          BA Bari                     +
+                          BR Brindisi                 +
+                          BT Barletta–Andria–Trani    +
+                          FG Foggia                   +
+                          LE Lecce                    +
+                          TA Taranto                  +
+                          MT Matera                   +
+                          PZ Potenza                  +
+                          CS Cosenza                  +
+                          CZ Catanzaro                +
+                          KR Crotone                  +
+                          RC Reggio di Calabria       +
+                          VV Vibo Valentia            +
+                          AG Agrigento                +
+                          CL Caltanissetta            +
+                          CT Catania                  +
+                          EN Enna                     +
+                          ME Messina                  +
+                          PA Palermo                  +
+                          SR Siracusa                 +
+                          RG Ragusa                   +
+                          TP Trapani                  +
+                          CA Cagliari                 +
+                          CI Carbonia-Iglesias        +
+                          NU Nuoro                    +
+                          OG Ogliastra                +
+                          OR Oristano                 +
+                          OT Olbia-Tempio             +
+                          SS Sassari                  +
+                          VS Medio Campidano          +
                                                       ')
              DCL        VAR(&BUFF_P) TYPE(*PTR) ADDRESS(&BUFFER)
              DCL        VAR(&VARRC§) TYPE(*CHAR) STG(*BASED) LEN(28) BASPTR(&CURR_P)
