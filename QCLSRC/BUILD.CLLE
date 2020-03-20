@@ -96,7 +96,7 @@
              MONMSG     MSGID(CPF2105)
              CRTMSGF    MSGF(&TGTLIB/&F) CCSID(*MSGD)
              ADDMSGD    MSGID(USR0001) MSGF(&TGTLIB/&F) MSG('Address +
-                          Book Utility:  Sample RPG-UIM program.')
+                          Book Utility:  Sample RPG-UIM program.') CCSID(280)
 /*  Questi messaggi sono utilizzati dai pannelli UIM  */
              ADDMSGD    MSGID(USR0010) MSGF(&TGTLIB/&F) MSG('Data +
                           must be provided on the extended list +
@@ -110,13 +110,13 @@
                           valid.') SECLVL('The Name cannot be blank +
                           and it must start with an uppercase +
                           alphabetic character, A through Z, +
-                          inclusive.') SEV(40)
+                          inclusive.') SEV(40) CCSID(280)
              ADDMSGD    MSGID(USR0012) MSGF(&TGTLIB/&F) MSG('No +
                           records found in CONTATTI database') +
                           SECLVL('The database may be empty, or +
                           possibly someone has deleted it, or +
                           renamed it, or it may be that you do not +
-                          have authority to view the database.')
+                          have authority to view the database.') CCSID(280)
 /*  Questi messaggi sono emessi dai programmi RPG ILE  */
              ADDMSGD    MSGID(USR0100) MSGF(&TGTLIB/&F) MSG('Unable +
                           to read from the CONTATTI database.') +
@@ -180,8 +180,8 @@
                           code. If you do not know the zip code, +
                           type 00000.') SEV(40)
 /*  Questi messaggi sono utilizzati nei prompt del comando CONTATTI.  */
-             ADDMSGD    MSGID(USR0200) MSGF(&TGTLIB/&F) MSG('Avvio Gestione Contatti')
-             ADDMSGD    MSGID(USR0201) MSGF(&TGTLIB/&F) MSG('Consenti scrittura su database')
+             ADDMSGD    MSGID(USR0200) MSGF(&TGTLIB/&F) MSG('Avvio Gestione Contatti') CCSID(280)
+             ADDMSGD    MSGID(USR0201) MSGF(&TGTLIB/&F) MSG('Consenti scrittura su database') CCSID(280)
              CRTPNLGRP  PNLGRP(&TGTLIB/CONTATTI) +
                           SRCFILE(&SRCLIB/QUIMSRC) OPTION(&SPOOL)
              CRTPNLGRP  PNLGRP(&TGTLIB/CONT_MAIN) +
