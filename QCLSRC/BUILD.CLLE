@@ -52,6 +52,15 @@
              ENDDO
              IF         COND(&DEVOPT = 'L') THEN(DO)
              CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
+             DLTMSGF    MSGF(&TGTLIB/QCPFMSG)
+             MONMSG     MSGID(CPF2105)
+             CRTDUPOBJ  OBJ(QCPFMSG) FROMLIB(QSYS) OBJTYPE(*MSGF) TOLIB(&TGTLIB) NEWOBJ(QCPFMSG)
+             CHGMSGD    MSGID(CPX6AB4) MSGF(&TGTLIB/QCPFMSG) MSG('Aiuto       @Ribuoli') CCSID(280)
+             MONMSG     MSGID(CPF0000)
+             CHGMSGF    MSGF(&TGTLIB/QCPFMSG) CCSID(*MSGD)
+             MONMSG     MSGID(CPF0000)
+             OVRMSGF    MSGF(QCPFMSG) TOMSGF(&TGTLIB/QCPFMSG)
+             MONMSG     MSGID(CPF0000)
              ENDDO
              IF         COND(&DEVOPT = 'Y') THEN(DO)
              CRTBNDCL   PGM(&TGTLIB/BUILD) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(BUILD) +
