@@ -94,7 +94,7 @@
              MONMSG     MSGID(CPF0000)
              DLTMSGF    MSGF(&TGTLIB/&F)
              MONMSG     MSGID(CPF2105)
-             CRTMSGF    MSGF(&TGTLIB/&F)
+             CRTMSGF    MSGF(&TGTLIB/&F) CCSID(*MSGD)
              ADDMSGD    MSGID(USR0001) MSGF(&TGTLIB/&F) MSG('Address +
                           Book Utility:  Sample RPG-UIM program.')
 /*  Questi messaggi sono utilizzati dai pannelli UIM  */
@@ -104,7 +104,7 @@
                           type data in the entry fields provided +
                           whenever you use this action on the +
                           extended list entry (the top list entry +
-                          on the display.)') SEV(40)
+                          on the display.)') SEV(40) CCSID(280)
              ADDMSGD    MSGID(USR0011) MSGF(&TGTLIB/&F) MSG('The +
                           value specified for the Name is not +
                           valid.') SECLVL('The Name cannot be blank +
