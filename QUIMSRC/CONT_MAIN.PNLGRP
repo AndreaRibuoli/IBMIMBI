@@ -137,6 +137,14 @@ Select State
 :DATA DEPTH='*' BOTSEP=SPACE.
 :DATACOL  WIDTH=32.
 :DATACOL  WIDTH='*'.
+.*
+:DATAGRP GRPSEP=qindent.                          
+:DATAI VAR=zjob   .Lavoro                         
+:DATAI VAR=zuser  .Utente                         
+:DATAI VAR=zjobnbr.Numero                         
+:EDATAGRP.                                        
+:DATAI VAR=zsysnam.Nome sistema lavoro   
+.*
 :DATAI VAR=name  USAGE=OUT .Nome e Cognome
 :DATAI VAR=addr  USAGE=OUT .Indirizzo e n° civico
 :DATAI VAR=city  USAGE=OUT .Città
