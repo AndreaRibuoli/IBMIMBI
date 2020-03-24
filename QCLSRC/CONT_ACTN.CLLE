@@ -148,7 +148,7 @@
              CHGVAR     VAR(&OPT) VALUE(0)
              INCLUDE    SRCMBR(QUIPUTV)
              CHGVAR     VAR(&PRTFN) VALUE(QSYSPRT)
-             CHGVAR     VAR(&ALTFNM) VALUE(*NONE)
+             CHGVAR     VAR(&ALTFNM) VALUE(IBMIMBI)
              CHGVAR     VAR(&SHARE) VALUE(Y)
              CHGVAR     VAR(&USRDTA) VALUE(*FILE)
              INCLUDE    SRCMBR(QUIADDPA)
