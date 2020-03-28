@@ -12,8 +12,8 @@ Immettere le opzioni e premere Invio.
 :LISTACT OPTION=4  HELP=nohelp ACTFOR=LISTE         CONFIRM=rmvabu                   ENTER='CALL ABUACTN'.4=Cancel.
 :LISTACT OPTION=5  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.5=Visualiz.
 :LISTACT OPTION=6  HELP=nohelp NOEXT=MSG EXTMSGID='USR0010' EXTMSGF='*LIBL/CONTATTI' ENTER='CALL ABUACTN'.6=Stampa
-:LISTACT OPTION=7  HELP=nohelp ACTFOR=LISTUP                                         ENTER='CALL ABUACTN'.7=Anticipa
-:LISTACT OPTION=8  HELP=nohelp ACTFOR=LISTDW                                         ENTER='CALL ABUACTN'.8=Ritarda
+:LISTACT OPTION=7  HELP=nohelp ACTFOR=LISTE                                          ENTER='CALL ABUACTN'.7=Anticipa
+:LISTACT OPTION=8  HELP=nohelp ACTFOR=LISTE                                          ENTER='CALL ABUACTN'.8=Ritarda
 :LISTCOL VAR=opt   HELP=nohelp USAGE=INOUT EXTACT=YES MAXWIDTH=6   .Opz
 :LISTCOL VAR=name  HELP=nohelp USAGE=OUT   EXTACT=YES MAXWIDTH=25 .'Nome e Cognome'
 :LISTCOL VAR=addr  HELP=nohelp USAGE=OUT              MAXWIDTH='*'.'Indirizzo e n° civico'
