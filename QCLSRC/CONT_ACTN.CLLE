@@ -11,6 +11,8 @@
              DCL        VAR(&OPTNUM) TYPE(*INT)  LEN(4)
              DCL        VAR(&FNCQUA) TYPE(*INT)  LEN(4)
              DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(84)
+             DCL        VAR(&VARRCD1) TYPE(*CHAR) LEN(84)
+             DCL        VAR(&VARRCD2) TYPE(*CHAR) LEN(84)
              DCL        VAR(&OPT)   TYPE(*INT) STG(*DEFINED)  LEN(2)  DEFVAR(&VARRCD  1)
              DCL        VAR(&NAME)  TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD  3)
              DCL        VAR(&ADDR)  TYPE(*CHAR) STG(*DEFINED) LEN(30) DEFVAR(&VARRCD 28)
@@ -60,7 +62,8 @@
              CHGVAR     VAR(&BYTPRO) VALUE(0)
              IF         COND(&BYTAVA *NE 0) THEN(DO)
              IF         COND((&CONTNT *EQ 'ALL ') *OR (&CONTNT *EQ 'TOP ')) THEN(DO)
-             CHGVAR     VAR(&ADDOPT)  VALUE(FRST)
+/*           CHGVAR     VAR(&ADDOPT)  VALUE(FRST)  */
+             CHGVAR     VAR(&ADDOPT)  VALUE(LAST)
              INCLUDE    SRCMBR(QUIADDLE)
              ENDDO
              GOTO       CMDLBL(ADDEND)
@@ -168,6 +171,63 @@
              CHGVAR     VAR(&NAME) VALUE(' ')
              INCLUDE    SRCMBR(QUIUPDLE)
              ENDDO
+             ENDDO
+/**              **/
+/**   S E V E N  **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 7) THEN(DO)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&OPT)   VALUE(0)
+             CHGVAR     VAR(&VARRCD1) VALUE(&VARRCD)
+             CHGVAR     VAR(&POSOPT) VALUE(PREV)
+             CHGVAR     VAR(&BYTPRO) VALUE(256)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&BYTPRO) VALUE(0)
+             IF         COND((&BYTAVA *EQ 0) *OR ((&BYTAVA *NE 0) *AND (&MSGID *EQ ' '))) THEN(DO)
+             CHGVAR     VAR(&VARRCD2) VALUE(&VARRCD)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             CHGVAR     VAR(&VARRCD)  VALUE(&VARRCD1)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             CHGVAR     VAR(&POSOPT) VALUE(NEXT)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             CHGVAR     VAR(&VARRCD)  VALUE(&VARRCD2)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+             ELSE       CMD(SNDPGMMSG MSG('È stato raggiunto l''inizio dell''elenco.'))
+             ENDDO   /* WHEN */
+/**              **/
+/**   E I G H T  **/
+/**              **/
+             WHEN       COND(&OPTNUM *EQ 8) THEN(DO)
+             /*                                          */
+             /* acquisisco il record corrente            */
+             /*                                          */
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&OPT)   VALUE(0)
+             CHGVAR     VAR(&VARRCD1) VALUE(&VARRCD)
+             CHGVAR     VAR(&POSOPT) VALUE(NEXT)
+             CHGVAR     VAR(&BYTPRO) VALUE(256)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&BYTPRO) VALUE(0)
+             IF         COND((&BYTAVA *EQ 0) *OR ((&BYTAVA *NE 0) *AND (&MSGID *EQ ' '))) THEN(DO)
+             CHGVAR     VAR(&VARRCD2) VALUE(&VARRCD)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             CHGVAR     VAR(&VARRCD)  VALUE(&VARRCD1)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             CHGVAR     VAR(&POSOPT) VALUE(PREV)
+             INCLUDE    SRCMBR(QUIGETLE)
+             CHGVAR     VAR(&POSOPT) VALUE(HNDL)
+             CHGVAR     VAR(&VARRCD)  VALUE(&VARRCD2)
+             INCLUDE    SRCMBR(QUIUPDLE)
+             ENDDO
+     /*      ELSE       CMD(SNDPGMMSG MSGID(&MSGID) MSGF(QCPFMSG))   */
+             ELSE       CMD(SNDPGMMSG MSG('È stata raggiunta la fine dell''elenco.'))
+             ENDDO   /* WHEN */
+             OTHERWISE  CMD(DO)
+             SNDPGMMSG  MSG('NB: Il valore opzione (&OPTNUM): ' *CAT %CHAR(&OPTNUM) *TCAT ' non è gestito!')
              ENDDO
              ENDSELECT
              ENDDO
