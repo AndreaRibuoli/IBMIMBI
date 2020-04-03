@@ -1,5 +1,4 @@
              PGM        PARM(&TYPCAL &APPHN£ &PNLNA£ &ELETYP &VARNM£ &LSTNA£ &SLTHN£)
-             DCL        VAR(&TYPCAL) TYPE(*INT) LEN(4)
              DCL        VAR(&APPHN£) TYPE(*CHAR) LEN(8)
              DCL        VAR(&PNLNA£) TYPE(*CHAR) LEN(10)
              DCL        VAR(&ELETYP) TYPE(*CHAR) LEN(1)

@@ -6,7 +6,6 @@
              DCL        VAR(&FNCQUA) TYPE(*INT)  LEN(4)
              DCL        VAR(&OPTNUM) TYPE(*INT) LEN(4)
              INCLUDE    SRCMBR(QUINCLUDE)
-             DCL        VAR(&TYPCAL) TYPE(*INT) LEN(4)
              DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(84)
              DCL        VAR(&OPT)   TYPE(*INT) STG(*DEFINED)  LEN(2)  DEFVAR(&VARRCD  1)
              DCL        VAR(&NAME)  TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD  3)
