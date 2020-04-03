@@ -1,4 +1,0 @@
-             CALL       PGM(QUIRMVPA) PARM(+
-                          &APPHND   /* Application handle              */ +
-                          &CLOOPT   /* Close option                    */ +
-                          &ERRCOD   /* Error code                      */ )

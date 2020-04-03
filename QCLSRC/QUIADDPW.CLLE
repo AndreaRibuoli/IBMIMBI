@@ -1,6 +1,0 @@
-             CALL       PGM(QUIADDPW) PARM(+
-                          &APPHND   /* Application handle              */ +
-                          &WINLOC   /* Pop-up window location          */ +
-                          &WINROW   /* Row                             */ +
-                          &WINCOL   /* Column                          */ +
-                          &ERRCOD   /* Error code                      */ )

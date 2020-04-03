@@ -1,6 +1,0 @@
-             CALL       PGM(QUIRMVLE) PARM(+
-                          &APPHND   /* Application handle              */ +
-                          &LSTNAM   /* List name                       */ +
-                          &EXTOPT   /* Extend option                   */ +
-                          &LEHNDL   /* List entry handle               */ +
-                          &ERRCOD   /* Error code                      */ )
