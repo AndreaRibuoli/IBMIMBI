@@ -13,7 +13,7 @@
 
              IF         COND(&TYPCAL *EQ 8) THEN(DO)
              SELECT
-             WHEN (&VARNA§ *EQ 'STATE') THEN(DO)
+             WHEN (&VARNM *EQ 'STATE') THEN(DO)
              IF   (&ELETYP *EQ '1') THEN(DO)
              CHGVAR     VAR(&LSTNAM) VALUE(STALIST)
              CALL       PGM(CONT_FILL) PARM(&APPHND &LSTNAM)
