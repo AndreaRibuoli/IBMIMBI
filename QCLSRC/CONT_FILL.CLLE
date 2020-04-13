@@ -2,12 +2,12 @@
              INCLUDE    SRCMBR(QUINCLUDE)
              DCL        VAR(&APPHN£) TYPE(*CHAR) LEN(8)
              DCL        VAR(&LSTNA£) TYPE(*CHAR) LEN(10)
-             DCL        VAR(&VARRCD) TYPE(*CHAR) LEN(29)
-             DCL        VAR(&OPT1)   TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD 1)
-             DCL        VAR(&STATE)  TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD 3)
-             DCL        VAR(&STNAME) TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD 5)
-             DCL        VAR(&VARLEN) TYPE(*INT)  LEN(4) VALUE(29)
-             DCL        VAR(&VARNAM) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&VARRCD2) TYPE(*CHAR) LEN(314)
+             DCL        VAR(&VARNAM2) TYPE(*CHAR) STG(*DEFINED) LEN(10) DEFVAR(&VARRCD2   1)
+             DCL        VAR(&VARLEN2) TYPE(*INT)  STG(*DEFINED) LEN(4)  DEFVAR(&VARRCD2  11)
+             DCL        VAR(&OPT1)    TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD2  15)
+             DCL        VAR(&STATE)   TYPE(*CHAR) STG(*DEFINED) LEN(2)  DEFVAR(&VARRCD2  17)
+             DCL        VAR(&STNAME)  TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRCD2  19)
              DCL        VAR(&STATE2) TYPE(*CHAR) LEN(2)
              DCL        VAR(&CURR_P) TYPE(*PTR) ADDRESS(*NULL)
              DCL        VAR(&BUFFER) TYPE(*CHAR) LEN(3108) VALUE('+
@@ -66,7 +66,7 @@
                           PC Piacenza                 +
                           PR Parma                    +
                           RA Ravenna                  +
-                          RE Reggio nell’Emilia       +
+                          RE Reggio nellEmilia       +
                           RN Rimini                   +
                           PG Perugia                  +
                           TR Terni                    +
@@ -75,7 +75,7 @@
                           FM Fermo                    +
                           MC Macerata                 +
                           PU Pesaro e Urbino          +
-                          AQ L’Aquila                 +
+                          AQ LAquila                 +
                           CH Chieti                   +
                           PE Pescara                  +
                           TE Teramo                   +
@@ -93,7 +93,7 @@
                           IS Isernia                  +
                           BA Bari                     +
                           BR Brindisi                 +
-                          BT Barletta–Andria–Trani    +
+                          BT BarlettaAndriaTrani    +
                           FG Foggia                   +
                           LE Lecce                    +
                           TA Taranto                  +
@@ -128,6 +128,7 @@
              DCL        VAR(&STNAM§) TYPE(*CHAR) STG(*DEFINED) LEN(25) DEFVAR(&VARRC§ 4)
              CHGVAR     VAR(&APPHND) VALUE(&APPHN£)
              CHGVAR     VAR(&LSTNAM) VALUE(&LSTNA£)
+             CHGVAR     VAR(&VARRCD_P) VALUE(%ADDRESS(&VARRCD2))
              IF         COND(&LSTNAM *EQ 'STALIST') THEN(DO)
              CHGVAR     VAR(&VARNAM) VALUE(SELVAR)
              INCLUDE    SRCMBR(QUIGETV)
