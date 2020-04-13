@@ -14,26 +14,27 @@
              IF         COND(&TYPCAL *EQ 8) THEN(DO)
              SELECT
              WHEN (&VARNA§ *EQ 'STATE') THEN(DO)
+             IF   (&ELETYP *EQ '1') THEN(DO)
              CHGVAR     VAR(&LSTNAM) VALUE(STALIST)
              CALL       PGM(CONT_FILL) PARM(&APPHND &LSTNAM)
-             CHGVAR     VAR(&WINLOC) VALUE('*ROWCOL')
+             CHGVAR     VAR(&WINLOC) VALUE(*ROWCOL)
              CHGVAR     VAR(&WINROW) VALUE(7)
              CHGVAR     VAR(&WINCOL) VALUE(10)
              INCLUDE    SRCMBR(QUIADDPW)
              CHGVAR     VAR(&PNLNAM) VALUE(SELSTA)
              INCLUDE    SRCMBR(QUIDSPP)
-             CHGVAR     VAR(&RMVOPT) VALUE(L)
              INCLUDE    SRCMBR(QUIRMVPW)
              IF         COND(&FNCREQ *EQ 0) THEN(DO)
              CHGVAR     VAR(&POSOPT) VALUE(FSLT)
              CHGVAR     VAR(&CRIT)   VALUE(NE)
-             CHGVAR     VAR(&VARNA§) VALUE(OPT1)
+             CHGVAR     VAR(&VARNM)  VALUE(OPT1)
              CHGVAR     VAR(&VARNAM) VALUE(*NONE)
              CHGVAR     VAR(&CPYOPT) VALUE(Y)
              CHGVAR     VAR(&EXTOPT) VALUE(Y)
              CHGVAR     VAR(&BYTPRO) VALUE(256)
              INCLUDE    SRCMBR(QUIGETLE)
              CHGVAR     VAR(&BYTPRO) VALUE(0)
+             ENDDO
              ENDDO
              ENDDO
              ENDSELECT
