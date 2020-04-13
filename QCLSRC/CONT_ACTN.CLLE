@@ -14,13 +14,6 @@
              CHGVAR     VAR(&VARRCD_P) VALUE(%ADDRESS(&VARRCD0))
              CHGVAR     VAR(&VARLEN) VALUE(84)
              CHGVAR     VAR(&VARNAM) VALUE(DATAVAR)
-             CHGVAR     VAR(&TYPCAL) VALUE(&TYPCA£)
-             CHGVAR     VAR(&APPHND) VALUE(&APPHN£)
-             CHGVAR     VAR(&PNLNAM) VALUE(&PNLNA£)
-             CHGVAR     VAR(&LSTNAM) VALUE(&LSTNA£)
-             CHGVAR     VAR(&SLTHND) VALUE(&SLTHN£)
-             CHGVAR     VAR(&OPTNUM) VALUE(&OPTNU£)
-             CHGVAR     VAR(&FNCQUA) VALUE(&FNCQU£)
 
              IF         COND(&TYPCAL *EQ 3) THEN(DO)
    /*        SNDPGMMSG  MSG('Il valore di &OPTNUM è: ' *CAT %CHAR(&OPTNUM))     */

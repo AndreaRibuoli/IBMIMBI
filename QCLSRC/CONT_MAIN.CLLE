@@ -1,5 +1,6 @@
              PGM
              INCLUDE    SRCMBR(QUINCLUDE)
+             /* abuactn abuexit abufkey abuincl abuprom */
              DCL        VAR(&VARRCD0) TYPE(*CHAR) LEN(314)
              DCL        VAR(&VARNAM0) TYPE(*CHAR) STG(*DEFINED) LEN(10) DEFVAR(&VARRCD0   1)
              DCL        VAR(&VARLEN0) TYPE(*INT)  STG(*DEFINED) LEN(4)  DEFVAR(&VARRCD0  11)
