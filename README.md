@@ -3,7 +3,7 @@ Research on IBM i and *IBM i native Open Source* concept
 
 ## Open Source for IBM i
 If you look at the 5770-WDS list of options you will notice that there is no reference to an **ILE CL compiler**. 
-<br/>If you execute a `DSPCMD CMD(CRTBNDRPG)` and a `DSPCMD CMD(CRTBNDCL)` you will also notice that, while *CRTBDNRPG* is a 'proxy' command, *CRTBDNCL* is a real one.
+<br/>If you execute a `DSPCMD CMD(CRTBNDRPG)` and a `DSPCMD CMD(CRTBNDCL)` you will also notice that, while *CRTBNDRPG* is a 'proxy' command, *CRTBNDCL* is a real one.
 
 *Developing with ILE CL is inherently part of the IBM i Operating System offering!*
 
