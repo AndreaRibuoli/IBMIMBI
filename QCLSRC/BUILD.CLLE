@@ -221,4 +221,11 @@ NOAUTH:      IF         COND(&DEVOPT = 'Y') THEN(DO)
 
              SNDPGMMSG  MSG('** La build della demo RPG ILE & UIM si è completata +
                           con successo. Esegui digitando CONTATTI.')
+             IF         COND(&DEVOPT = 'Y') THEN(DO)
+             CRTCLPGM   PGM(&TGTLIB/CRTMIPGM) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
+             CRTCLPGM   PGM(&TGTLIB/TESTEXPL) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
+             ADDLIBLE   LIB(&TGTLIB)
+             MONMSG     MSGID(CPF0000)
+             CRTMIPGM   PARM(EXAMPLE)
+             ENDDO
 RETURN:      ENDPGM

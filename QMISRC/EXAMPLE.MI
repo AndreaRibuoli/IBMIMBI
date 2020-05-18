@@ -10,11 +10,9 @@ DCL     OL          PARM_LIST
 DCL     DD          ARG1       PKD(15,5)     BAS(ARG1@);
 DCL     DD          ARG2       PKD(15,5)     BAS(ARG2@);
 DCL     DD          RESULT     PKD(15,5)     BAS(RESULT@);
-BRK "00001";
         CMPNV(B)    ARG1,ARG2  / LO(ITS2);
         CPYNV       RESULT,ARG1;
         B           RETURN;
 ITS2:   CPYNV       RESULT,ARG2;
-BRK "00002";
 RETURN: RTX         *;
-        PEND;Copia
+        PEND;
