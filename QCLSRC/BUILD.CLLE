@@ -226,6 +226,6 @@ NOAUTH:      IF         COND(&DEVOPT = 'Y') THEN(DO)
              CRTCLPGM   PGM(&TGTLIB/TESTEXPL) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
              ADDLIBLE   LIB(&TGTLIB)
              MONMSG     MSGID(CPF0000)
-             CRTMIPGM   PARM(EXAMPLE)
+             CALL       CRTMIPGM PARM(EXAMPLE)
              ENDDO
 RETURN:      ENDPGM
