@@ -27,6 +27,8 @@
             DCL        VAR(&ERRPTR)     TYPE(*PTR)
             DCL        VAR(&ERRNO)      TYPE(*INT) STG(*BASED) LEN(4) BASPTR(&ERRPTR)
             DCL        VAR(&VALORE)     TYPE(*CHAR) LEN(10)
+            DCL        VAR(&RIGHE)      TYPE(*CHAR) LEN(480) STG(*BASED) BASPTR(&MIPGMSRC)
+            
             RTVMBRD    FILE(QMISRC) MBR(&SRCMBR) +
                          NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
             CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +
@@ -45,6 +47,9 @@
             SNDPGMMSG  MSG('read: ' *CAT &VALORE)
             ENDDO
             CALLPRC    PRC('close') PARM((&FD)) RTNVAL(&RTCD)
+            SNDPGMMSG  MSG(%SST(&RIGHE   1 120))
+            SNDPGMMSG  MSG(%SST(&RIGHE 121 240))
+            SNDPGMMSG  MSG(%SST(&RIGHE 241 360))
             CHGVAR     VAR(%SST(&PGMNAM 1  10)) VALUE(&SRCMBR)
             CALL       PGM(QSYS/QPRCRTPG) PARM( +
                          &MIPGMSRC   +
