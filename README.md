@@ -68,7 +68,31 @@ Curiously, this same idea was discussed in IBM **during the summer of 1971** (!!
 
 I was impressed to find a clear description of what we call **TIMI** (Technology-Independent Machine Interface) in an IBM document of 1971 under the name of **HLS (Higher Level System) Interface**.
 
+###
 
+```
+ 5770SS1 V7R3M0 160422R                               Emissione generata                               19/05/20 21:28:48  Pag.     1
+  SEQ   ISTR Scost.    Codice generato    *... ... 1 ... ... 2 ... ... 3 ... ... 4 ... ... 5 ... ... 6 ... ... 7 ... ... 8   Interr.
+ 00001                                             ENTRY * (PARM_LIST) EXT                                               ;        
+ 00002                                             DCL SPCPTR ARG1@ PARM                                                 ;        
+ 00003                                             DCL SPCPTR ARG2@ PARM                                                 ;        
+ 00004                                             DCL SPCPTR RESULT@ PARM                                               ;        
+ 00005                                             DCL OL PARM_LIST (ARG1@, ARG2@, RESULT@) PARM EXT                     ;        
+ 00006                                             DCL DD ARG1 PKD(15,5) BAS(ARG1@)                                      ;        
+ 00007                                             DCL DD ARG2 PKD(15,5) BAS(ARG2@)                                      ;        
+ 00008                                             DCL DD RESULT PKD(15,5) BAS(RESULT@)                                  ;        
+ 00009  0001 000004  3C46 2000 0006 0007           CMPNV(B) ARG1,ARG2 / LO(ITS2)                                         ;        
+                     0009                                                                                                         
+ 00010  0002 00000E  1042 0008 0006                CPYNV RESULT,ARG1                                                     ;        
+ 00011  0003 000014  1011 000A                     B RETURN                                                              ;        
+ 00012  0004 000018  3042 0008 0007       ITS2:    CPYNV RESULT,ARG2                                                     ;        
+ 00013  0005 00001E  22A1 0000            RETURN:  RTX *                                                                 ;        
+ 00014  0006 000022  0260                          PEND                                                                  ;        
+ 5770SS1 V7R3M0 160422R                               Emissione generata                               19/05/20 21:28:48  Pag.     2
+  IDMSG    ODT   Nome ODT                                          Semantici e diagnostici di sintassi ODT                        
+ 5770SS1 V7R3M0 160422R                               Emissione generata                               19/05/20 21:28:48  Pag.     3
+   IDMSG   Diagnostici semantici flusso istruzioni MI                                                                            
+```
 
 ## Installation with PASERIE installer
 `system 'PASERIE/INSTALL GIT_USER(AndreaRibuoli) PACKAGEN(IBMIMBI)'`
