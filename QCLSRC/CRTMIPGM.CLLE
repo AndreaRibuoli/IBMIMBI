@@ -45,7 +45,7 @@
             ENDDO
             CALLPRC    PRC('close') PARM((&FD)) RTNVAL(&RTCD)
             CHGVAR     VAR(%SST(&PGMNAM 1  10)) VALUE(&SRCMBR)
-            CHGVAR     VAR(%SST(&PGMNAM 11 10)) VALUE(&RTNLIB)
+            CHGVAR     VAR(%SST(&PGMSRCF 11 10)) VALUE(&RTNLIB)
             CALL       PGM(QSYS/QPRCRTPG) PARM( +
                          &MIPGMSRC   +
                          &MIPGMSRCSZ +
