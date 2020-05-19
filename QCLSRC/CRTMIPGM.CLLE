@@ -7,6 +7,7 @@
             DCL        VAR(&PGMNAM)     TYPE(*CHAR) LEN(20)   VALUE('          *CURLIB   ')
             DCL        VAR(&PGMTXT)     TYPE(*CHAR) LEN(50)
             DCL        VAR(&PGMSRCF)    TYPE(*CHAR) LEN(20)   VALUE('*NONE')
+            DCL        VAR(&PGMSRCM)    TYPE(*CHAR) LEN(10)   VALUE(' ')
             DCL        VAR(&SPC_NAME)   TYPE(*CHAR) LEN(20)   VALUE('BUFFER    QTEMP     ')
             DCL        VAR(&PGMSRCCHG)  TYPE(*CHAR) LEN(13)   VALUE(' ')
             DCL        VAR(&PRTFNAM)    TYPE(*CHAR) LEN(20)   VALUE('QSYSPRT   *LIBL     ')
@@ -51,7 +52,7 @@
                          &PGMNAM     +
                          &PGMTXT     +
                          &PGMSRCF    +
-                         &SRCMBR     +
+                         &PGMSRCM    +
                          &PGMSRCCHG  +
                          &PRTFNAM    +
                          &PRTSTRPAG  +
