@@ -227,10 +227,6 @@ NOAUTH:      IF         COND(&DEVOPT = 'Y') THEN(DO)
              CRTCLPGM   PGM(&TGTLIB/TESTEXPL) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
              ADDLIBLE   LIB(&TGTLIB)
              MONMSG     MSGID(CPF0000)
-             OVRDBF     QMISRC MBR(EXAMPLE)
              CALL       CRTMIPGM PARM(EXAMPLE)
-             DLTOVR     QMISRC
-             OVRDBF     QMISRC MBR(MISRCOIR)
-             CALL       CRTMIPGM PARM(MISRCOIR)
              ENDDO
 RETURN:      ENDPGM
