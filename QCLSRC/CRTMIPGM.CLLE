@@ -1,0 +1,62 @@
+            PGM        PARM(&SRCMBR)
+            DCL        VAR(&SRCMBR)     TYPE(*CHAR) LEN(10)
+            DCL        VAR(&MIPGMSRC)   TYPE(*PTR)  ADDRESS(*NULL)
+            DCL        VAR(&MIPGMSRCSZ) TYPE(*INT)  LEN(4)
+            DCL        VAR(&RECS)       TYPE(*DEC)  LEN(10 0) VALUE(0)
+            DCL        VAR(&PGMNAM)     TYPE(*CHAR) LEN(20)   VALUE('          *CURLIB   ')
+            DCL        VAR(&PGMTXT)     TYPE(*CHAR) LEN(50)
+            DCL        VAR(&PGMSRCF)    TYPE(*CHAR) LEN(20)   VALUE('QMISRC    *LIBL     ')
+            DCL        VAR(&SPC_NAME)   TYPE(*CHAR) LEN(20)   VALUE('BUFFER    QTEMP     ')
+            DCL        VAR(&PGMSRCM)    TYPE(*CHAR) LEN(10)   VALUE(&SRCMBR)
+            DCL        VAR(&PGMSRCCHG)  TYPE(*CHAR) LEN(13)   VALUE(' ')
+            DCL        VAR(&PRTFNAM)    TYPE(*CHAR) LEN(20)   VALUE('QSYSPRT   *LIBL     ')
+            DCL        VAR(&PRTSTRPAG)  TYPE(*INT)  LEN(4)    VALUE(1)
+            DCL        VAR(&PGMPUBAUT)  TYPE(*CHAR) LEN(10)   VALUE('*ALL      ')
+            DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(22)   VALUE('*LIST      *REPLACE   ')
+            DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(2)
+            DCL        VAR(&ERRCDE)     TYPE(*CHAR) LEN(16)
+            DCL        VAR(&BYTPRV)     TYPE(*INT)  LEN(4) STG(*DEFINED) DEFVAR(&ERRCDE)
+            DCL        VAR(&BYTAVL)     TYPE(*INT)  LEN(4) STG(*DEFINED) DEFVAR(&ERRCDE 5)
+            DCL        VAR(&MSGID)      TYPE(*CHAR) LEN(7) STG(*DEFINED) DEFVAR(&ERRCDE 9)
+            DCL        VAR(&QMISRC)     TYPE(*CHAR) LEN(80)
+            DCL        VAR(&FD)         TYPE(*INT)  LEN(4)
+            DCL        VAR(&RTCD)       TYPE(*INT)  LEN(4)
+            DCL        VAR(&OFLAG)      TYPE(*INT)  LEN(4)
+            DCL        VAR(&MODE)       TYPE(*INT)  LEN(4)   VALUE(0)
+            DCL        VAR(&ERRPTR)     TYPE(*PTR)
+            DCL        VAR(&ERRNO)      TYPE(*INT) STG(*BASED) LEN(4) BASPTR(&ERRPTR)
+            DCL        VAR(&VALORE)     TYPE(*CHAR) LEN(10)
+            CHGVAR     VAR(&OFLAG)      VALUE(&O_RDONLY + &O_TEXTDATA)
+
+            CHGVAR     VAR(%SST(&PGMNAM 1 10)) VALUE(&SRCMBR)
+            RTVMBRD    FILE(&PGMSRCF) MBR(&SRCMBR) NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
+            CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +
+                         *CAT &SRCMBR *TCAT '.mbr')
+            CHGVAR     VAR(&MIPGMSRCSZ) VALUE(&RECS * 132)
+            CALL       PGM(QUSCRTUS) PARM(&SPC_NAME 'CRTMIPGM' +
+                       &MIPGMSRCSZ X'00' '*ALL' &PGMTXT '*YES' &ERRCDE '*USER')
+            CALL       PGM(QUSPTRUS) PARM(&SPC_NAME &MIPGMSRC &ERRCDE)
+            CALLPRC    PRC('open') PARM((&QMISRC) (&OFLAG *BYVAL) (&MODE *BYVAL)) RTNVAL(&FD)
+            CALLPRC    PRC('read') PARM((&FD *BYVAL) +
+                                        (&MIPGMSRC *BYVAL) +
+                                        (&MIPGMSRCSZ *BYVAL)) RTNVAL(&RTCD)
+            IF         COND(&RTCD < 0) THEN(DO)
+            CALLPRC    PRC('__errno') RTNVAL(&ERRPTR)
+            CHGVAR     VAR(&VALORE) VALUE(&ERRNO)
+            SNDPGMMSG  MSG('read: ' *CAT &VALORE)
+            ENDDO
+            CALLPRC    PRC('close') PARM((&FD)) RTNVAL(&RTCD)
+            CALL       PGM(QSYS/QPRCRTPG) PARM( +
+                         &MIPGMSRC   +
+                         &MIPGMSRCSZ +
+                         &PGMNAM     +
+                         &PGMTXT     +
+                         &PGMSRCF    +
+                         &PGMSRCM    +
+                         &PGMSRCCHG  +
+                         &PRTFNAM    +
+                         &PRTSTRPAG  +
+                         &PGMPUBAUT  +
+                         &PGMOPTS    +
+                         &NUMOPTS)
+            ENDPGM

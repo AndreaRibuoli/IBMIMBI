@@ -7,7 +7,7 @@ QCLSRC    CONT_EXIT CLLE      General exit program
 QCLSRC    CONT_FKEY CLLE      Function key exit               
 QCLSRC    CONT_INCL CLLE      Incomplete list exit            
 QCLSRC    CONTATTI  CLP       Command Processing Program per CONTATTI
-QCLSRC    CRTMIPGM  CLP       Create MI Program   
+QCLSRC    CRTMIPGM  CLLE      Create MI Program   
 QCLSRC    TESTEXPL  CLP       Test
 QCMDSRC   CONTATTI  CMD       Command iniziale           
 QDDSSRC   CONTATTI  PF        File fisico dei contatti         
