@@ -1,7 +1,7 @@
             PGM        PARM(&SRCMBR)
             DCLF       FILE(QMISRC)
             DCL        VAR(&SRCMBR)     TYPE(*CHAR) LEN(10)
-            DCL        VAR(&MIPGMSRC)   TYPE(*CHAR) LEN(5000)
+            DCL        VAR(&MIPGMSRC)   TYPE(*CHAR) LEN(32767)
             DCL        VAR(&MIPGMSRCSZ) TYPE(*CHAR) LEN(4)
             DCL        VAR(&OFFSET)     TYPE(*DEC)  LEN(5 0) VALUE(1)
             DCL        VAR(&PGMNAM)     TYPE(*CHAR) LEN(20)  VALUE('          *CURLIB   ')
