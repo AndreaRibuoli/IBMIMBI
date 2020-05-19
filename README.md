@@ -18,19 +18,22 @@ It seems to me that developing on top of these stringent boundaries offers the k
 
 In the AIX world **GCC** is currently based on the **AIX native assembler** rather than on the **Gnu Assembler**. There were actually attempts to extend the Open Source domain in AIX by porting *GNU Assembler*, *GNU Linker* and *GNU Binutils*. GCC developers actually succeeded in bootstrapping GCC on **AIX 5**. Unfortunately, the GNU Assembler has not been updated to support **AIX 6** nor **AIX 7**. 
 
-My point is this: if we accept the idea of AIX/PASE GCC depending on AIX native **xcoff** tools why shouldn't we accept the idea of developing Open Source for ILE on top of ILE CL?
+My point is this: if we accept the idea of AIX/PASE GCC depending on AIX native **xcoff** tools why shouldn't we accept the idea of developing Open Source for ILE on top of ILE CL? And -eventually- MI?
 
-On the other hand I do not consider RPG ILE a reasonable language to develop Open Source tools for native IBM i. Adopting ILE C would not change. ILE CL source code is the only one I would admit if we are to reinterpret the (full) concept of Open Source in IBM i.    
+I do not consider RPG ILE a reasonable language to develop Open Source tools for IBM i. Adopting ILE C/C++ would not work either. ILE CL and MI source code are the only ones I would consider if we are to reinterpret the concept of Open Source in **native** IBM i .    
 
 
 ## The Non\-Programmable Terminal
 The roots of IBM i (S/38, AS/400) are tied to programming for 5250 
 (the **NPT**, *Non\-Programmable Terminal*). 
 With the introduction of Power processors there was an attempt to redesign the fundamentals of the Operating System, opening the platform to usage scenarios different from administrative tasks. 
-<br/>This offered new opportunities but never introduced a plain evolutionary path to richer user interfaces. After many years, the struggling behind many *Modernization* projects is still there. 
-<br/>When *Apache* was introduced in IBM i the new *mantra* was explaining that the future would have been in **stateless-applications**. And actually ended up to be. But this triggered a never\-ending up\-scaling of business dimensions to stay competitive in the new architectural model.
+<br/>This offered new opportunities but never introduced a plain evolutionary path to richer user interfaces. 
 
-In this new environment we are still longing for a stable business application development framework for simple and reliable **statefullness**. 
+After many years, the struggling behind many *Modernization* projects is still there, -I would say- unchanged.
+ 
+<br/>When *Apache* was introduced in IBM i the new *mantra* was explaining that the future would have been in **stateless\-applications**. And actually ended up to be. But this triggered a never\-ending up\-scaling of business dimensions to stay competitive in the new architectural model.
+
+In this new environment we are still longing for a stable business application development framework for simplier but reliable **statefullness**. 
 
 
 ## ILE CL and UIM
