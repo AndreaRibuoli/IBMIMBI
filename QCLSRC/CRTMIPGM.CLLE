@@ -39,7 +39,7 @@
             CALL       PGM(QUSPTRUS) PARM(&SPC_NAME &MIPGMSRC &ERRCDE)
             CALLPRC    PRC('open') PARM((&QMISRC) (&OFLAG *BYVAL) (&MODE *BYVAL)) RTNVAL(&FD)
             CALLPRC    PRC('read') PARM((&FD *BYVAL) +
-                                        (&RIGHE *BYREF) +
+                                        (&FSTROW *BYREF) +
                                         (&MIPGMSRCSZ *BYVAL)) RTNVAL(&RTCD)
             IF         COND(&RTCD < 0) THEN(DO)
             CALLPRC    PRC('__errno') RTNVAL(&ERRPTR)
