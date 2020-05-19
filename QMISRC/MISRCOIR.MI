@@ -1,0 +1,403 @@
+DCL SPCPTR .OBJECT INIT(OBJECT);
+DCL DD      OBJECT CHAR(20);
+    DCL DD OBJ-NAME   CHAR(10) POS( 1) DEF(OBJECT); /* Name */
+    DCL DD LIB-NAME   CHAR(10) POS(11) DEF(OBJECT); /* Lib*/
+
+DCL SPCPTR .TYPE INIT(TYPE);
+DCL DD      TYPE CHAR( 2);
+
+DCL SPCPTR .OIR INIT(OIR);
+DCL DD      OIR CHAR(512);
+    DCL DD OIR-RECORD-ID            BIN(4) DEF(OIR) POS(  1);
+    DCL DD OIR-OBJ-TYPE            CHAR(2) DEF(OIR) POS(  5);
+    DCL DD OIR-OBJ-NAME           CHAR(10) DEF(OIR) POS(  7);
+    DCL DD OIR-NBR-OF-RECS          BIN(4) DEF(OIR) POS( 17);
+    DCL DD *                        BIN(2) DEF(OIR) POS( 21);
+    DCL DD OIR-ATTRIBUTE          CHAR(10) DEF(OIR) POS( 23);
+    DCL DD *                       CHAR(4) DEF(OIR) POS( 33);
+    DCL DD *                        BIN(4) DEF(OIR) POS( 37);
+    DCL DD OIR-TEXT-SIZE            BIN(2) DEF(OIR) POS( 43);
+    DCL DD OIR-TEXT               CHAR(50) DEF(OIR) POS( 45);
+    DCL DD *                        BIN(2) DEF(OIR) POS( 95);
+    DCL DD *                        BIN(2) DEF(OIR) POS( 97);
+    DCL DD OIR-SAVE-TIME           CHAR(8) DEF(OIR) POS( 99);
+    DCL DD OIR-RESTORE-TIME        CHAR(8) DEF(OIR) POS(107);
+    DCL DD *                       CHAR(4) DEF(OIR) POS(115);
+    DCL DD *                        BIN(2) DEF(OIR) POS(119);
+    DCL DD *                      CHAR(78) DEF(OIR) POS(121);
+    DCL DD OIR-SAVE-FILE          CHAR(10) DEF(OIR) POS(199);
+    DCL DD OIR-SAVE-LIBRARY       CHAR(10) DEF(OIR) POS(209);
+    DCL DD *                      CHAR(40) DEF(OIR) POS(219);
+    DCL DD *                        BIN(2) DEF(OIR) POS(259);
+    DCL DD OIR-LICENCED-PROGRAM   CHAR(13) DEF(OIR) POS(261);
+    DCL DD OIR-OBJ-CONTROL-LEVEL   CHAR(8) DEF(OIR) POS(274);
+    DCL DD *                       CHAR(1) DEF(OIR) POS(282);
+    DCL DD *                       CHAR(8) DEF(OIR) POS(283);
+    DCL DD OIR-REFERENCE-COMPILER CHAR(13) DEF(OIR) POS(291);
+    DCL DD OIR-VERSION-RELEASE     CHAR(6) DEF(OIR) POS(304);
+    DCL DD OIR-CREATION-DATE      CHAR(13) DEF(OIR) POS(310);
+    DCL DD OIR-REF-SOURCE-CHANGED CHAR(13) DEF(OIR) POS(323);
+    DCL DD OIR-REF-SOURCE-FILE    CHAR(10) DEF(OIR) POS(336);
+    DCL DD OIR-REF-SOURCE-MEMBER  CHAR(10) DEF(OIR) POS(346);
+    DCL DD OIR-REF-SOURCE-LIBRARY CHAR(10) DEF(OIR) POS(356);
+    DCL DD OIR-APAR-CODE           CHAR(6) DEF(OIR) POS(366);
+    DCL DD OIR-PTF-LEVEL-2         CHAR(5) DEF(OIR) POS(372);
+    DCL DD *                       CHAR(4) DEF(OIR) POS(377);
+    DCL DD *                       CHAR(8) DEF(OIR) POS(381);
+    DCL DD OIR-PROD-LANGUAGE-ID    CHAR(4) DEF(OIR) POS(389);
+    DCL DD OIR-PROD-OPTION-ID      CHAR(4) DEF(OIR) POS(393);
+    DCL DD *                      CHAR(16) DEF(OIR) POS(397);
+    DCL DD OIR-PTF-LEVEL-1         CHAR(2) DEF(OIR) POS(413);
+    DCL DD OIR-COMPONENT-ID        CHAR(4) DEF(OIR) POS(415);
+    DCL DD *                      CHAR(12) DEF(OIR) POS(419);
+    DCL DD OIR-CREATING-USER      CHAR(10) DEF(OIR) POS(431);
+    DCL DD OIR-CREATING-SYSTEM     CHAR(8) DEF(OIR) POS(441);
+    DCL DD OIR-WHEN-CHANGED-BY-API CHAR(8) DEF(OIR) POS(449);
+    DCL DD *                        BIN(2) DEF(OIR) POS(457);
+    DCL DD OIR-ALLOW-USER-CHANGE   CHAR(1) DEF(OIR) POS(459);
+    DCL DD OIR-CHANGED-BY-PGM      CHAR(1) DEF(OIR) POS(460);
+    DCL DD OIR-USER-DEFINED-ATTR  CHAR(10) DEF(OIR) POS(461);
+    DCL DD OIR-SORT-SEQUENCE      CHAR(10) DEF(OIR) POS(471);
+    DCL DD OIR-SORT-LIBRARY       CHAR(10) DEF(OIR) POS(481);
+    DCL DD OIR-LANGUAGE-ID        CHAR(10) DEF(OIR) POS(491);
+    DCL DD *                      CHAR(12) DEF(OIR) POS(501);
+
+DCL OL MIWRKOIR(.OBJECT, .TYPE, .OIR) ARG;
+
+DCL SPCPTR .NEW INIT(NEW);
+DCL DD      NEW CHAR(512);
+DCL OL MINEWOIR(.OBJECT, .TYPE, .OIR, .NEW) ARG;
+
+DCL DD RESOLVE CHAR(34);
+    DCL DD RESOLVE-TYPE CHAR( 2) DEF(RESOLVE) POS( 1);
+    DCL DD RESOLVE-NAME CHAR(30) DEF(RESOLVE) POS( 3);
+    DCL DD RESOLVE-AUTH CHAR( 2) DEF(RESOLVE) POS(33) INIT(X'0000');
+
+DCL SYSPTR .MIWRKOIR;
+DCL SYSPTR .LIBRARY;
+
+ENTRY * EXT;
+    CPYBLA       RESOLVE-TYPE, X'0201';
+    CPYBLAP      RESOLVE-NAME, "MIWRKOIR", " ";
+    RSLVSP      .MIWRKOIR, RESOLVE, *, *;
+    CPYBLAP      RESOLVE-NAME, "MISCRNIO", " ";
+    RSLVSP      .MISCRNIO, RESOLVE, *, *;
+
+    CPYBLA       CTRL-OPCODE, "OPEN";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+
+SHOW-THE-SCREEN:
+    CPYBLA       A-F11, "L"; /* "gray out" function key */
+    CPYBREP      CTRL-CURSOR-POSITION, "0";
+    CPYBLA       CTRL-OPCODE, "WRITE";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+
+    CPYBREP      S-MESSAGE, " ";
+    CPYBLA       A-MESSAGE, "B";
+
+GET-THE-SCREEN:
+    CPYBLA       CTRL-OPCODE, "READ";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+
+    CMPNV(B)     CTRL-CMD-KEY, 0/EQ(WORK-WITH-DATA);
+    CMPNV(B)     CTRL-CMD-KEY, 3/EQ(DONE);
+    CMPNV(B)     CTRL-CMD-KEY,12/EQ(DONE);
+
+FUNCTION-KEY-NOT-USED:
+    CPYBLAP      S-MESSAGE, "Function key not used", " ";
+SHOW-ERROR-MESSAGE:
+    CPYBLA       A-MESSAGE, "T";
+    B            SHOW-THE-SCREEN;
+
+WORK-WITH-DATA:
+    CMPBLAP(B)   S-OBJECT,  " ", " "/EQ(SUPPLY-OBJECT);
+    CMPBLAP(B)   S-LIBRARY, " ", " "/EQ(SUPPLY-LIBRARY);
+    CMPBLAP(B)   S-TYPE   , " ", " "/EQ(SUPPLY-TYPE);
+
+    CPYBLA       RESOLVE-TYPE, X'0401';
+    CPYBLAP      RESOLVE-NAME, S-LIBRARY, " ";
+    RSLVSP      .LIBRARY, RESOLVE, *, *;
+
+    CPYBLA       OBJ-NAME, S-OBJECT;
+    CPYBLA       LIB-NAME, S-LIBRARY;
+    CVTCH        TYPE,     S-TYPE;
+    CALLX       .MIWRKOIR, MIWRKOIR, *;
+
+    CMPBLAP(B)   OIR, " ", " "/EQ(OBJECT-NOT-FOUND);
+
+SHOW-THE-OIR:
+    CPYBLA       S-CREATING-USER,     OIR-CREATING-USER;
+    CPYBLA       S-CREATING-SYSTEM,   OIR-CREATING-SYSTEM;
+    CPYBLA       S-ALLOW-USER-CHANGE, OIR-ALLOW-USER-CHANGE;
+    CPYBLA       S-CHANGED-BY-PGM,    OIR-CHANGED-BY-PGM;
+    CPYBLA       S-USER-DEFINED-ATTR, OIR-USER-DEFINED-ATTR;
+    CPYBLA       S-PTF-LEVEL(1:2),    OIR-PTF-LEVEL-1;
+    CPYBLA       S-PTF-LEVEL(3:5),    OIR-PTF-LEVEL-2;
+    CPYBLA       S-VERSION-RELEASE,   OIR-VERSION-RELEASE;
+    CPYBLA       S-TEXT,              OIR-TEXT;
+    CPYBLA       S-SOURCE-FILE,       OIR-REF-SOURCE-FILE;
+    CPYBLA       S-SOURCE-LIBRARY,    OIR-REF-SOURCE-LIBRARY;
+    CPYBLA       S-SOURCE-MEMBER,     OIR-REF-SOURCE-MEMBER;
+    CPYBLA       S-ATTRIBUTE,         OIR-ATTRIBUTE;
+
+    CMPBLAP(B)   OIR-SAVE-TIME, " ", " "/NEQ(=+2);
+    CPYBREP      S-SAVE-TIME, " ";:
+    CMPBLAP(B)   OIR-SAVE-TIME, " ", " "/EQ(=+2);
+    CVTHC        S-SAVE-TIME, OIR-SAVE-TIME;:
+
+    CMPBLAP(B)   OIR-RESTORE-TIME, " ", " "/NEQ(=+2);
+    CPYBREP      S-RESTORE-TIME, " ";:
+    CMPBLAP(B)   OIR-RESTORE-TIME, " ", " "/EQ(=+2);
+    CVTHC        S-RESTORE-TIME, OIR-RESTORE-TIME;:
+
+    CPYBLA       S-CREATION-DATE(1: 2), "20";
+    CMPBLA(B)    OIR-CREATION-DATE(1:1), "0"/NEQ(=+2);
+    CPYBLA       S-CREATION-DATE(1: 2), "19";:
+    CPYBLA       S-CREATION-DATE(3:12), OIR-CREATION-DATE(2:12);
+
+    CPYBLA       A-F11, "U"; /* Enable function key */
+    CPYBLA       CTRL-CURSOR-POSITION, "00000";
+    CPYBLA       CTRL-OPCODE, "WRITE";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+
+    CPYBLA       CTRL-OPCODE, "READ";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+
+    CMPNV(B)     CTRL-CMD-KEY, 0/EQ(WORK-WITH-DATA);
+    CMPNV(B)     CTRL-CMD-KEY, 3/EQ(DONE);
+    CMPNV(B)     CTRL-CMD-KEY,12/EQ(DONE);
+
+    CMPNV(B)     CTRL-CMD-KEY,11/NEQ(FUNCTION-KEY-NOT-USED);
+CHANGE-THE-OIR:
+    CPYBLA       OIR-CREATING-USER,      S-CREATING-USER;
+    CPYBLA       OIR-CREATING-SYSTEM,    S-CREATING-SYSTEM;
+    CPYBLA       OIR-ALLOW-USER-CHANGE,  S-ALLOW-USER-CHANGE;
+    CPYBLA       OIR-CHANGED-BY-PGM,     S-CHANGED-BY-PGM;
+    CPYBLA       OIR-USER-DEFINED-ATTR,  S-USER-DEFINED-ATTR;
+    CPYBLA       OIR-PTF-LEVEL-1,        S-PTF-LEVEL(1:2);
+    CPYBLA       OIR-PTF-LEVEL-2,        S-PTF-LEVEL(3:5);
+    CPYBLA       OIR-VERSION-RELEASE,    S-VERSION-RELEASE;
+    CPYBLA       OIR-TEXT,               S-TEXT;
+    CPYBLA       OIR-REF-SOURCE-FILE,    S-SOURCE-FILE;
+    CPYBLA       OIR-REF-SOURCE-LIBRARY, S-SOURCE-LIBRARY;
+    CPYBLA       OIR-REF-SOURCE-MEMBER,  S-SOURCE-MEMBER;
+    CPYBLA       OIR-ATTRIBUTE,          S-ATTRIBUTE;
+    CVTCH        OIR-SAVE-TIME,          S-SAVE-TIME;
+    CVTCH        OIR-RESTORE-TIME,       S-RESTORE-TIME;
+
+    CPYBLA       OIR-CREATION-DATE(1: 1),  "1";
+    CMPBLA(B)    S-CREATION-DATE  (1: 2), "20"/EQ(=+2);
+    CPYBLA       OIR-CREATION-DATE(1: 1),  "0";:
+    CPYBLA       OIR-CREATION-DATE(2:12), S-CREATION-DATE(3:12);
+
+    CPYBLA       NEW, OIR;
+    CALLX       .MIWRKOIR, MINEWOIR, *;
+    B            WORK-WITH-DATA;
+
+DCL EXCM * EXCID(H'2201') BP(LIBRARY-NOT-FOUND) CV(X'00000000');
+LIBRARY-NOT-FOUND:
+    CPYBLAP      S-MESSAGE, "Library not found...", " ";
+    CPYBLA       A-LIBRARY, "e";
+    B            CLEAR-OBJECT-INFO;
+
+OBJECT-NOT-FOUND:
+    CPYBLAP      S-MESSAGE, "Object not found...", " ";
+    CPYBLA       A-OBJECT,  "e";
+    CPYBLA       A-TYPE,    "e";
+
+CLEAR-OBJECT-INFO:
+    CPYBREP      S-CREATING-USER,     " ";
+    CPYBREP      S-CREATING-SYSTEM,   " ";
+    CPYBREP      S-ALLOW-USER-CHANGE, " ";
+    CPYBREP      S-CHANGED-BY-PGM,    " ";
+    CPYBREP      S-USER-DEFINED-ATTR, " ";
+    CPYBREP      S-PTF-LEVEL,         " ";
+    CPYBREP      S-VERSION-RELEASE,   " ";
+    CPYBREP      S-TEXT,              " ";
+    CPYBREP      S-SOURCE-FILE,       " ";
+    CPYBREP      S-SOURCE-LIBRARY,    " ";
+    CPYBREP      S-SOURCE-MEMBER,     " ";
+    CPYBREP      S-ATTRIBUTE,         " ";
+    CPYBREP      S-SAVE-TIME,         " ";
+    CPYBREP      S-RESTORE-TIME,      " ";
+    CPYBREP      S-CREATION-DATE,     " ";
+    B            SHOW-ERROR-MESSAGE;
+
+SUPPLY-OBJECT:
+    CPYBLAP      S-MESSAGE, "Supply Object name", " ";
+    CPYBLA       A-OBJECT, "e";
+    B            CLEAR-OBJECT-INFO;
+
+SUPPLY-LIBRARY:
+    CPYBLAP      S-MESSAGE, "Supply Library name", " ";
+    CPYBLA       A-LIBRARY, "e";
+    B            CLEAR-OBJECT-INFO;
+
+DCL EXCM * EXCID(H'0C01') BP(SUPPLY-TYPE) CV(X'00000000');
+SUPPLY-TYPE:
+    CPYBLAP      S-MESSAGE, "Supply valid Object type/subtype", " ";
+    CPYBLA       A-TYPE, "e";
+    B            CLEAR-OBJECT-INFO;
+
+DONE:
+    CPYBLA       CTRL-OPCODE, "CLOSE";
+    CALLX       .MISCRNIO, MISCRNIO, *;
+    RTX          *;
+
+/************************* SCREEN DEFINITION ************************/
+
+DCL SPCPTR .SCRN-CTRL INIT(SCRN-CTRL);
+DCL DD SCRN-CTRL CHAR(8);
+    DCL DD CTRL-OPCODE          CHAR(1) DEF(SCRN-CTRL) POS(1);
+    DCL DD CTRL-CMD-KEY        ZND(2,0) DEF(SCRN-CTRL) POS(2);
+    DCL DD CTRL-CURSOR-POSITION CHAR(5) DEF(SCRN-CTRL) POS(4);
+      DCL DD CTRL-CURSOR-ROW ZND(2,0) DEF(CTRL-CURSOR-POSITION) POS(1);
+      DCL DD CTRL-CURSOR-COL ZND(3,0) DEF(CTRL-CURSOR-POSITION) POS(3);
+
+DCL SPCPTR .SCREEN INIT(SCREEN);
+DCL DD SCREEN       CHAR(10) INIT("T010310020");
+DCL DD S-TITLE      CHAR(20) INIT(" Work with OIR ");
+DCL DD *            CHAR(10) INIT("L010520000");
+
+DCL DD *            CHAR(10) INIT("L030010030");
+DCL DD *            CHAR(30) INIT("Object name  . . . . . . . .  ");
+DCL DD A-OBJECT     CHAR(10) INIT("i030320010");
+DCL DD S-OBJECT     CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L030430022");
+DCL DD *            CHAR(22) INIT("         Name         ");
+
+DCL DD *            CHAR(10) INIT("L040010032");
+DCL DD *            CHAR(32) INIT("  Library  . . . . . . . . .    ");
+DCL DD A-LIBRARY    CHAR(10) INIT("i040340010");
+DCL DD S-LIBRARY    CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L040450030");
+DCL DD *            CHAR(30) INIT("       Name                  ");
+
+DCL DD *            CHAR(10) INIT("L050010030");
+DCL DD *            CHAR(30) INIT("Object type/subtype  . . . .  ");
+DCL DD A-TYPE       CHAR(10) INIT("i050320004");
+DCL DD S-TYPE       CHAR(04) INIT((04)" ");
+DCL DD *            CHAR(10) INIT("L050370033");
+DCL DD *            CHAR(33) INIT("               Hexadecimal values");
+
+DCL DD *            CHAR(10) INIT("L070010030");
+DCL DD *            CHAR(30) INIT("Creating user  . . . . . . .  ");
+DCL DD A-CREATING-USER CHAR(10) INIT("i070320010");
+DCL DD S-CREATING-USER CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L070430022");
+DCL DD *            CHAR(22) INIT("         User profile ");
+
+DCL DD *            CHAR(10) INIT("L080010030");
+DCL DD *            CHAR(30) INIT("Creating system  . . . . . .  ");
+DCL DD A-CREATING-SYSTEM CHAR(10) INIT("i080320008");
+DCL DD S-CREATING-SYSTEM CHAR(08) INIT((08)" ");
+DCL DD *            CHAR(10) INIT("L080410022");
+DCL DD *            CHAR(22) INIT("           System name  ");
+
+DCL DD *            CHAR(10) INIT("L090010030");
+DCL DD *            CHAR(30) INIT("Allow changes  . . . . . . .  ");
+DCL DD A-ALLOW-USER-CHANGE CHAR(10) INIT("i090320001");
+DCL DD S-ALLOW-USER-CHANGE CHAR(01) INIT((01)" ");
+DCL DD *            CHAR(10) INIT("L090340033");
+DCL DD *            CHAR(33) INIT("                  N=No, blank=Yes");
+
+DCL DD *            CHAR(10) INIT("L100010030");
+DCL DD *            CHAR(30) INIT("Changed by program . . . . .  ");
+DCL DD A-CHANGED-BY-PGM CHAR(10) INIT("i100320001");
+DCL DD S-CHANGED-BY-PGM CHAR(01) INIT((01)" ");
+DCL DD *            CHAR(10) INIT("L100340033");
+DCL DD *            CHAR(33) INIT("                  blank=No, Y=Yes");
+
+DCL DD *            CHAR(10) INIT("L110010030");
+DCL DD *            CHAR(30) INIT("User defined attribute . . .  ");
+DCL DD A-USER-DEFINED-ATTR CHAR(10) INIT("i110320010");
+DCL DD S-USER-DEFINED-ATTR CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L110430022");
+DCL DD *            CHAR(22) INIT("         Characters   ");
+
+DCL DD *            CHAR(10) INIT("L120010030");
+DCL DD *            CHAR(30) INIT("PTF level  . . . . . . . . .  ");
+DCL DD A-PTF-LEVEL  CHAR(10) INIT("i120320007");
+DCL DD S-PTF-LEVEL  CHAR(07) INIT((07)" ");
+DCL DD *            CHAR(10) INIT("L120430022");
+DCL DD *            CHAR(22) INIT("         PP12345      ");
+
+DCL DD *            CHAR(10) INIT("L130010030");
+DCL DD *            CHAR(30) INIT("Version/Release  . . . . . .  ");
+DCL DD A-VERSION-RELEASE CHAR(10) INIT("i130320006");
+DCL DD S-VERSION-RELEASE CHAR(06) INIT((06)" ");
+DCL DD *            CHAR(10) INIT("L130390022");
+DCL DD *            CHAR(22) INIT("             VxRxMy   ");
+
+DCL DD *            CHAR(10) INIT("L140010030");
+DCL DD *            CHAR(30) INIT("Source Library . . . . . . .  ");
+DCL DD A-SOURCE-LIBRARY CHAR(10) INIT("i140320010");
+DCL DD S-SOURCE-LIBRARY CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L140430030");
+DCL DD *            CHAR(30) INIT("         Library name         ");
+
+DCL DD *            CHAR(10) INIT("L150010030");
+DCL DD *            CHAR(30) INIT("Source File  . . . . . . . .  ");
+DCL DD A-SOURCE-FILE  CHAR(10) INIT("i150320010");
+DCL DD S-SOURCE-FILE  CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L150430030");
+DCL DD *            CHAR(30) INIT("         File name            ");
+
+DCL DD *            CHAR(10) INIT("L160010030");
+DCL DD *            CHAR(30) INIT("Source Member  . . . . . . .  ");
+DCL DD A-SOURCE-MEMBER  CHAR(10) INIT("i160320010");
+DCL DD S-SOURCE-MEMBER  CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L160430030");
+DCL DD *            CHAR(30) INIT("         Member name          ");
+
+DCL DD *            CHAR(10) INIT("L170010030");
+DCL DD *            CHAR(30) INIT("Attribute  . . . . . . . . .  ");
+DCL DD A-ATTRIBUTE  CHAR(10) INIT("i170320010");
+DCL DD S-ATTRIBUTE  CHAR(10) INIT((10)" ");
+DCL DD *            CHAR(10) INIT("L170430023");
+DCL DD *            CHAR(23) INIT("         Characters");
+
+DCL DD *            CHAR(10) INIT("L180010030");
+DCL DD *            CHAR(30) INIT("Last save date/time  . . . .  ");
+DCL DD A-SAVE-TIME  CHAR(10) INIT("i180320016");
+DCL DD S-SAVE-TIME  CHAR(16) INIT((06)" ");
+DCL DD *            CHAR(10) INIT("L180490022");
+DCL DD *            CHAR(22) INIT("   Hex timestamp      ");
+
+DCL DD *            CHAR(10) INIT("L190010030");
+DCL DD *            CHAR(30) INIT("Last restore date/time . . .  ");
+DCL DD A-RESTORE-TIME CHAR(10) INIT("i190320016");
+DCL DD S-RESTORE-TIME CHAR(16) INIT((06)" ");
+DCL DD *            CHAR(10) INIT("L190490022");
+DCL DD *            CHAR(22) INIT("   Hex timestamp      ");
+
+DCL DD *            CHAR(10) INIT("L200010030");
+DCL DD *            CHAR(30) INIT("Creation date/time . . . . .  ");
+DCL DD A-CREATION-DATE CHAR(10) INIT("i200320014");
+DCL DD S-CREATION-DATE CHAR(14) INIT((14)" ");
+DCL DD *            CHAR(10) INIT("L200470022");
+DCL DD *            CHAR(22) INIT("     Date/time        ");
+
+DCL DD *            CHAR(10) INIT("L210010030");
+DCL DD *            CHAR(30) INIT("Text description . . . . . .  ");
+DCL DD A-TEXT       CHAR(10) INIT("I210320050");
+DCL DD S-TEXT       CHAR(50) INIT((50)" ");
+DCL DD *            CHAR(10) INIT("L220030022");
+DCL DD *            CHAR(22) INIT((22)" ");
+
+DCL DD A-F3  CHAR(10) INIT("U230010010");
+DCL DD S-F3  CHAR(10) INIT("F3=Exit   ");
+DCL DD A-F11 CHAR(10) INIT("U230110010");
+DCL DD S-F11 CHAR(10) INIT("F11=Change");
+DCL DD A-F12 CHAR(10) INIT("U230230010");
+DCL DD S-F12 CHAR(10) INIT("F12=Cancel");
+DCL DD *     CHAR(10) INIT("U230340000");
+
+DCL DD A-MESSAGE CHAR(10) INIT("T240010079"); /* MESSAGE LINE  */
+DCL DD S-MESSAGE CHAR(79);
+
+DCL DD * CHAR(10) INIT(".000000000");         /* END OF SCREEN */
+
+DCL SYSPTR .MISCRNIO;
+DCL OL MISCRNIO(.SCRN-CTRL, .SCREEN);
+
