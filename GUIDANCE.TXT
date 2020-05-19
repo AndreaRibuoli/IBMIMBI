@@ -16,3 +16,4 @@ QUIMSRC   CONT_MAIN PNLGRP    Help for example
 QUIMSRC   CONT_PNGI MENU      PNLGRP includes 
 QMISRC    EXAMPLE   MI        Machine Interface 
 QMISRC    MISRCOIR  MI        Leif's OIR Information for Modules
+QCLSRC    MIREAD    CLLE      Test reading           
