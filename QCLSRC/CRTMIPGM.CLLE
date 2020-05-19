@@ -33,13 +33,13 @@
                          NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
             CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +
                          *CAT &SRCMBR *TCAT '.mbr')
-            CHGVAR     VAR(&MIPGMSRCSZ) VALUE(&RECS * 132)
+            CHGVAR     VAR(&MIPGMSRCSZ) VALUE(&RECS * 120)
             CALL       PGM(QUSCRTUS) PARM(&SPC_NAME 'CRTMIPGM' +
                        &MIPGMSRCSZ X'00' '*ALL' &PGMTXT '*YES' &ERRCDE '*USER')
             CALL       PGM(QUSPTRUS) PARM(&SPC_NAME &MIPGMSRC &ERRCDE)
             CALLPRC    PRC('open') PARM((&QMISRC) (&OFLAG *BYVAL) (&MODE *BYVAL)) RTNVAL(&FD)
             CALLPRC    PRC('read') PARM((&FD *BYVAL) +
-                                        (&MIPGMSRC *BYVAL) +
+                                        (&MIPGMSRC *BYREF) +
                                         (&MIPGMSRCSZ *BYVAL)) RTNVAL(&RTCD)
             IF         COND(&RTCD < 0) THEN(DO)
             CALLPRC    PRC('__errno') RTNVAL(&ERRPTR)
@@ -47,9 +47,6 @@
             SNDPGMMSG  MSG('read: ' *CAT &VALORE)
             ENDDO
             CALLPRC    PRC('close') PARM((&FD)) RTNVAL(&RTCD)
-            SNDPGMMSG  MSG(%SST(&RIGHE   1 120))
-            SNDPGMMSG  MSG(%SST(&RIGHE 121 240))
-            SNDPGMMSG  MSG(%SST(&RIGHE 241 360))
             CHGVAR     VAR(%SST(&PGMNAM 1  10)) VALUE(&SRCMBR)
             CALL       PGM(QSYS/QPRCRTPG) PARM( +
                          &MIPGMSRC   +
