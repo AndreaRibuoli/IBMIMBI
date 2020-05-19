@@ -223,7 +223,7 @@ NOAUTH:      IF         COND(&DEVOPT = 'Y') THEN(DO)
                           con successo. Esegui digitando CONTATTI.')
              IF         COND(&DEVOPT = 'Y') THEN(DO)
              CRTBNDCL   PGM(&TGTLIB/CRTMIPGM) SRCFILE(&SRCLIB/QCLSRC) SRCMBR(CRTMIPGM) +
-                          OUTPUT(*PRINT) ALWRTVSRC(*NO)
+                          OUTPUT(&SPOOL_O) ALWRTVSRC(*NO)
              CRTCLPGM   PGM(&TGTLIB/TESTEXPL) SRCFILE(&SRCLIB/QCLSRC) OUTPUT(&SPOOL_O)
              ADDLIBLE   LIB(&TGTLIB)
              MONMSG     MSGID(CPF0000)
