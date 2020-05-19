@@ -27,7 +27,8 @@
             DCL        VAR(&ERRNO)      TYPE(*INT) STG(*BASED) LEN(4) BASPTR(&ERRPTR)
             DCL        VAR(&VALORE)     TYPE(*CHAR) LEN(10)
             CHGVAR     VAR(%SST(&PGMNAM 1 10)) VALUE(&SRCMBR)
-            RTVMBRD    FILE(&PGMSRCF) MBR(&SRCMBR) NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
+            RTVMBRD    FILE(%SST(&PGMSRCF 11 10)/%SST(&PGMSRCF 1 10)) MBR(&SRCMBR) +
+                         NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
             CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +
                          *CAT &SRCMBR *TCAT '.mbr')
             CHGVAR     VAR(&MIPGMSRCSZ) VALUE(&RECS * 132)
