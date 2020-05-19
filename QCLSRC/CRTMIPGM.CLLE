@@ -6,7 +6,7 @@
             DCL        VAR(&RECS)       TYPE(*DEC)  LEN(10 0) VALUE(0)
             DCL        VAR(&PGMNAM)     TYPE(*CHAR) LEN(20)   VALUE('          *CURLIB   ')
             DCL        VAR(&PGMTXT)     TYPE(*CHAR) LEN(50)
-            DCL        VAR(&PGMSRCF)    TYPE(*CHAR) LEN(20)   VALUE('QMISRC    *LIBL     ')
+            DCL        VAR(&PGMSRCF)    TYPE(*CHAR) LEN(20)   VALUE('*NONE')
             DCL        VAR(&SPC_NAME)   TYPE(*CHAR) LEN(20)   VALUE('BUFFER    QTEMP     ')
             DCL        VAR(&PGMSRCCHG)  TYPE(*CHAR) LEN(13)   VALUE(' ')
             DCL        VAR(&PRTFNAM)    TYPE(*CHAR) LEN(20)   VALUE('QSYSPRT   *LIBL     ')
@@ -26,7 +26,7 @@
             DCL        VAR(&ERRPTR)     TYPE(*PTR)
             DCL        VAR(&ERRNO)      TYPE(*INT) STG(*BASED) LEN(4) BASPTR(&ERRPTR)
             DCL        VAR(&VALORE)     TYPE(*CHAR) LEN(10)
-            RTVMBRD    FILE(%SST(&PGMSRCF 11 10)/%SST(&PGMSRCF 1 10)) MBR(&SRCMBR) +
+            RTVMBRD    FILE(QMISRC) MBR(&SRCMBR) +
                          NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
             CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +
                          *CAT &SRCMBR *TCAT '.mbr')
@@ -45,7 +45,6 @@
             ENDDO
             CALLPRC    PRC('close') PARM((&FD)) RTNVAL(&RTCD)
             CHGVAR     VAR(%SST(&PGMNAM 1  10)) VALUE(&SRCMBR)
-            CHGVAR     VAR(%SST(&PGMSRCF 11 10)) VALUE(&RTNLIB)
             CALL       PGM(QSYS/QPRCRTPG) PARM( +
                          &MIPGMSRC   +
                          &MIPGMSRCSZ +
