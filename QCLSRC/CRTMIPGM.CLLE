@@ -13,8 +13,11 @@
             DCL        VAR(&PRTFNAM)    TYPE(*CHAR) LEN(20)   VALUE('QSYSPRT   *LIBL     ')
             DCL        VAR(&PRTSTRPAG)  TYPE(*INT)  LEN(4)    VALUE(1)
             DCL        VAR(&PGMPUBAUT)  TYPE(*CHAR) LEN(10)   VALUE('*ALL      ')
-            DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(22)   VALUE('*LIST      *REPLACE   ')
-            DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(2)
+            DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(44)   +                                
+                             VALUE('*LIST      *REPLACE   *XREF      *ATR       ')  
+            DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(4)                                                                                    
+         /* DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(22)   VALUE('*LIST      *REPLACE   ')  */
+         /* DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(2)                         */
             DCL        VAR(&ERRCDE)     TYPE(*CHAR) LEN(16)
             DCL        VAR(&BYTPRV)     TYPE(*INT)  LEN(4) STG(*DEFINED) DEFVAR(&ERRCDE)
             DCL        VAR(&BYTAVL)     TYPE(*INT)  LEN(4) STG(*DEFINED) DEFVAR(&ERRCDE 5)
