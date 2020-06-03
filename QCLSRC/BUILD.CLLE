@@ -29,6 +29,8 @@
              MONMSG     MSGID(CPF0000)
              DLTF       FILE(&TGTLIB/QMISRC)
              MONMSG     MSGID(CPF0000)
+             DLTF       FILE(&TGTLIB/QREXSRC)
+             MONMSG     MSGID(CPF0000)
              ENDDO
              IF         COND(&DEVOPT = 'Y') THEN(DO)
              CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132)
@@ -54,6 +56,8 @@
              CPYSRCF    FROMFILE(&SRCLIB/QDDSSRC) TOFILE(&TGTLIB/QDDSSRC) FROMMBR(*ALL)
              MONMSG     MSGID(CPF0000)
              CPYSRCF    FROMFILE(&SRCLIB/QMISRC) TOFILE(&TGTLIB/QMISRC) FROMMBR(*ALL)
+             MONMSG     MSGID(CPF0000)
+             CPYSRCF    FROMFILE(&SRCLIB/QREXSRC) TOFILE(&TGTLIB/QREXSRC) FROMMBR(*ALL)
              MONMSG     MSGID(CPF0000)
              CHGVAR     VAR(&SRCLIB) VALUE(&TGTLIB)
              ENDDO
