@@ -17,3 +17,4 @@ QUIMSRC   CONT_PNGI MENU      PNLGRP includes
 QMISRC    EXAMPLE   MI        Machine Interface 
 QMISRC    EXAMPLE0  MI        Machine Interface
 QREXSRC   THANKSGENEREXX      Rexx OPM savf utility
+QREXSRC   FFFFONLY  REXX      Rexx savf list utility

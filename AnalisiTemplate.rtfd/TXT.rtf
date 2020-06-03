@@ -1,0 +1,2383 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;\f2\fswiss\fcharset0 Helvetica;
+\f3\fnil\fcharset134 PingFangSC-Regular;\f4\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red118\green118\blue118;\red251\green0\blue7;\red35\green255\blue6;
+\red25\green60\blue255;\red251\green0\blue255;\red0\green0\blue0;\red36\green255\blue255;\red253\green139\blue9;
+\red0\green0\blue0;\red38\green38\blue38;}
+{\*\expandedcolortbl;;\cssrgb\c53691\c53693\c53692;\cssrgb\c100000\c12195\c0;\cssrgb\c0\c100000\c0;
+\cssrgb\c12594\c35385\c100000;\cssrgb\c100000\c7248\c100000;\cssrgb\c0\c1\c1;\cssrgb\c4983\c100000\c100000;\cssrgb\c100000\c61456\c0;
+\cssrgb\c0\c0\c0;\cssrgb\c20000\c20000\c20000;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid1\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23000\viewh11740\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Idea: impostare un codice che analizzi un save file (in formato binario) e a fronte di un indirizzo (offset) localizzi \
+instruction stream, ODT directory vector e ODT entry string.\
+Proceda quindi nel generare una versione disassemblata del codice MI.\
+\
+Possiamo partire da risorse in memoria.\
+\
+# qui inizia il 65\'b0 record (512*64/4096 = 8 ==> dopo le prime 8 pagine )\
+\
+   B 00 18 00 08 03 90 00 a3 3d 0a a2 76 98 00 00 00 \
+   B 00 01 03 00 00 00 00 00 00 00 00 00 00 00 00 00 \
+#                                   EXAMPLE\
+   B 
+\f1\b 00 00 0a c2 
+\f0\b0 00 00 0b 04 02 01 c5 e7 c1 d4 d7 d3 \
+   B c5 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 \
+#\
+   B 40 40 40 40 40 40 40 40 c0 00 00 00 00 00 00 00 \
+   B 00 00 01 e0 00 01 00 00 00 00 00 00 00 00 00 00 \
+   B 00 00 00 00 00 00 00 00 \cf2 22 6f 09 5a cf\cf0  00 04 00 \
+   B 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\
+#\
+   B 10 a0 80 fc 00 00 00 00 00 00 00 00 00 06 00 0a \
+#                \cf3 Instruction stream MI\cf0 \
+#                      \cf3 |\cf0            ?\
+#                      \cf3 |\cf0            | \
+   B 00 00 01 00 
+\f1\b \cf3 00 00 01 24
+\f0\b0 \cf0  00 00 01 54 00 00 00 00 \
+   B 00 00 00 00 00 00 00 00 00 00 00 00 
+\f1\b 00 00 09 4a
+\f0\b0  \
+   B 00 00 01 78 00 00 0a c8 00 00 00 06 00 00 00 00 \
+#\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+# 00000100 @\
+ 16B\
+ 16B\
+# 00000120 @\
+   B 00 00 00 24 3c 46 20 00 00 06 00 07 00 09 10 42 \
+   B 00 08 00 06 10 11 00 0a 30 42 00 08 00 07 22 a1 \
+# 00000140 @\
+   B 00 00 02 60 00 00 00 2c 28 01 00 04 14 01 00 00 \
+   B 14 01 00 00 14 01 00 00 5b 80 00 09 0a 03 00 14 \
+   B 0a 03 00 19 0a 03 00 1e 30 00 00 04 30 00 00 05 \
+   B 00 00 00 00 00 00 00 23 11 00 05 00 01 01 00 03 \
+# 00000180 @\
+   B 00 00 00 02 00 03 00 04 50 05 0f 00 02 50 05 0f \
+   B 00 03 50 05 0f 00 04 00 00 00 02 33 ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000001C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000200 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000240 @\
+   B 00 00 09 22 ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000280 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000002C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000300 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 0a 00 00 09 16 ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000340 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000380 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000003C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000400 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000440 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000480 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000004C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000500 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000540 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000580 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000005C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000600 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000640 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff 00 00 08 f9 ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000680 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000006C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000700 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000740 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000780 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000007C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000800 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 08 d0 00 00 08 dd ff ff ff ff ff ff ff ff \
+# 00000840 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000880 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000008C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000900 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000940 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff 00 00 09 30 ff ff ff ff \
+   B ff ff ff ff ff ff ff ff 00 00 09 3c ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000980 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000009C0 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000A00 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff 00 00 08 ea ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 00000A40 @\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff\
+####  \
+####  c0 = nome variabile;  40 = nome etichetta\
+####  \
+   B                         ff ff ff ff \
+   B                                     00 02 \
+   B                                           c0 \
+   B                                              05 \
+#  T ARG1@  \
+   B c1 d9 c7 f1 b5 ff ff ff ff \
+   B                            00 03 \
+   B                                  c0 \
+   B                                     05 \
+#  T ARG2@  \
+   B                                        c1 d9 c7 \
+   B f2 b5 ff ff ff ff \
+   B                   00 04\
+   B                         c0\
+   B                            07 \
+#  T RESULT@  \
+   B                               d9 c5 e2 e4 d3 e3 \
+   B b5 ff ff ff ff \
+   B                00 05 \
+   B                      c0 \
+   B                         09 \
+#  T PARM_LIST   \
+   B                            d7 c1 d9 d4 6d d3 c9 \
+   B e2 e3 ff ff ff ff \
+   B                   00 06 \
+   B                         c0 \
+   B                            04 \
+#  T ARG1  \
+   B                               c1 d9 c7 f1 ff ff \
+   B ff ff \
+   B       00 07\
+   B             c0\
+   B                04\
+#  T ARG2  \
+   B                   c1 d9 c7 f2 ff ff ff ff\
+   B                                           00 08 \
+   B c0\
+   B    06 \
+#  T RESULT@  \
+   B       d9 c5 e2 e4 d3 e3 ff ff ff ff \
+   B                                     00 04 \
+   B                                           40\
+   B                                              04 \
+#  T ITS2\
+   B c9 e3 e2 f2 ff ff ff ff \
+   B                         00 05 \
+   B                               40 \
+   B                                  06\
+#  T RETURN\
+   B                                     d9 c5 e3 e4 \
+   B d9 d5 \
+#\
+   B       00\
+   B          00 00 00 00 00 06 00 00 00 00 01 0a 00 \
+   B 00 00 00 01 0a 00 00 00 00 02 0a 00 00 00 00 03 \
+   B 08 00 00 00 00 00 02 00 00 00 00 02 02 00 00 00 \
+   B 00 03 02 00 00 00 00 04 06 00 00 00 00 04 06 00 \
+   B 00 00 00 05 00 00 00 00 00 00 00 00 00 00 00 00 \
+\
+#  000000 000000 000000 000000 000000 000000 000000 000000 000000 000000 000000 0000000000000000000000000000000000000000\
+#  000006 00001A 00001A 00002A 000038 000002 000022 000032 000046 000046 000050 0000000000000000000000000000000000000000\
+\
+\
+0000 0002 0005\
+0010 0014 0014\
+\
+173 = 0xAD\
+\
+0004 0007 000C\
+009A 0018 00A8\
+\
+289 = 0x121\
+\
+0002342000000014000011003400002A00060002200010001000100058000001000100013000300000000002100000000000000050000500005000000003FFFF\
+0004C600060709020806010A020807210020000C8104410041004100B009A304A309A30E0004000500000003105011030002030405F0205F0305F0400023FFFF\
+\
+## FLUSSO ISTRUZIONI\
+   B 00 00 00 24 \
+   B             3c 46 20 00 
+\f1\b \cf3 00 06
+\f0\b0 \cf0  
+\f1\b \cf4 00 07
+\f0\b0 \cf0  
+\f1\b \cf5 00 09
+\f0\b0 \cf0  \
+#     /--  da capire...\
+#     |\
+#   00
+\f1\b \cf6 1
+\f0\b0 \cf0 1 
+\f1\b \cf6 1
+\f0\b0 \cf0 100 0100 0110 0010 0000 0000 0000\
+\
+#   0001 0000 0100 0110 \
+#   si sviluppa in due modalit\'e0 (Extender)\
+#   0001 
+\f1\b \cf5 10
+\f0\b0 \cf0 00    18(46)  Indicator option\
+#   0001 
+\f1\b \cf5 11
+\f0\b0 \cf0 00    1C(46)  Branch    option \
+\
+# si noti che esiste l'istruzione 0424 (CDD) quindi la combinazione 
+\f1\b \cf5 01
+\f0\b0 \cf0 00 fa parte della identificazione \
+# delle istruzioni base (evidentemente non prevede la possibilit\'e0 di indicare I o B)\
+\
+# Nell'instruction summary vengono accesi i bit contrassegnati con I  \
+\
+    xxxI xIII IIII IIII\
+\
+X'00xx'  0000   NOOP\
+         0001   NOOPS\
+         0006   OVRPGATR\
+         0022   SETSPPFP\
+         0032   SETSPFP\
+         0033   SUBSPPFO\
+         0036   MATS\
+         0046   SETDPADR\
+         004A   SETDPAT\
+         0062   MODS\
+         0082   SETSPP\
+         0083   ADDSPP\
+         0087   SUBSPP\
+         0092   SETSPPO\
+         0093   SETSPPD\
+         0096   SETDP\
+         00A2   SETSPPO\
+         \
+\
+#   CMPNV(B) 
+\f1\b \cf3 ARG1
+\f0\b0 \cf0 ,
+\f1\b \cf4 ARG2 
+\f0\b0 \cf0 / LO(
+\f1\b \cf5 ITS2
+\f0\b0 \cf0 )\
+# Certain computational instructions allow optional forms.\
+# The following optional forms can be specified (see SUBN ...)\
+# *   (Base      Form)   xxxx 0000\
+# * I (Indicator Form)   xxxx 10xx\
+# * B (Branch    Form)   xxxx 11xx\
+# * S (Short     Form)   xxxx xxx1\
+# * R (Round     Form)   xxxx xx1x \
+# \
+#   Resulting conditions:  H(high), L(low), E(equal), UN(unordered)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2 \cf0 {{\NeXTGraphic Schermata 2020-05-21 alle 12.12.20.png \width14560 \height780 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \
+\
+\
+0001 000004  3C46 
+\f1\b 2
+\f0\b0 000 0006 0007 0009           CMPNV(B) ARG1,ARG2 / LO(ITS2)    \
+0002 00000E  1C46 
+\f1\b 1
+\f0\b0 000 0006 0007 0009           CMPNV(B) ARG1,ARG2 / HI(ITS2)    \
+0003 000018  1C46 
+\f1\b 4
+\f0\b0 000 0006 0007 0009           CMPNV(B) ARG1,ARG2 / EQ(ITS2)    \
+0004 000022  1C46 
+\f1\b 7
+\f0\b0 000 0006 0007 0009           CMPNV(B) ARG1,ARG2 / UNOR(ITS2)  \
+\
+\
+   B                                           10 42 \
+   B 00 08 00 06 \
+   B             10 11 00 0a \
+   B                         30 42 00 08 00 07 \
+   B                                           22 a1 \
+   B 00 00\
+   B       02 60 \
+   \
+## ODT Directory Vector (ODV)\
+# The ODV is a vector of 4-byte character string entries in a standard format.\
+   B             00 00 00 2c \
+#  Index 00 01  ( ENTRY * (PARM_LIST) EXT ) \
+#    0010 1000 0000 0001 0000 0000 0000 0100\
+#    0010                                      Entry Point\
+#         1                                    OES is present because of entry point parameters \
+#                                                  (or the instruction stream breakpoint)\
+#          000 0000 000                        reserved\
+#                      1                       Scope external\
+#                        0000 0000 0000 0100   OES offet \
+#\
+   B                         28 01 00 04 \
+#  Index 00 02   ( DCL SPCPTR 
+\f1\b ARG1@
+\f0\b0  PARM )    no OES offset\
+#    0001 0100 0000 0001 0000 0000 0000 0000\
+#    0001                                      Object type = Pointer data object\
+#         0                                    OES is not present\
+#          100                                 Addressability type = Parameter\
+#              0                               Optimization of value = normal value\
+#               000                            Reserved\
+#                   0001                       Pointer type = Space pointer\
+#                        0000 0000 0000 0000   OES offset   \
+#    \
+   B                                     \cf4 14 01 \cf7 00 00\cf0  \
+#  Index 00 03   ( DCL SPCPTR 
+\f1\b ARG2@
+\f0\b0  PARM )    no OES offset\
+   B \cf4 14 01 \cf7 00 00\cf0 \
+#  Index 00 04   ( DCL SPCPTR 
+\f1\b RESULT@
+\f0\b0  PARM )  no OES offset\
+   B             \cf4 14 01 \cf7 00 00\cf0  \
+#  Index 00 05   ( DCL OL 
+\f1\b PARM_LIST
+\f0\b0  (ARG1@, ARG2@, RESULT@) PARM EXT )\
+#                                                OES offset \cf7 0009\cf0 \
+#    0101 1011 1000 0001 0000 0000 0000 1001\
+#    0101                                      Object type = Operand list\
+#         1                                    OES is present (always for OL)\
+#          0                                   Not used as argument list\
+#           11                                 External parameter list\
+#              1                               Fixed-length\
+#               000 0000                       Reserved\
+#                        0000 0000 0000 1001   OES offset   \
+#    \
+   B                         \cf4 5b 80\cf0  \cf3 00 09\cf0  \
+#  Index 00 06   ( DCL DD 
+\f1\b ARG1
+\f0\b0  PKD(15,5) BAS(ARG1@) )\
+#                                                OES offset \cf7 0014\cf0 \
+#    0000 1010 0000 0011 0000 0000 0001 0100\
+#    0000                                      Object type = Scalar data object\
+#         1                                    OES is present\
+#          010                                 Addressability type = Based\
+#              0                               Do not refetch base addressability \
+#                                                 when base pointer is modified\
+#               000                            Boundary = None\
+#                   0                          Do not use the system default initial value\
+#                    011                       Packed decimal \
+#                        0000 0000 0001 0100   OES offset\
+#\
+   B                                     \cf4 0a 03\cf0  \cf3 00 14\cf0  \
+#  Index 00 07   ( DCL DD 
+\f1\b ARG2
+\f0\b0  PKD(15,5) BAS(ARG2@) )\
+#                                                OES offset \cf7 0019\cf0 \
+   B \cf4 0a 03\cf0  \cf3 00 19\cf0  \
+#  Index 00 08   ( DCL DD 
+\f1\b RESULT
+\f0\b0  PKD(15,5) BAS(RESULT@) )\
+#                                                OES offset \cf7 001e\cf0 \
+   B             \cf4 0a 03\cf0  \cf3 00 1e\cf0  \
+#  Index 00 09   ( ITS2:    CPYNV RESULT,ARG2  )  \
+#    \
+#    0011 0000 0000 0000 0000 0000 0000 0100\
+#    0011                                      Branch point\
+#         0                                    OES is never present\
+#          000 0000 0000                       reserved\
+#                        0000 0000 0000 0100   \cf8 Instruction number\cf0 \
+#    \
+   B                         \cf4 30 00\cf0  \cf8 00 04\cf0  \
+#  Index 00 0A   ( RETURN:  RTX * ) \
+#    \
+#    0011 0000 0000 0000 0000 0000 0000 0101\
+#    \
+   B                                     \cf4 30 00\cf0  \cf8 00 05\cf0  \
+   B 00 00 00 00 \
+\
+## ODT Entry String (OES)\
+#     The OES contains a 4-byte OES length entry at the beginning of the OES component. \
+#     This means that the minimum valid offset is 4 bytes.\
+   B             00 00 00 23\
+#  Offset  0004\
+   B                         11 00 05 00 01 \
+#  Offset  0009\
+#  OES header\
+#  One byte indicating which OES appendages are present. \
+#  A bit is included for each possible OES appendage. \
+#  A binary zero value for the bit means the appendage is not present. \
+#  A binary one value for the bit means the appendage is present.\
+#    0000 0001\
+#    0000 000     reserved\
+#            1    Initial value is required \
+   B                                        01 \
+#  Initial value appendage\
+#  Bytes!  0003 0000\
+#  Bytes!  0003       Number of elements\
+#  Bytes!       0000  Reserved\
+   B                                           00 03 \
+   B 00 00\
+#  ODT reference 1 (i.e. ARG1@ )\
+   B 00 02 \
+#  ODT reference 2 (i.e. ARG2@ )\
+   B       00 03\
+#  ODT reference 3 (i.e. RESULT@ )\
+   B             00 04 \
+#  Offset  0014\
+#    0101 0000\
+#    0              Object is not named and is not externally accessible.  \
+#     1             Length is present (required)\
+#      0            Array information is not present.\
+#       1           Base is present\
+#         0         Position is not present (required if boundary is specified).\
+#          0        Initial value is not present.\
+#           0       No replications in initial value.\
+#            0      Reserved\
+#\
+   B                         50 \
+#  Scalar Length Appendage\
+#  Bytes!  05 0f\
+#          05       D = Digit to the right of the assumed decimal point (0<=D<=T)\
+#             0f    T = Total digits (1<=T<=31)\
+   B                            05 0f \
+#  Base Appendage\
+#  Bytes!  00 02    ODT reference for pointer data object if based \
+   B                                  00 02 \
+#  Offset  0019\
+   B                                        50 05 0f \
+   B 00 03 \
+#  Offset  001e\
+   B       50 05 0f 00 04 \
+#  Offset  0023 ???\
+   B                      
+\f1\b \cf7 00\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf9  \
+#   0000 02 33 'ff'x 164  \
+#   0000 09 22 'ff'x 204\
+#   0000 09 0a\
+#   0000 09 16\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 \
+   B                        
+\f1\b \cf9  00 00 02 33
+\f0\b0 \cf0  \
+   B                                     ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 22 ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 0a 00 00 09 16 ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff 00 00 08 f9 ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 08 d0 00 00 08 dd ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff 00 00 09 30 ff ff ff ff \
+   B ff ff ff ff ff ff ff ff 00 00 09 3c ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff 00 00 08 ea ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff\
+   \
+   B                                  ff 00 02 c0 05 \
+   B c1 d9 c7 f1 b5 ff ff ff ff 00 03 c0 05 c1 d9 c7 \
+   B f2 b5 ff ff ff ff 00 04 c0 07 d9 c5 e2 e4 d3 e3 \
+   B b5 ff ff ff ff 00 05 c0 09 d7 c1 d9 d4 6d d3 c9 \
+   B e2 e3 ff ff ff ff 00 06 c0 04 c1 d9 c7 f1 ff ff \
+   B ff ff 00 07 c0 04 c1 d9 c7 f2 ff ff ff ff 00 08 \
+   B c0 06 d9 c5 e2 e4 d3 e3 ff ff ff ff 00 04 40 04 \
+   B c9 e3 e2 f2 ff ff ff ff 00 05 40 06 d9 c5 e3 e4 \
+   B d9 d5 00  \
+#          |---------|--- i quattro byte finali servono per interrompere la lettura delle variabili/etichette\
+#                         oppure ne basta uno solo!!\
+\
+   B                            00 00 00 00 00 06 \
+   B                            00 00 00 00 01 0a\
+   B                            00 00 00 00 01 0a\
+   B                            00 00 00 00 02 0a\
+   B                            00 00 00 00 03 08\
+   B                            00 00 00 00 00 02 \
+   B                            00 00 00 00 02 02 \
+   B                            00 00 00 00 03 02\
+   B                            00 00 00 00 04 06 \
+   B                            00 00 00 00 04 06\
+   B                            00 00 00 00 05 00\
+   B                            00 00 00 00 00 00 00 00 00 00 00 \
+\
+\
+IPOTIZZIAMO DI AVERE 2 PUNTATORI A DUE STRINGHE BINARIE IN MEMORIA\
+                                           \
+           0 0 0 0  0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2\
+           1 2 3 4| 5 6 7 8 9 A B C D E F 0 1 2 3 4 5 6 7 8 9 A B C D E F 0 1 2 3 4 5 6 7 8 9 A B C\
+\
+P1 ---> X'00000024|3c4620000006000700091042000800061011000a30420008000722a100000260'\
+        X'0000002c|280100041401000014010000140100005b8000090a0300140a0300190a03001e3000000430000005' \
+        X'00000000|' \
+        X'00000023|1100050001010003000000020003000450050f000250050f000350050f0004'\
+        X'00'\
+        X'00000233' \
+\
+00 00 09 22\
+00 00 09 0a \
+00 00 09 16\
+00 00 08 f9\
+00 00 08 d0 \
+00 00 08 dd\
+00 00 09 30\
+00 00 09 3c \
+00 00 08 ea\
+\
+00 00 08 d0 \
+00 00 08 dd\
+00 00 08 ea\
+00 00 08 f9\
+00 00 09 0a \
+00 00 09 16\
+00 00 09 22\
+00 00 09 30\
+00 00 09 3c \
+\
+\
+\
+Observability involves the kinds of data that can be stored with an object, and that allow the object to be changed without recompiling the source. \
+The addition of this data increases the size of the object. \
+Consequently, you 
+\f1\b \ul may
+\f0\b0 \ulnone  want to remove the data in order to reduce object size. \
+But once the data is removed, observability is also removed. \
+You must recompile the source and recreate the program to replace the data. \
+\
+The types of data are:\
+\
+
+\f1\b Create Data\
+
+\f0\b0 Represented by the *CRTDTA value. \
+This data is necessary to translate the code to machine instructions. \
+The object must have this data before you can change the optimization level.\
+\
+
+\f1\b Debug Data\
+
+\f0\b0 Represented by the *DBGDTA value. \
+This data is necessary to allow an object to be debugged.\
+\
+
+\f1\b Profiling Data\
+
+\f0\b0 Represented by the *BLKORD and *PRCORD values. \
+This data is necessary to allow the system to re-apply block order and procedure order profiling data.\
+\
+Use the 
+\f1\b CHGPGM command 
+\f0\b0 or the CHGMOD command to remove some or all the data from a program or module respectively. \
+Removing all observability reduces an object to its minimum size (without compression). \
+It is not possible to change the object in any way unless you re-create it. \
+Therefore, ensure that you have all source required to create the program or have a comparable program object with CRTDATA. \
+To re-create it, you must have authorization to access the source code.\
+\
+\
+Rimozione informazioni visibili (RMVOBS) - Aiuto    \
+                                                 \
+2.  La rimozione dell'osservabilit\'e0 dai programmi OPM compilati con OPTION(*LSTDBG) non elimina completamente le informazioni di debug. \
+    Il programma deve essere ricompilato con 
+\f1\b OPTION(*NOLSTDBG)
+\f0\b0  per rimuovere completamente tali informazioni.                           \
+\
+                     Ulteriori informazioni sui messaggi                     \
+                                                                             \
+ID messaggio . . . . . :   CPC0540                                           \
+Data invio . . . . . . :   23/05/20      Ora invio  . . . . . . :   09:47:55 \
+Messaggio . . . :   Programma EXAMPLE in QGPL modificato.                    \
+Causa . . . . . :   Il programma specificato \'e8 stato modificato.               \
+\
+\
+\
+The Integrated Language Environment\'ae (ILE) CL run time and compiler-generated code 
+\f1\b are threadsafe
+\f0\b0 . \
+Original program model (OPM) CL programs are not threadsafe.\
+\
+For any ILE CL code that is compiled before 
+\f1\b Version 4 Release 3
+\f0\b0 , or for any OPM CL code, the CL run time sends a 
+\f1\b CPD000B diagnostic message
+\f0\b0  and continues to run with unpredictable results. \
+\
+This might or might not be threadsafe, depending on the underlying code.\
+\
+Command analyzer is threadsafe. \
+\
+For a given command, if the threadsafe attribute (THDSAFE) is *NO and the multithreaded job action attribute (MLTTHDACN) is set to *NORUN or *MSG, the command analyzer does one of the following operations when such a command is called in a job capable of multithreaded operations:\
+\
+If MLTTHDACN is set to *NORUN in a multithreaded job, command analyzer sends a CPD000D diagnostic message, and the command does not run. \
+A CPF0001 escape message then follows the CPD000D diagnostic message.\
+If MLTTHDACN is set to *MSG in a multithreaded job, command analyzer sends a CPD000D diagnostic message, and the program continues to run with unpredictable results.\
+If the job is capable of running multiple threads but is not actually multithreaded, command analyzer allows commands that are not threadsafe to run without interference.\
+\
+If MLTTHDACN is set to *RUN, the command analyzer does not send a diagnostic message and allows the command to run. \
+The results of this are unpredictable. \
+Also, MLTTHDACN only applies to commands whose THDSAFE value is *NO. \
+To determine the THDSAFE and MLTTHDACN values for a command, use the Display Command (DSPCMD) command.\
+The MLTTHDACN value of some commands is set to *SYSVAL. \
+In this case, command analyzer uses the QMLTTHDACN system value to decide how to process the command.\
+\
+\
+\
+123/662 Materialize Process Activation Groups ( MATPRAGP 2 )\
+ 65     Materialize Process Attributes        ( MATPRATR )\
+144     PCO Pointer                           ( PCOPTR   )\
+514     Retrieve Thread Count                 ( RETTHCNT )\
+516     Retrieve Thread Identifier            ( RETTHID  )\
+358     Return PCO Pointer                    ( PCOPTR2  )\
+509     Test Initial Thread                   ( TSTINLTH )\
+359     Test Pending Interrupts               ( TESTINTR )\
+ 66     Wait On Time                          ( WAITTIME )\
+\
+\
+http://i5toolkit.sourceforge.net/rpg/page_pr_thd.html\
+\
+\
+General Description of an OPM MI Program Template\
+\
+An OPM program template consists of the following components:\
+The above-mentioned components are the following\
+\
+OPM Creation Template\
+OPM Instruction Stream Component\
+OPM ODT Directory Vector (ODV)\
+OPM ODT Entry String\
+OPM High Level Language BOM Table\
+OPM High Level Language Symbol Table\
+OPM Object Mapping Table\
+Let's cite a very very simplge OPM MI program, spr91.emi, for example.\
+\
+dcl dd buf char(32) auto          ;\
+dcl dd p pkd(7,0) def(buf) pos(1) init(p'5')  ;\
+dcl dd q pkd(7,0) auto init(p'5')  ;\
+\
+        subn(s) q, 5            ;\
+brk 'B'                         ;\
+        div(s) p, q             ;\
+brk 'A'                         ;\
+        rtx *                   ;\
+pend                            ;\
+The components in SPR91's program template are the following.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 \ul \ulc0 OPM Creation Template\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \ulnone \
+The OPM creation template contains all program attributes of an OPM MI program. \
+These program attributers can be materialized via MI instruction MATPG. \
+The following is the OPM creation template of SPR91. \
+For example, you can find out that there're 4 instructions in SPR91's instruction stream component; \
+program SPR91 uses 48 bytes of automatic storage; etc.\
+\
+ OPM CREATION TEMPLATE                                                                                    ADDRESS: 1F9391706B 000020\
+     TEMPLATE SIZE    2622           MATERIAL SIZE    2642           OBJECT TYPE      02             OBJECT SUBTYPE   01\
+     OBJECT NAME      SPR91                                          CREATE OPTS      C0000000       RECOVERY OPTS    0000\
+     ASP              0              SPACE SIZE       480            SPACE INIT VAL                  PERFORM CLASS    01\
+     STORAGE UNIT     00             RESERVED         00             TR SIZE 4K UNIT  00             RESERVED         00\
+     PUBLIC AUTH      0000           EXT OFFSET       0              CONTEXT PTR      00000000000000001EF9F51B7A000400\
+     ACCESS GRP PTR   00000000000000000000000000000000               PGM ATTRS        10A0           OPT OPTIONS      80\
+     OBSERV ATTR      FC             STATIC STORE SZ  00000000       AUTO STORE SIZE  00000030       NUM INSTR V0     0004\
+     NUM ODV ENT V0   0003           MI INSTR OFFSET  00000100       ODV OFFSET       00000118       OES OFFSET       0000012C\
+     HLL BOM DTA LEN  00000001       HLL BOM LENGTH   00000006       HLL BOM OFFSET   00000A38       HLL SYM DTA LEN  00000000\
+     HLL SYM LENGTH   000008ED       HLL SYM OFFSET   00000148       OMT OFFSET       00000A40       NUM INSTR V1     00000004\
+     NUM ODV ENT V1   00000000\
+\
+ 1F9391706B 000020 +0000   00000A3E00000A52  0201E2D7D9F9F140   4040404040404040  4040404040404040 *..........SPR91                 *\
+ 1F9391706B 000040 +0020   4040404040404040  C000000000000000   000001E000010000  0000000000000000 *        ........................*\
+ 1F9391706B 000060 +0040   0000000000000000  1EF9F51B7A000400   0000000000000000  0000000000000000 *.........95.:...................*\
+ 1F9391706B 000080 +0060   10A080FC00000000  0000003000040003   0000010000000118  0000012C00000001 *................................*\
+ 1F9391706B 0000A0 +0080   0000000600000A38  00000000000008ED   0000014800000A40  0000000400000000 *....................... ........*\
+ 1F9391706B 0000C0 +00A0   0000000000000000  0000000000000000   0000000000000000  0000000000000000 *................................*\
+ 1F9391706B 0000E0 +00C0   0000000000000000  0000000000000000   0000000000000000  0000000000000000 *................................*\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 OPM Instruction Stream Component\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The instruction stream component consists of a 4-byte binary value that defines the total length of the instruction stream component and a variable-length array of 2-byte entries that defines the instruction stream. \
+The 2-byte entries define instruction operation codes, and optionally instruction operation code extenders, instruction operands, and branch targets.\
+\
+The following is the instruction stream component in SPR91's program template. \
+The beginning 4-byte binary value hex 16 indicates that the total size of the instruction stream component is 22 bytes. \
+Following the technique discussed in "Analyzing the MI Instruction Stream Component", you can find out that SPR91 contains 4 instruction: \
+\pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u9642 	}SUBN (Subtract Numeric), \
+{\listtext	\uc0\u9642 	}DIV (Divide), \
+{\listtext	\uc0\u9642 	}RTX (Return External), and directive instruction \
+{\listtext	\uc0\u9642 	}PEND (which indicates the end of the input instruction stream).\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+ OPM INSTRUCTION STREAM COMPONENT                                                                         ADDRESS: 1F9391706B 000120\
+ 1F9391706B 000120 +0000   0000001611470003  2005114F00020003   02A100000260                       *.....................-          *\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 OPM ODT Directory Vector (ODV)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The ODT (object definition table) of an OPM MI program consists of the ODT directory vector (ODV) component and the ODV entry string (OES) component. \
+The detailed formats of ODV and OES are specified in Program Object Specification. \
+Techniques to parse the ODV and OES are discussed in Analyzing the ODV (ODT Directory Vector) Component and the OES (ODT Entry String) Component.\
+\
+The ODT directory vector (ODV) component consists of a 4-byte binary value that defines the total length of the ODV and a variable-length vector of 4-byte entries. \
+Each entry describes a program object either by a complete description or through an offset into the OES (object entry string) to a location that contains a description. \
+If no program objects are defined, the ODV can be omitted, and its absence is noted with a value of 0 in the offset to ODV component entry. \
+( quest'ultimo \'e8 il caso della RTX ... )\
+\
+The ODV entry is required if an OES entry is present. (corretta)\
+\
+Here's the ODV component of SPR91, the length of which is 16 bytes.\
+\
+ OPM ODT DIRECTORY VECTOR                                                                                 ADDRESS: 1F9391706B 000138\
+ 1F9391706B 000120 +0000                                                          0000001001040020 *                        ........*\
+ 1F9391706B 000140 +0020   0B03000409030011                                                        *........                        *\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 \
+OPM ODT Entry String\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The ODV entry string (OES) consists of a 4-byte binary value that defines the total length of the OES and a series of variable-length entries that are used to complete an object description. \
+Entries in the ODV contain offsets into the OES. \
+The OES is optional, and its absence is indicated with a value of 0 in the offset to OES component entry (all'interno della ODV, ovviamente).\
+Here's the OES component of SPR91.\
+\
+ OPM ODT ENTRY STRING                                                                                     ADDRESS: 1F9391706B 00014C\
+ 1F9391706B 000140 +0000                             00000018   5C00070001000000  010000005F440007 *            ....*...............*\
+ 1F9391706B 000160 +0020   0000005F                                                                *....                            *\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 OPM High Level Language BOM Table\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The HLL breakpoint offset mapping (BOM) table component in an OPM MI component stores the mappings from breakpoints in an OPM MI program to corresponding MI instruction numbers. \
+A breakpoint in an MI program is produced by a break directive statement (BRK) in the MI source of the program. \
+The BOM table component \ul can be used by compilers to relate high-level language statement numbers to instruction numbers\ulnone . \
+See Analyzing the BOM Table Component for techniques to parse the BOM component.\
+Here's the BOM component of SPR91. \
+\
+ OPM HIGH LEVEL LANGUAGE BOM TABLE                                                                        ADDRESS: 1F9391706B 000A58\
+ 1F9391706B 000A40 +0000                                                          0002C20003C1     *                        ..B..A  *\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 OPM High Level Language Symbol Table\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The HLL symbol table component can be 
+\f1\b used by compilers to relate high-level language names to ODT numbers
+\f0\b0 . \
+See Analyzing the Symbol Table Component for techniques to parse the symbol table component.\
+Here's the symbol table component of SPR91.\
+\
+ OPM HIGH LEVEL LANGUAGE SYMBOL TABLE                                                                     ADDRESS: 1F9391706B 000168\
+ 1F9391706B 000160 +0000                     00000233FFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF *        ........................*\
+ 1F9391706B 000180 +0020   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF *................................*\
+                        20 LINES 1F9391706B 0001A0 +0040 TO 1F9391706B 000400 +02A0 SAME AS ABOVE\
+ 1F9391706B 000420 +02C0   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   000008DBFFFFFFFF  FFFFFFFFFFFFFFFF *................................*\
+ 1F9391706B 000440 +02E0   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF *................................*\
+                        13 LINES 1F9391706B 000460 +0300 TO 1F9391706B 0005E0 +0480 SAME AS ABOVE\
+ 1F9391706B 000600 +04A0   FFFFFFFFFFFFFFFF  000008D0FFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF *................................*\
+ 1F9391706B 000620 +04C0   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF *................................*\
+                        30 LINES 1F9391706B 000640 +04E0 TO 1F9391706B 0009E0 +0880 SAME AS ABOVE\
+ 1F9391706B 000A00 +08A0   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFF000008E4 *...............................U*\
+ 1F9391706B 000A20 +08C0   FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  FFFFFFFF0001C003 *................................*\
+ 1F9391706B 000A40 +08E0   C2E4C6FFFFFFFF00  02C001D7FFFFFFFF   0003C001D8                         *BUF........P........Q           *\
+\
+        0000 02 33\
+        0000 08 DB\
+        0000 08 D0\
+        0000 08 E4\
+\
+        0001 C0 03 \
+        0002 C0 01\
+        0003 C0 01 \
+\
+FFFFFFFF0000 08 E4 FFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFF   FFFFFFFFFFFFFFFF  \
+\
+FFFFFFFF0001 C0 03 C2E4C6\
+FFFFFFFF0002 C0 01 D7\
+FFFFFFFF0003 C0 01 D8  \
+\
+40  0100 \
+C0  1100 0000 \
+\
+ bit 0. Instruction or ODT number\
+  0 = MI instruction number. This also \ul means the symbol is the name of a LABEL\ulnone  in the program template.\
+  1 = ODT number.            The symbol is \ul the name of an ODT object\ulnone .\
+\
+ bit 1. Symbol origin\
+  0 = Compiler generated     \
+  1 = Source program         Nel nostro caso il sorgente \'e8 MI\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs32 \cf0 OPM Object Mapping Table\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+The object mapping table (OMT) component consists of a variable-length vector of 
+\f1\b 6-byte entries
+\f0\b0 . \
+The number of entries is identical to the number of ODV entries because there is one OMT entry for each ODV entry. \
+The OMT entries correspond one for one with the ODV entries; \
+each OMT entry gives a location mapping for the object defined by its associated ODV entry. \
+\
+See Analyzing the OMT Component for techniques to parse the OMT component.\
+Here's the OMT component of SPR91.\
+\
+ OPM OBJECT MAPPING TABLE                                                                                 ADDRESS: 1F9391706B 000A60\
+ 1F9391706B 000A60 +0000   0100000000000100  0000000001000020   0000                               *..................              *\
+\
+\
+\
+Hi, I'm 
+\f1\b \ul Junlei Li
+\f0\b0 \ulnone  (
+\f3 \'c0\'ee\'be\'fd\'c0\'da
+\f0 ) from Tianjin, China. \
+I'm a "young" AS/400 programmer who started programming under this platform since late 2005. \
+This OS has been my best tutor through these years. \
+Many thanks to people who had brought this excellent OS to the world with so many designs ahead of the times even today.\
+In my open source project i5/OS Programmer's Toolkit, more than a half of the source code is written in MI. \
+I have to appreciate Mr. 
+\f1\b \ul Leif Svalgaard
+\f0\b0 \ulnone  for his excellent articles about MI programming in the MI-400 list at midrange.com.\
+\
+\
+MC|PRESS online\
+\
+https://www.mcpressonline.com/programming/rpg/analyzing-the-mi-instruction-stream-of-an-opm-program\
+\
+\
+Op-code retrieved is hex 30B2. \
+\
+001
+\f1\b \cf5 1
+\f0\b0 \cf0 000010110010\
+Since bit 3 of it is 1, the real op-code is composed by 
+\f1\b bit 3 and all bits of byte 1
+\f0\b0  (bits 7-15). \
+So the real op-code is hex 10B2. \
+According to Appendix A, the corresponding MI instruction name is CPYBLA (Copy Bytes Left-Adjusted). The number of required operands of it is 2.\
+Since bits 4-7 of the op-code entry are binary 0000, 
+\f1\b \ul \ulc10 this instruction does not use optional instruction forms
+\f0\b0 \ulnone  and hence does not have op-code extender entries.\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs34 \cf0 https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_74/rzatk/
+\f1\b MATPG
+\f0\b0 .htm\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+Instruction Syntax\
+Op Code (Hex)	Operand 1				Operand 2\
+0232			Attribute receiver		Program\
+Operand 1: Space pointer.\
+Operand 2: System pointer.\
+\
+Bound Program Access\
+Built-in number for MATPG is 31.\
+MATPG (\
+       attribute_receiver   : address\
+       program              : address of system pointer\
+)\
+\
+Warning\
+The following information is subject to change from release to release. \
+Use it with caution and be prepared to adjust for changes with each new release.\
+Description:\
+The 
+\f1\b non-bound program
+\f0\b0  identified by operand 2 is materialized into the template identified by operand 1.\
+\
+Operand 2 is a system pointer that identifies the program to be materialized. \
+The program identified by operand 2 
+\f1\b must be a non-bound program
+\f0\b0 . \
+Otherwise, a program not eligible for operation (hex 220A) exception will be signaled. \
+The values in the materialization relate to the current attributes of the materialized program.\
+This instruction 
+\f1\b does not process teraspace addresses
+\f0\b0  used for its operands, nor used in any space pointer contained in a template. \
+Any teraspace address use will cause an unsupported space use (hex 0607) exception to be signaled, whether the issuing program is teraspace capable or not.\
+The template identified by operand 1 must be 16-byte aligned.\
+\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	Template size specification	Char(8)\
+0	0	\
+Number of bytes provided\
+Bin(4)\
+4\
+4\
+Number of bytes available for materialization\
+(used only when the program is materialized)\
+Bin(4) +\
+8	8	Program identification	Char(32)\
+8	8	\
+Type\
+Char(1) +\
+9	9	\
+Subtype\
+Char(1)\
+10	A	\
+Name\
+Char(30)\
+40	28	Program creation options	Char(4)\
+40\
+28\
+Existence attributes\
+  \
+    \
+0 =\
+Temporary\
+1 =\
+Permanent\
+  \
+Bit 0\
+40\
+28\
+Space attribute\
+  \
+    \
+0 =\
+Fixed-length\
+1 =\
+Variable-length\
+  \
+Bit 1\
+40\
+28\
+Initial context\
+  \
+    \
+0 =\
+Do not insert addressability into context\
+1 =\
+Insert addressability into context\
+  \
+Bit 2\
+40\
+28\
+Access group creation\
+  \
+    \
+0 =\
+Do not create as a member of an access group\
+1 =\
+Create as a member of an access group\
+  \
+Bit 3\
+40\
+28\
+Reserved (binary 0)\
+  \
+  \
+  \
+  \
+Bits 4-12\
+40\
+28\
+Initialize space\
+  \
+    \
+0 =\
+Initialize\
+1 =\
+Do not initialize\
+  \
+Bit 13\
+40\
+28\
+Automatically extend space\
+  \
+    \
+0 =\
+No\
+1 =\
+Yes\
+  \
+Bit 14\
+40\
+28\
+Associated space hardware storage protection level\
+  \
+  \
+    \
+00 =\
+Reference and modify allowed for user state programs\
+01 =\
+Only reference allowed for user state programs\
+11 =\
+No reference or modify allowed for user state programs\
+  \
+Bits 15-16\
+40\
+28\
+Reserved (binary 0)\
+  \
+  \
+  \
+  \
+Bits 17-31\
+44	2C	Reserved (binary 0)	Char(4)\
+48	30	Size of space	Bin(4)\
+52	34	Initial value of space	Char(1)\
+53	35	Performance class	Char(4)\
+53\
+35\
+Obsolete\
+  \
+This field is no longer used and will be ignored.\
+  \
+Bit 0 +\
+53\
+35\
+Reserved (binary 0)\
+  \
+  \
+  \
+  \
+Bits 1-4\
+53\
+35\
+Main storage pool selection\
+  \
+    \
+0 =\
+Process default main storage pool is used for object.\
+1 =\
+Machine default main storage pool is used for object.\
+  \
+Bit 5\
+53\
+35\
+Transient storage pool selection\
+  \
+    \
+0 =\
+Default main storage pool (process default or machine default as specified for main storage pool selection) is used for object.\
+1 =\
+Transient storage pool is used for object.\
+  \
+Bit 6\
+53\
+35\
+Block transfer on implicit access state modification\
+    \
+0 =\
+Transfer the minimum storage transfer size for this object.\
+1 =\
+Transfer the machine default storage transfer size for this object.\
+  \
+Bit 7\
+53	35	\
+Reserved (binary 0)\
+Bits 8-31\
+57\
+39\
+Reserved (binary 0)\
+Char(7)\
+64	40	Context	System pointer\
+80	50	Access group	System pointer\
+96	60	Program attributes	Char(2)\
+96\
+60\
+Adopted user profile\
+  \
+    \
+0 =\
+No adoption of user profile.\
+1 =\
+Adopt program owner's user profile on invocation.\
+  \
+Bit 0\
+96\
+60\
+Array constraint\
+  \
+    \
+0 =\
+Arrays are constrained.\
+1 =\
+Arrays are unconstrained. The predictability of the results of references outside the bounds of arrays are determined by the type of unconstrained arrays field.\
+  \
+Bit 1\
+96\
+60\
+String constraint\
+  \
+    \
+0 =\
+Strings are constrained.\
+1 =\
+Strings are not constrained.\
+  \
+Bit 2\
+96	60	\
+Obsolete\
+Bit 3 +\
+96\
+60\
+Adopted user profile propagation\
+  \
+    \
+0 =\
+Adopted user profile authorities are not propagated to external invocations.\
+1 =\
+Adopted user profile authorities are propagated to all subinvocations.\
+  \
+Bit 4\
+96\
+60\
+Static storage\
+  \
+    \
+0 =\
+Initialize storage to binary 0.\
+1 =\
+Do not initialize storage to binary 0.\
+  \
+Bit 5\
+96\
+60\
+Automatic storage\
+  \
+    \
+0 =\
+Initialize storage to binary 0.\
+1 =\
+Do not initialize storage to binary 0.\
+  \
+Bit 6\
+96\
+60\
+Associated journal entry\
+  \
+    \
+0 =\
+Program name is recorded in journal entries\
+1 =\
+Program name is not recorded in journal entries\
+  \
+Bit 7\
+96\
+60\
+Update PASA stack\
+  \
+This field is now obsolete. It will be ignored.\
+  \
+Bit 8 +\
+96\
+60\
+Suppress decimal data exception\
+  \
+    \
+0 =\
+Exception is not to be suppressed\
+1 =\
+Exception is to be suppressed\
+  \
+Bit 9\
+96\
+60\
+Template extension existence\
+  \
+    \
+0 =\
+Template extension does not exist\
+1 =\
+Template extension exists\
+  \
+Bit 10\
+96\
+60\
+Suppress previously adopted user profiles\
+  \
+    \
+0 =\
+Do not suppress previously adopted user profiles\
+1 =\
+Suppress previously adopted user profiles\
+  \
+Bit 11\
+96\
+60\
+Template version\
+  \
+    \
+0000 =\
+Version 0\
+0001 =\
+Version 1\
+  \
+0010 through 1111 reserved\
+  \
+Bits 12-15\
+98	62	Code generation options	Char(1)\
+98\
+62\
+Performance optimization\
+  \
+    \
+0 =\
+No optimization\
+1 =\
+Perform optimization\
+  \
+Bit 0\
+98\
+62\
+Space pointer machine objects\
+  \
+    \
+0 =\
+Disallow space pointer machine objects in ODV component\
+1 =\
+Allow space pointer machine objects in ODV component\
+  \
+Bit 1\
+98\
+62\
+Coincident operand overlap\
+  \
+    \
+0 =\
+Do not assume coincident operand overlap\
+1 =\
+Assume coincident operand overlap\
+  \
+Bit 2\
+98	62	\
+Reserved (binary 0)\
+Bits 3-4\
+98\
+62\
+Teraspace capable\
+  \
+    \
+0 =\
+Do not generate teraspace capable program\
+1 =\
+Generate teraspace capable program\
+  \
+Bit 5\
+98\
+62\
+Executable part compression\
+  \
+    \
+0 =\
+Do not compress executable part\
+1 =\
+Compress executable part\
+  \
+Bit 6\
+98\
+62\
+Observation part compression\
+  \
+    \
+0 =\
+Do not compress observation part\
+1 =\
+Compress observation part\
+  \
+Bit 7\
+99\
+63\
+Observation attributes\
+For bits 0 through 5:\
+1 =\
+The corresponding template component is materializable\
+0 =\
+The corresponding template component is not materializable\
+Char(1)\
+99	63	\
+Instruction stream\
+Bit 0\
+99	63	\
+ODT Directory Vector (ODV)\
+Bit 1\
+99	63	\
+ODT Entry String (OES)\
+Bit 2\
+99	63	\
+Breakpoint Offset Mapping (BOM) table\
+Bit 3\
+99	63	\
+Symbol table\
+Bit 4\
+99\
+63\
+Object Mapping Table (OMT)\
+For bits 6 and 7:\
+1 =\
+The corresponding performance measurement is prevented\
+0 =\
+The corresponding performance measurement is allowed\
+Bit 5\
+99	63	\
+Prevent performance measurements on entry/exit\
+Bit 6\
+99	63	\
+Prevent performance measurements on CALLX\
+Bit 7\
+100	64	Size of static storage	UBin(4)\
+104	68	Size of automatic storage	UBin(4)\
+108\
+6C\
+Number of instructions (1)\
+For version number = hex 0000, this field indicates the number of instructions. For version number = hex 0001, this field is reserved (binary 0).\
+UBin(2)\
+110\
+6E\
+Number of ODV entries (1)\
+For version number = hex 0000, this field indicates the number of ODV entries. For version number = hex 0001, this field is reserved (binary 0).\
+Bin(2)\
+112	70	Offset (in bytes) from beginning of template to the instruction stream component	Bin(4)\
+116	74	Offset (in bytes) from beginning of template to the ODV component	Bin(4)\
+120	78	Offset (in bytes) from beginning of template to the OES component	Bin(4)\
+124	7C	Length of breakpoint offset mapping table entry	Bin(4)\
+128	80	Length of breakpoint offset mapping table component	Bin(4)\
+132	84	Offset (in bytes) from beginning of template to the BOM table	Bin(4)\
+136	88	Length of symbol table entry	Bin(4)\
+140	8C	Length of symbol table component	Bin(4)\
+144	90	Offset (in bytes) from beginning of template to the Symbol table	Bin(4)\
+148	94	Offset (in bytes) from beginning of template to the object mapping table (OMT) component	Bin(4) +\
+152\
+98\
+Number of instructions (2)\
+For version number = hex 0001, this field indicates the number of instructions. For version number = hex 0000, this field is reserved (binary 0).\
+Bin(4)\
+156\
+9C\
+Number of ODV entries (2)\
+For version number = hex 0001, this field indicates the number of ODV entries. For version number = hex 0000, this field is reserved (binary 0).\
+Bin(4)\
+160\
+A0\
+Template extension\
+This extension exists only when the template extension existence bit is 1.\
+Char(64)\
+160	A0	\
+Extended program attributes\
+Char(4)\
+160\
+A0\
+Type of unconstrained arrays\
+0 =\
+Not fully unconstrained. If arrays are unconstrained, unpredictable results may occur when accessing array elements outside the declared bounds of the array.\
+1 =\
+Fully unconstrained. Predictable results will occur when accessing array elements outside the declared bounds of the array. See the paragraph below describing array constrainment for details.\
+Bit 0\
+160\
+A0\
+Suppress binary size exception\
+    \
+      \
+0 =\
+Exception is not to be suppressed\
+1 =\
+Exception is to be suppressed\
+    \
+Bit 1\
+160\
+A0\
+Create program for previous mandatory release\
+    \
+      \
+0 =\
+Create the program to run on the current release\
+1 =\
+Create the program to run on the previous mandatory release\
+    \
+Bit 2\
+160\
+A0\
+Collect object usage data for program\
+    \
+      \
+0 =\
+Collect the object usage data\
+1 =\
+Do not collect the object usage data\
+    \
+Bit 3\
+160\
+A0\
+Scope of resources\
+    \
+      \
+0 =\
+Resources are scoped to an invocation of this program.\
+1 =\
+Resources are scoped to a program previous to this one in the invocation stack.\
+    \
+Bit 4\
+160	A0	\
+Reserved (binary 0)\
+Bits 5-31\
+164	A4	\
+Language version, release, and modification level\
+Char(2)\
+164	A4	\
+Reserved\
+Bits 0-3\
+164	A4	\
+Version\
+Bits 4-7\
+164	A4	\
+Release\
+Bits 8-11\
+164	A4	\
+Mod level\
+Bits 12-15\
+166	A6	\
+Breakpoint offset mapping table data\
+Char(1)\
+166	A6	\
+BOM table flags\
+Char(1)\
+166	A6	\
+Use new BOM table format\
+Bit 0\
+166	A6	\
+User data5A\
+Bits 1-7\
+167	A7	\
+User data5B\
+Char(7)\
+174	AE	\
+Version, release, and modification level this program is being created for\
+Char(2)\
+174	AE	\
+Reserved\
+Bits 0-3\
+174	AE	\
+Version\
+Bits 4-7\
+174	AE	\
+Release\
+Bits 8-11\
+174	AE	\
+Mod level\
+Bits 12-15\
+176	B0	\
+Data required for machine retranslation\
+Char(1)\
+176\
+B0\
+All data required for machine retranslation is present\
+0 =\
+No\
+1 =\
+Yes\
+Bit 0 +\
+176	B0	\
+Reserved (binary 0)\
+Bits 1-7\
+177	B1	\
+Reserved (binary 0)\
+Char(47)\
+224	E0	Program data	Char(*)\
+224	E0	\
+Instruction stream component\
+Char(*)\
+*	*	\
+ODV component\
+Char(*)\
+*	*	\
+OES component\
+Char(*)\
+*	*	BOM table	Char(*)\
+*	*	Symbol table	Char(*)\
+*	*	Object mapping table	Char(*) +\
+*\
+*\
+--- End ---\
+ \
+The first 4 bytes of the materialization template identify the total number of bytes provided in the template. This value is supplied as input to the instruction and is not modified. A value of less than 8 causes the materialization length invalid (hex 3803) exception to be signaled.\
+The second 4 bytes of the materialization template are modified by the instruction to contain a value identifying the template size required to provide for the total number of bytes available to be materialized. The instruction materializes as many bytes as can be contained in the area specified by the receiver. If the byte area identified by the receiver is greater than that required to contain the information requested, then the excess bytes are unchanged. No exceptions (other than the materialization length invalid (hex 3803) exception) are signaled in the event that the receiver contains insufficient area for the materialization.\
+The existence attribute indicates whether the program is temporary or permanent.\
+If the program has an associated space, then the space attribute is set to indicate either fixed- or variable-length; the initial value for the space is returned in the initial value of space field, and the size of space field is set to the current size value of the space. If the program has no associated space, the size of space field is set to a zero value, and the space attribute and initial value of space field values are meaningless.\
+If the program is addressed by a context, then the context addressability attribute is set to indicate this, and a system pointer to the addressing context is returned in the context field. If the program is not addressed by a context, then the context addressability attribute is set to indicate this, and binary 0's are returned in the context field.\
+If the program is a member of an access group, then the access group attribute is set to indicate this, and a system pointer to the access group is returned in the access group field. If the program is not a member of an access group, then the access group attribute is set to indicate this, and binary 0's are returned in the access group field.\
+The automatically extend space field controls whether the space is to be extended automatically by the machine or a space addressing violation (hex 0601) exception is to be signaled when a reference is made to an area beyond the allocated portion of the space. A value of binary 1 indicates the space will automatically be extended by an amount determined through internal machine algorithms. A value of binary 0 indicates the exception will result. Note that an attempt to reference an area beyond the maximum size that a space can be allocated, will always result in the signaling of the space addressing violation (hex 0601) exception independently of the setting of this attribute. A value of binary 1 is only valid when the space attribute has been specified as variable length.\
+Usage of the automatically extend space function is limited. Predictable results will occur only when you ensure that the automatic extension of a space will not happen in conjunction with modification of the space size by another thread. That is, you must ensure that when a thread is using the space in a manner that could cause it to be automatically extended, it is the sole thread which can cause the space size to be modified. Note that in addition to implicit modification through automatic extension, the space size can be explicitly modified through use of the Modify Space Attributes (MODS) instruction.\
+The associated space hardware storage protection level can be used to restrict access to the contents of the space by user state programs. It is possible to limit the access of the space by user state programs into 1 of three levels:\
+Reference only (non-modifying storage references are allowed, modifying storing storage references yield an object domain or hardware storage protection violation (hex 4401) exception).\
+No storage references (all storage references, modifying or non-modifying yield an object domain or hardware storage protection violation (hex 4401) exception).\
+Full access (both modifying and non-modifying storage references are allowed).\
+The actual presentation of the object domain or hardware storage protection violation (hex 4401) exception is also dependent on the level of the physical hardware (namely, the CPU).\
+The performance class field provides information that allows the machine to more effectively manage the program by considering overall performance objectives of operations involving the program.\
+The primary associated space, if one is created, is always aligned on at least a 512 byte boundary if the target version, release, and modification level is V4R4 or greater. If the target version, release, and modification level is not V4R4 or greater, the primary associated space, if one is created, is always aligned on at least a 16-byte boundary.\
+If the adopted user profile attribute is yes, any reference to a system object from an invocation of this program uses the user profile of the owner of this program and other sources of authority to determine the authorization to system objects, privileged instructions, ownership rights, and all authorizations. If the adopted user profile propagation attribute is yes, then the authorities available from the adopted user profile are available to any further invocations while this program is invoked. If the adopted user profile propagation attribute is no, then the authorities available to the program's owning user profile are not available to further subinvocations and are available only to this invocation. These attributes do not affect the propagation of authority from higher existing invocations.\
+The array constraint field determines how array bounds should be checked at execution time. If arrays are constrained, execution time checks are made to verify that the array index is within the bounds of the array. If arrays are unconstrained and the type of unconstrained array is not fully unconstrained, the array references are assumed to be within the bounds of the array. If an array element reference is made outside the bounds of the array, unpredictable results may occur. If the type of unconstrained array is fully unconstrained, array references outside the bounds of the array will be made as if the elements existed. Array references of this type will signal the space addressing violation (hex 0601) exception if the element that is referenced is outside the allocated storage of the space containing the array. It is possible to change the type of constrainment used when referencing array elements by using the Override Program Attributes (OVRPGATR) instruction.\
+The string constrainment field determines how string limits should be checked at execution time. If string constrainment is strings are not constrained, the references are assumed to be within the defined bounds of the string. No execution time checks are performed to ensure this is the case. However, if the reference is outside the defined bounds, unpredictable results may occur. There may be significant savings in performance if strings are not constrained is specified. It is possible to change the type of constrainment used when substringing by using the Override Program Attributes (OVRPGATR) instruction.\
+Whenever a new invocation or activation is allocated, the automatic or static storage areas are initialized to bytes of binary 0's, respectively. The static storage and automatic storage program attributes control this default initialization. There is a significant performance advantage when these areas are not initialized by default. However, initial values specified for individual data objects are still set. The automatic storage and static storage will be allocated in single level store.\
+The associated journal entry field controls which program is associated with a journal entry. As a journal entry is made, a newest-to-oldest interrogation of the invocation stack is performed. The first program encountered that has the associated journal entry field set to program name is recorded in journal entries is associated with the journal entry by a record of the program name in the journal entry. If a program is encountered for which the associated journal entry field is set to program name is not recorded in journal entry, the program is ignored unless the program is on the top of the invocation stack. If the program is on the top of the invocation stack, it is associated with the journal entry by a record of the program name in the journal entry.\
+The suppress decimal data exception field controls whether or not errors detected in decimal data are to result in the signaling of the decimal data exception. When the decimal data exception is not to be suppressed, decimal values input to numeric operations are verified to contain valid decimal digit and sign codes with the decimal data (hex 0C02) exception being signaled as the result of detection of an invalid code. When the decimal data exception is to be suppressed, decimal values input to numeric operations are still verified to contain valid decimal digit and sign codes. However, detection of an invalid code results in the instruction interpreting an invalid digit as a zero and an invalid sign as positive rather than in signaling of the exception.\
+The control over suppressing of the decimal data exception applies to only a subset of the numeric operations which may be performed by the machine.\
+In general, when suppression of the decimal data exception is specified, the Computation and Branching instructions which support numeric source operands will suppress decimal data errors for ZONED source values. Additionally, a few instructions also suppress decimal data errors for packed source values. In all cases, the suppression is only supported when all operands are non-Data Pointer defined (early bound) source values.\
+Specifically, the following defines the exact list of instructions which support suppression of decimal data errors for certain operand types:\
+Packed Source Operands supported	Zoned Source Operands supported	    Instruction Mnemonic	      Note\
+yes	ADDN\
+yes	CMPNV\
+yes	yes	CVTCN	Only supported when operand 3, the numeric view to be used for operand 2, is specified as a constant and no DP defined operands are specified.\
+yes	CVTDFFP\
+yes	yes	CVTNC	Only supported when operand 3, the numeric view to be used for operand 1, is specified as a constant and no DP defined operands are specified.\
+yes	yes	CPYNV	Only supported when no DP defined operands are specified.\
+yes	DIV\
+yes	DIVREM\
+yes	EDIT	Only supported when no DP defined operands are specified.\
+yes	EXTRMAG\
+yes	MULT\
+yes	NEG\
+yes	REM\
+yes	SCALE\
+yes	SUBN\
+When suppression of the decimal data exception is specified, the decimal data (hex 0C02) exception may still be signaled by the machine. That is, other instructions and instruction combinations not listed above are exposed to signaling the decimal data (hex 0C02) exception when invalid decimal data is encountered and they can't be counted on to fix up invalid decimal data.\
+Of particular note here is that specification of a Data Pointer as an input operand on any of the instructions in the above list negates the suppression support for the whole instruction. Thus even non-Data Pointer defined operands are then exposed to detection of the decimal data (hex 0C02) exception.\
+The template extension existence field indicates whether or not there is an extension to the program template.\
+The suppress previously adopted user profiles field is used to stop the backward search for adopted or propagated authorities. In other words, all programs previous to this program's invocation with adopted or propagated authorities are not considered as sources of authority.\
+The code generation options provide information that allows the machine to create a program based on the intended use of the program.\
+If the performance optimization field is binary 1, additional processing is performed which provides for creating a program that requires less processor resource for execution. This optimizes addressability used within the program. If this attribute is set to binary 0, normal optimization processing is performed.\
+The space pointer machine objects field controls whether space pointer machine objects are allowed in the ODV. If the allow space pointer machine objects in ODV component attribute is set to binary 1, additional processing is performed which allows for space pointer machine objects within the program. If this attribute is set to binary 0, space pointer machine objects are not allowed in the ODV component.\
+The coincident operand overlap field controls whether or not additional processing is performed during the encapsulation of certain computation and branching instructions which affects the processor resource required to execute these instructions. The effect of the option controls whether or not the encapsulation process for these instructions should assume that coincident operand overlap may occur between the source and receiver operands during execution of the instruction. This assumption applies to cases of nonidentical coincident operand overlap where the Create Program (CRTPG) instruction cannot determine if coincident operand overlap may occur during execution of the instruction. These instructions may produce invalid results if nonidentical coincident overlap occurs during execution, but the instruction was encapsulated with the assumption that it would not occur.\
+Specifying the do not assume coincident operand overlap attribute indicates that nonidentical coincident overlap will not occur during execution and therefore the receiver on an instruction may be used as a work area during operations performed to produce the final result. Using the receiver as a work area does not require the processor resource that would be required to move the final result from an internal work area to the receiver.\
+Specifying the assume coincident operand overlap attribute indicates that nonidentical coincident operand overlap may occur during execution and therefore the receiver on an instruction should not be used as a work area during operations that produce the final result. This can require more processor resource for instruction execution but it insures valid results if overlap occurs.\
+The following is a list of instructions that can be affected by the coincident operand overlap option during the encapsulation process:\
+Add Logical Character\
+Add Numeric\
+And\
+Compute Math Function Using One Input Value\
+Concatenate\
+Convert Character To Numeric\
+Convert Decimal Form To Floating-Point\
+Convert External Form To Numeric Value\
+Convert Floating-Point To Decimal Form\
+Convert Numeric To Character\
+Copy Bytes Left Adjusted With Pad\
+Copy Bytes Right Adjusted With Pad\
+Divide\
+Divide With Remainder\
+Exclusive OR\
+Multiply\
+Or\
+Remainder\
+Scale\
+Subtract Logical Character\
+Subtract Numeric\
+Trim Length\
+The teraspace capable option indicates whether or not the program produced should be enabled to use teraspace addresses.\
+The executable part compression field and observation part compression field indicate whether the executable, observation, or both parts of the program are to be compressed. For materialization, these fields indicate whether parts of the program object are currently compressed.\
+The observation attributes field specifies options that control the observability and debugability of the program.\
+The first six bits control the availability of information through the Materialize Program (MATPG) instruction. If a bit is a binary 1 then the corresponding data from the program template is available for materialization. If the program is created without the ability to materialize observability data then less storage may be needed to contain the program object.\
+The remaining two bits control whether certain performance measurements will be possible when the program is executing. Prevent performance measurements on entry/exit controls whether performance measurements can be made which encompass the duration of the execution of this program. Prevent performance measurements on CALLX controls whether performance measurements can be made which encompass the duration of a CALLX from this program to another program. If either bit is a binary 1 then the corresponding measurement is prevented. If the ability to make performance measurements is prevented then the program may execute more quickly.\
+The size of static storage field defines the total amount of static storage required for this program's static data. A value of 0 indicates that the amount of static storage required is calculated based upon the amount of static data specified for the program. A value greater than 0 specifies the amount of static storage required.\
+The size of automatic storage field defines the total amount of automatic storage required for this program's automatic data. A value of 0 indicates that the amount of automatic storage required is calculated based upon the amount of automatic data specified for the program. A value greater than 0 specifies the amount of automatic storage required.\
+The number of instructions fields (1 and 2) and number of ODV entries fields (1 and 2) is specified in different locations in the template depending on the version of the program template. Template version 0 limits the number of instructions to a maximum of 65,532 and the number of ODV entries to a maximum of 8,191. Programs that exceed one of these maximums cannot be created with template version 0. Template version 1 limits the number of instructions to a maximum of 65,532 and the number of ODV entries to a maximum of 65,526. Programs that exceed one of these maximums cannot be created with template version 1. All other values for the template version are reserved.\
+The extended program attributes allow for additional attributes of the program to be specified.\
+To suppress binary size exceptions indicates the size (hex 0C0A) exception will be suppressed when an overflow or underflow occurs on a computation and control instruction with a receiver that is a binary variable scalar. The receiver will contain the left-truncated result.\
+Create program for previous mandatory release indicates whether or not the program is created to run on the previous mandatory release 1\
+The collect object usage data for programs field is used to tell CALLX and XCTL instructions whether or not to collect object usage data for the program being called or transferred to.\
+The scope of resources field identifies the scope of program resources. The machine will set this field for the affected invocations, but the definition of those resources and the use of this field is determined by the MI user. If the scope of resources field is binary 0, then the resources will be scoped to the invocation of this program. If this scope of resources field is binary 1, then the resources will be scoped to the previous invocation of this program. If the scope of resources is also binary 1 for that invocation, the resources will be scoped to the next previous invocation, and so on.\
+The language version, release, and modification level is used to limit which version, release, and modification level that this program is allowed to be moved back to. This attribute allows the compilers to specify the earliest release in which the necessary runtime environment exists for the program to execute. The program will not be allowed to be restored to a system running at an earlier release than the one identified. A zero value for this attribute means that no restriction is specified.\
+The use new BOM table format flag is used to indicate which format of the BOM table is used. Binary 0 indicates old format, binary 1 indicates new format. These formats are documented below in the BOM table component.\
+The instruction stream component consists of a 4-byte binary value that defines the total length of the instruction stream component and a variable-length array of 2-byte entries that defines the instruction stream. The 2-byte entries define instruction operation codes, instruction operation code extenders, or instruction operands.\
+The object definition vector (ODV) component consists of a 4-byte binary value that defines the total length of the ODV and a variable-length vector of 4-byte entries. Each entry describes a program object either by a complete description or through an offset into the OES (object entry string) to a location that contains a description. If no program objects are defined, the ODV can be omitted, and its absence is noted with a value of 0 in the offset to ODV component entry. The ODV is required if the OES is present.\
+The ODV entry string (OES) consists of a 4-byte binary value that defines the total length of the OES and a series of variable-length entries that are used to complete an object description. Entries in the ODV contain offsets into the OES. The OES is optional, and its absence is indicated with a value of 0 in the offset to OES component entry.\
+The format of the ODT (object definition table) (ODV and OES) is defined in Program Object Specification.\
+The BOM table component can be used by compilers to relate high-level language statement numbers to instruction numbers.\
+The BOM table has the 2 formats depending on the BOM table flags. If the flag indicates to use new BOM table format, then the first bit of the MI instruction number is not a flag, so numbers up to 64k-1 can be used.\
+The BOM table has the following OLD format:\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	MI instruction number	UBin(2)\
+0\
+0\
+Format\
+0 =\
+High level statement number is in character format\
+1 =\
+High level statement number is in numeric format\
+Bit 0\
+0	0	\
+MI instruction number\
+Bits 1-15\
+2\
+2\
+High level statement number (character format)\
+If this is in character format, then the length of it is contained in the header in the length of breakpoint offset mapping table entry.\
+Char(*)\
+2	2	\
+High level statement number (numeric format)\
+Bin(2)\
+*\
+*\
+--- End ---\
+ \
+The BOM table has the following NEW format:\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	MI instruction number	UBin(2)\
+2	2	Flag Byte	Char(1)\
+2\
+2\
+Format\
+0 =\
+High level statement number is in character format\
+1 =\
+High level statement number is in numeric format\
+Bit 0\
+2	2	\
+Reserved\
+Bits 1-7\
+3\
+3\
+High level statement number (character format)\
+If this is in character format, then the length of it is contained in the header in the length of breakpoint offset mapping table entry.\
+Char(*)\
+3	3	\
+High level statement number (numeric format)\
+Bin(2)\
+*\
+*\
+--- End ---\
+ \
+The symbol table component can be used by compilers to relate high-level language names to ODT numbers.\
+The symbol table has the following format:\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	Hashing table structure	Char(*)\
+0	0	\
+Number of hash buckets\
+Bin(4)\
+4\
+4\
+Hash bucket\
+Each hash bucket contains an offset to the first symbol table base segment entry of the chain. This offset is from the beginning of the symbol table. The end of the chain has a -1 value.\
+Maximum of 1000 hash buckets.\
+[*] Bin(4)\
+*	*	Symbol table base segment	Char(*)\
+*\
+*\
+Offset to next entry from beginning of the table\
+The end of the chain has a -1 value.\
+UBin(4)\
+*	*	\
+ODT or MI number\
+Bin(2)\
+*	*	\
+Indicators\
+Char(1)\
+*\
+*\
+Instruction or ODT number\
+0 =\
+MI instruction number\
+1 =\
+ODT number\
+Bit 0\
+*\
+*\
+Symbol origin\
+0 =\
+Compiler generated\
+1 =\
+Source program\
+Bit 1\
+*\
+*\
+Array specification\
+0 =\
+Row major\
+1 =\
+Column major\
+Bit 2\
+*\
+*\
+Format segment present\
+0 =\
+No\
+1 =\
+Yes\
+Bit 3\
+*\
+*\
+Array segment present\
+0 =\
+No\
+1 =\
+Yes\
+Bit 4\
+*\
+*\
+Extension segment present\
+0 =\
+No\
+1 =\
+Yes\
+Bit 5\
+*	*	\
+Reserved (binary 0)\
+Bits 6-7\
+*	*	\
+Length of symbol\
+Char(1)\
+*	*	\
+Symbol\
+Char(*)\
+*\
+*\
+--- End ---\
+ \
+Other segments are only present if the bit in the symbol table base segment is on.\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	Symbol table format segment	Char(20)\
+0	0	\
+Format program name\
+Char(10)\
+10	A	\
+Format code\
+Char(4)\
+14	E	\
+Locator variable ODT#\
+Bin(2)\
+16	10	\
+Descriptor variable ODT#\
+Bin(2)\
+18	12	\
+Reserved (binary 0)\
+Char(2)\
+20\
+14\
+--- End ---\
+ \
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	Symbol table array segment	Char(*)\
+0	0	\
+Number of array dimensions\
+Bin(2)\
+2	2	\
+Indexes - 1 per array dimension\
+[*] Char(8)\
+2	2	\
+Lower index\
+Bin(4)\
+6	6	\
+Upper index\
+Bin(4)\
+*\
+*\
+--- End ---\
+ \
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	Symbol table extended segment	Char(26)\
+0	0	\
+Extended segment length\
+Bin(2)\
+2	2	\
+Structure level\
+Char(2)\
+4\
+4\
+Data representation\
+Hex 00 =\
+See ODT\
+Hex 01 =\
+Binary\
+Hex 02 =\
+Zoned\
+Hex 03 =\
+Bit string\
+Char(1)\
+5	5	\
+Number of total digits\
+Bin(2)\
+7	7	\
+Number of fractional digits\
+Bin(2)\
+9\
+9\
+Sign of number\
+Hex 00 =\
+Leading embedded\
+Hex 01 =\
+Leading separated\
+Hex 02 =\
+Trailing separate\
+Char(1)\
+10\
+A\
+Offset to base segment entry of parent\
+The end of the chain has a -1 value.\
+Bin(4)\
+14\
+E\
+Offset to base segment entry of synonym\
+The end of the chain has a -1 value.\
+Bin(4)\
+18	12	\
+Indicators\
+Char(1)\
+18	12	\
+Object is a HLL pointer\
+Bit 0\
+18	12	\
+Array segment is in multi-dimensioned array format\
+Bit 1\
+18	12	\
+Reserved (binary 0)\
+Bits 2-7\
+19	13	\
+Reserved (binary 0)\
+Char(7)\
+26\
+1A\
+--- End ---\
+ \
+Hashing is done by exclusively Or'ing the first 4 characters of the symbol name with the second 4 characters of the symbol name. The result is then divided by the number of hash buckets. If the result is negative or 0, the number of hash buckets is added to the result. The result is then used as an index to the hash bucket.\
+Format segment is used by certain compilers to specify a format program name to be used when formatting this variable.\
+The offset to the OMT component field specifies the location of the OMT component in the materialized program template. The OMT consists of a variable-length vector of 6-byte entries. The number of entries is identical to the number of ODV entries because there is one OMT entry for each ODV entry. The OMT entries correspond one for one with the ODV entries; each OMT entry gives a location mapping for the object defined by its associated ODV entry.\
+The following describes the formats for an OMT entry:\
+Offset	 \
+Dec	Hex	Field Name	Data Type and Length\
+0	0	OMT entry	Char(6)\
+0\
+0\
+Addressability type\
+Hex 00 =\
+Base addressability is from the start of the static storage\
+Hex 01 =\
+Base addressability is from the start of the automatic storage area\
+Hex 02 =\
+Base addressability is from the start of the storage area addressed by a space pointer\
+Hex 03 =\
+Base addressability is from the start of the storage area of a parameter\
+Hex 04 =\
+Base addressability is from the start of the storage area addressed by the space pointer found in the process communication object attribute of the process associated with the thread executing the program\
+Hex FF =\
+Base addressability not provided. The object is contained in machine storage areas to which addressability cannot be given, or a parameter has addressability to an object that is in the storage of another program\
+Char(1)\
+1\
+1\
+Offset from base\
+For types hex 00, hex 01, hex 02, hex 03, and hex 04, this is a 3-byte logical binary value representing the offset to the object from the base addressability.  For type hex FF, the value is binary 0.\
+Char(3)\
+4\
+4\
+Base addressability\
+For types hex 02 and hex 03, this is a 2-byte binary field containing the number of the OMT entry for the space pointer or a parameter that provides base addressability for this object. For types hex 00, hex 01, hex 04 and hex FF, the value is binary 0.\
+Char(2)\
+6\
+6\
+--- End ---\
+ \
+Authorization Required\
+Retrieve\
+Operand 2\
+Execute\
+Contexts referenced for address resolution\
+Lock Enforcement\
+Materialize\
+Operand 2\
+Contexts referenced for address resolution\
+Exceptions\
+06 Addressing\
+0601 Space Addressing Violation\
+0602 Boundary Alignment\
+0603 Range\
+08 Argument/Parameter\
+0801 Parameter Reference Violation\
+0A Authorization\
+0A01 Unauthorized for Operation\
+10 Damage Encountered\
+1004 System Object Damage State\
+1005 Authority Verification Terminated Due to Damaged Object\
+1044 Partial System Object Damage\
+1A Lock State\
+1A01 Invalid Lock State\
+1C Machine-Dependent\
+1C03 Machine Storage Limit Exceeded\
+20 Machine Support\
+2002 Machine Check\
+2003 Function Check\
+22 Object Access\
+2201 Object Not Found\
+2202 Object Destroyed\
+2203 Object Suspended\
+2207 Authority Verification Terminated Due to Destroyed Object\
+2208 Object Compressed\
+220A Program Not Eligible for Operation\
+220B Object Not Available\
+24 Pointer Specification\
+2401 Pointer Does Not Exist\
+2402 Pointer Type Invalid\
+2403 Pointer Addressing Invalid Object Type\
+2E Resource Control Limit\
+2E01 User Profile Storage Limit Exceeded\
+36 Space Management\
+3601 Space Extension/Truncation\
+38 Template Specification\
+3803 Materialization Length Invalid\
+44 Protection Violation\
+4401 Object Domain or Hardware Storage Protection Violation\
+4402 Literal Values Cannot Be Changed\
+Footnotes:\
+Parent topic:\
+Program Management\
+1\
+The previous mandatory release is release N-1, mod level zero when release N is the current release.. (For version 4, release 5.0, the previous mandatory release is version 4, release 4.0.).\
+\
+======\
+\
+Manca la descrizione delle variabili programma MI ...\
+\
+As you probably know, 
+\f1\b Simon Coulter
+\f0\b0 , a knowledgeable and versatile IBM i expert, passed away in October 2010. \
+Simon was loved by many IBM i developers because he was one of the giants in the industry, on whose shoulders others could stand and reach for new heights.\
+\
+Among all his posts in the news lists at midrange.com, there was one in which Simon introduced a technique that is critical to analyzing MI instruction streams of OPM programs: \
+Re: QPROCT and QPRODT. \
+\
+In this post, he pointed out that the description information for MI instructions, in form of a 17-byte entry for each instruction, is stored in a hidden space object, QSYS/QPROCT. \
+\
+Additionally, he discovered the format of the 17-byte entries through experiments. \
+\
+This is the key to analyzing the MI instruction stream of OPM programs. \
+\
+Starting from this point, we finally have the opportunity \ul to see clearly the format of MI instruction streams of OPM programs\ulnone , which has never been publicly documented by IBM. \
+\
+Furthermore, by combining the instruction stream analysis technique with IBM's documentation on other components of OPM programs\'97such as the object definition table (ODT)\'97\ul you can create an MI disassembler for OPM programs\ulnone .\
+\
+\
+\
+Hello Dan,\
+\
+You wrote:\
+>Trying to figure out how to dump a program object using STRSST's\
+>Display/Alter/Dump.  "Help" is not, pointing inquiring minds to "See the\
+>System Diagnostic Aids Manual (LY44-0597) for more information about this\
+>service tool."  I have searched high & low for this manual with no success.\
+\
+The LY manuals are licenced and must be specifically ordered.  If I recall\
+correctly, they are only available if IBM show you as having a licenced copy\
+of the operating system.\
+\
+>I'd appreciate it if someone could provide me with a *WORKING* link (IBM's\
+>docs provide links to this manual in various releases, but they're all dead\
+>links).\
+\
+Ain't no such thing ... see reason above ... while on-line links to the LY\
+manuals probably exist I suspect you have to be inside the IBM firewall to\
+access them.\
+\
+>Otherwise, if it does not exist, could someone tell me how to dump an OPM\
+>RPG program object?  The prompts ask for one of the following:\
+\
+Object is the object name (i.e., program).  A context is effectively\
+equivalent to a library (so called because it provides a reference to the\
+object i.e., a context).  As most AS/400 people know, QSYS is a special\
+library because it can contain libraries as well as objects that don't have\
+a library (e.g., user profiles).  QSYS is the external representation of the\
+machine context.  The machine context is used to locate everything else\
+(except those objects with fixed addresses, and temporary objects for which\
+the pointer returned when the object is created is needed).  DMPSYSOBJ\
+allows you to refer to the machine context via the *MCHCTX special value.\
+However, QSYS is not the same as the machine context -- run DMPSYSOBJ and\
+see that some objects in the list of pointers (.POINTERS) are explicitly\
+located in the QSYS library, others are located in the MACHINE CONTEXT**.\
+\
+>* Find By Object Name And Context Name\
+>   Object:\
+>     Type . . . . . . . . . :   (02) - Program\
+>     Name . . . . . . . . . .   ______________________________\
+>     Subtype  . . . . . . . .   01   00-FF\
+\
+\
+Type the program name.  The subtype is a little trickier.  OPM and ILE\
+programs are subtype 01, SQL packages are subtype 02, service programs are\
+subtype 03.  You can find the internal type and subtype for external objects\
+by calling the QLICVTTP API.  For internal object types you must dump the\
+object and read the dump -- unless you want to work out how to call QLICNV.\
+\
+>  Context:\
+>     Name . . . . . . . . . .   ______________________________\
+>     Subtype  . . . . . . . .   01   00-FF\
+\
+Type the library name.  The subtype for permanent libraries is 01, for\
+temporary libraries (i.e., QTEMP) is is C1.\
+\
+>* Find By Object Address\
+>   Object address . . . . . .   00000000 0000\
+\
+Use this when you know the address of the object such as certain\
+fixed-address internal system structures, or temporary objects.  Usually you\
+need to dump some other object (e.g., QTEMP) to find the address.\
+\
+** To see all the various objects on the system you can dump the machine\
+context.  For example:\
+        DMPSYSOBJ OBJ(*ALL) CONTEXT(*MCHCTX)\
+(although submitting it to batch would be a good idea).  \
+Note that this will generate a spooled file with 10's of thousands of pages!\
+\
+Regards,\
+Simon Coulter.\
+\
+\
+DMPSYSOBJ OBJ(QPROCT) CONTEXT(QSYS) TYPE(19) SUBTYPE(DA)\
+\
+                    1  1  1 1  1 1  1 1\
+ 1 2 3 4 5 6 7 8  9 0  1  2 3  4 5  6 7\
+================ ==== == ==== ==== ====   ========\
+C1C4C4D3C3404040 1023 05 D2D2 0003 FFFF   ADDLC\
+C1C4C4D540404040 1043 07 D2D2 0003 FFFF   ADDN\
+C1D5C44040404040 1093 05 1010 0003 FFFF   AND\
+C240404040404040 1011 00 0000 0001 FFFF   B\
+C3D3D9C2E3E24040 102E 00 0000 0002 FFFF   CLRBTS\
+                       ^\
+                       |\
+                       *--- controlla la Form (opera come mask sul primo byte dell'istruzione ?)\
+                       |\
+                       v\
+C3D4D7D5E5404040 1046 0C D2D2 0002 FFFF   CMPNV\
+\
+\
+se valesse l'ipotesi di corrispondenza con la parte di testata secondo il fatto che si tratti di contenuto variabile avremmo:\
+\
+                    1  1  1 1  1 1  1 1\
+ 1 2 3 4 5 6 7 8  9 0  1  2 3  4 5  6 7            Informazioni aggiuntive dalla testata (altre istruzioni??)\
+================ ==== == ==== ==== ====   ======== ==== ====\
+C1C4C4D3C3404040 1023 05 D2D2 0003 FFFF   ADDLC     \
+C1C4C4D540404040 1043 07 D2D2 0003 FFFF   ADDN     0047\
+C1D5C44040404040 1093 05 1010 0003 FFFF   AND      01B1 019C     DESAL, ?\
+C240404040404040 1011 00 0000 0001 FFFF   B\
+C3D3D9C2E3E24040 102E 00 0000 0002 FFFF   CLRBTS   \
+...\
+C3D4D7D5E5404040 1046 0C D2D2 0002 FFFF   CMPNV\
+\
+FFFF
+\f1\b 0047
+\f0\b0  FFFF
+\f1\b 01B1 019C
+\f0\b0 FFFF FFFFFFFF   FFFFFFFF 00A3FFFF 017A00C6 FFFF01C9\
+00E301CB 00BD01C5 FFFF0106 013AFFFF   01A4015E FFFF01B7 FFFF017C 017DFFFF\
+FFFFFFFF 0176011B FFFFFFFF FFFFFFFF   0068FFFF 008800FF 00C7FFFF 006100E6\
+\
+\
+\
+La AND ammette 1093, 1893, 1C93\
+               1193, 1993, 1D93\
+\
+il secondi byte \'e8 fisso.\
+Analizziamo a livello di bit il primo byte:\
+\
+ossia        00010000, 00011000, 00011100 \
+             00010001, 00011001, 00011101\
+\
+e mettiamolo a raffronto con 05\
+\
+             00000101\
+\
+\
+\
+\
+https://apimymymy.wordpress.com/2018/11/01/apis-by-example-user-space-apis/\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs28 \cf11 \expnd0\expndtw0\kerning0
+Here is how to read those QPRODT index entries into your MI disassembler\
+project. Break each 94-byte index entry into two 2-byte chunks and fifteen\
+6-byte chunks, and PRINT them in this order:\
+\
+
+\f0 00 01\
+02 03\
+04 05 06 07 08 09\
+0A 0B 0C 0D 0E 0F\
+10 11 12 13 14 15\
+16 17 18 19 1A 1B\
+1C 1D 1E 1F 20 21\
+22 23 24 25 26 27\
+28 29 2A 2B 2C 2D\
+2E 2F 30 31 32 33\
+34 35 36 37 38 39\
+3A 3B 3C 3D 3E 3F\
+40 41 42 43 44 45\
+46 47 48 49 4A 4B\
+4C 4D 4E 4F 50 51\
+52 53 54 55 56 57\
+58 59 5A 5B 5C 5D}

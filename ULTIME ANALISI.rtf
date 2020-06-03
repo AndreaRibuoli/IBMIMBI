@@ -1,0 +1,388 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red251\green0\blue7;\red35\green255\blue6;\red25\green60\blue255;
+\red253\green139\blue9;\red0\green0\blue0;\red252\green117\blue255;\red251\green0\blue7;\red217\green148\blue77;
+}
+{\*\expandedcolortbl;;\cssrgb\c100000\c12195\c0;\cssrgb\c0\c100000\c0;\cssrgb\c12594\c35385\c100000;
+\cssrgb\c100000\c61456\c0;\cssrgb\c0\c1\c1;\cssrgb\c100000\c56882\c100000;\cssrgb\c100000\c12195\c0;\cssrgb\c88569\c64418\c37353;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww20400\viewh12920\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+ILE (and NMI)\
+\
+After changing the NMI instruction stream of the program, the last step is to let the program object be translated again according to the newly changed NMI program template. \
+To achieve that, simply issue a Change Program (CHGPGM) command with the USRPRF parameter set to a value different from the value specified when the program was created in order to let the system translate the NMI program template stored in the program object into machine code and re-create the program object. \
+\
+An NMI program template is composed of components such as the 
+\f1\b \cf2 Module Dictionary Component
+\f0\b0 \cf0  and the 
+\f1\b \cf2 Module Instruction Component
+\f0\b0 \cf0 , which contains the NMI instruction stream.\
+\
+\
+\
+\
+\
+\
+\
+\
+La header nel SAVEFILE ha lunghezza X'120' anzich\'e9 X'100' come nel MATERIALIZE (e presumibilmente su disco)\
+\
+                 \
+S 00180008039000a33249330c3d00000000010300000000000000000000000000 \
+\
+S 
+\f1\b \cf3 00000db6\cf4 00000eae
+\f0\b0 \cf0 0201c5e7c1d4d7d3c5404040404040404040404040404040 \
+  ////////--- QUANTO ALLOCATO! SEGUITO DALLA DIMENSIONE EFFETTIVA... (NEL SAVEFILE 00000DB6 \
+>>0000
+\f1\b \cf5 1000
+\f0\b0 \cf0 00000EAE0201C5E7C1D4D7D3C5404040404040404040404040404040\
+\
+S 4040404040404040
+\f1\b \cf5 c000
+\f0\b0 \cf0 0000000000000000
+\f1\b \cf5 01e00001
+\f0\b0 \cf0 00000000000000000000 \
+>>4040404040404040
+\f1\b \cf5 E000
+\f0\b0 \cf0 0000000000000000
+\f1\b \cf5 10000011
+\f0\b0 \cf0 00000000000000000000\
+\
+S 000000000000000006d5fdbc0f00040000000000000000000000000000000000\
+>>000000000000000006D5FDBC0F00040000000000000000000000000000000000\
+S 00a080f\cf6 c
+\f1\b 000013c0
+\f0\b0 00000000
+\f1\b 000f0029\cf3 00000100\cf4 00000174\cf7 00000220
+\f0\b0 \cf0 00000000 \
+>>00A080FC000013C000000000000F002900000100000001740000022000000000\
+S 00000000000000000000000000000a8a
+\f1\b \cf8 0000032c\cf9 00000db8
+\f0\b0 \cf0 0000000f00000000 \
+>>00000000000000000000000000000A8A0000032C00000DB80000000F00000000\
+   \
+    \
+\
+Fatta questa correzione (-32) \
+#  l'offset 
+\f1\b \cf3 00000100
+\f0\b0 \cf0  sarebbe valido per lo stream di istruzioni\
+\
+# 000100 #\
+   B 
+\f1\b \ul 00 00 00 72
+\f0\b0 \ulnone  30 b2 00 06 00 0f 10 b3 00 07 00 04 \
+   B 20 40 01 64 00 09 00 05 00 00 00 00 10 42 00 0d \
+   B 30 00 02 32 00 0b 00 09 10 86 00 15 60 0a 20 01 \
+   B 21 00 02 93 00 29 00 00 00 28 30 86 00 15 60 0a \
+   B 21 01 21 00 02 93 00 29 00 00 00 28 30 86 00 15 \
+   B 60 0a 22 01 21 00 02 93 00 29 00 00 00 28 22 a1 \
+   B 00 00 22 83 40 25 30 ac 00 24 00 00 10 11 00 28 \
+   B 02 60 00 00 \
+#  l'offset 
+\f1\b \cf4 00000174
+\f0\b0 \cf0  sarebbe valido per l'Object Definition Table (ODT) che inizia con l'ODV (ODT Directory Vector)\
+# 000174 #\
+   B             
+\f1\b \ul 00 00 00 a8
+\f0\b0 \ulnone  28 01 00 04 14 01 00 00 \
+   B 5b 80 00 09 0a 04 00 10 00 04 00 22 0b 04 00 15 \
+   B 0b 04 00 1e 0b 04 00 27 10 02 00 00 00 44 10 00 \
+   B 18 01 00 30 0a 04 00 33 0b 00 00 38 0b 00 00 41 \
+   B 68 04 00 4a 18 01 00 4f 08 04 00 52 18 01 00 5c \
+   B 08 04 00 5f 18 01 00 76 00 04 02 00 18 01 00 79 \
+   B 08 00 00 7c 18 01 00 83 08 04 00 86 18 01 00 93 \
+   B 08 04 00 96 18 01 00 ad 08 00 00 b0 18 01 00 b7 \
+   B 08 04 00 ba 18 01 00 d1 00 04 00 04 18 01 00 d4 \
+   B 08 00 00 d7 5c 80 00 de 1a 02 00 f7 0d 04 01 00 \
+   B 1b 01 01 03 10 04 00 00 20 00 00 0d\
+#                                        <<<<        0x174 + 0xA8 = 0x21C   \
+\
+   B                                     00 00 00 00 \
+# il prossimo 16byte-boundary \'e8 l'offset 
+\f1\b \cf7 00000220\cf4  
+\f0\b0 \cf0 valido per l'OES (ODT Entry String)
+\f1\b \cf4 \
+
+\f0\b0 \cf0 # 000220 # \
+   B \ul 00 00 01 0a\ulnone  11 00 03 00 01 01 00 01 00 00 00 02 \
+   B 50 00 0a 00 02 58 00 02 00 05 00 00 00 01 58 00 \
+   B 1e 00 05 00 00 00 03 58 00 02 00 05 00 00 00 21 \
+   B 04 00 0a 50 7f ff 00 0b 58 00 04 00 0c 00 00 00 \
+   B 01 58 00 04 00 0c 00 00 00 05 42 00 02 02 01 04 \
+   B 00 11 44 00 07 40 40 40 40 40 40 40 04 00 13 44 \
+   B 00 14 40 40 40 40 40 40 40 40 40 40 40 40 40 40 \
+   B 40 40 40 40 40 40 04 00 15 04 00 17 44 00 04 00 \
+   B 00 02 00 04 00 19 44 00 0a 5c c9 d5 c6 d6 40 40 \
+   B 40 40 40 04 00 1b 44 00 14 5c d9 c5 d8 e4 c5 e2 \
+   B e3 c5 d9 40 40 40 40 40 40 40 40 40 40 04 00 1d \
+   B 44 00 04 00 00 00 01 04 00 1f 44 00 14 40 40 40 \
+   B 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 \
+   B 40 04 00 21 04 00 23 44 00 04 00 00 00 00 01 00 \
+# 000300 #\
+   B 0a 00 00 00 10 00 12 00 14 00 16 00 18 00 1a 00 \
+   B 1c 00 1e 00 20 00 22 30 00 00 19 28 00 00 00 27 \
+   B 40 7f ff 18 00 26 00 00 00 01 \
+#                                  <<<<              0x220 + 0x10a = 0x32A arrotondato a 
+\f1\b \cf8 0000032C
+\f0\b0 \cf0  ?\
+   B                               00 00 \
+# 00032C #\
+\
+# comincia una sezione di non facile comprensione\
+# sembrerebbero sotto-stringhe tipizzate dai primi 4 byte diversi da FFFFFFFF\
+# la sequenza di FFFFFFFF a seguire caratterizzerebbe la lunghezza\
+   B                                     00 00 02 33 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  7 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  8 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  9\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 10\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 11\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 12\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 13\
+# 000400 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 14\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 15\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 16\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 17                  \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 18*16+12 = 300         00 00 02 33 00 00 01 2C\
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 09 7f \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4*16 =     64         00 00 09 7F 00 00 00 40 \
+   B 00 00 0a 76 00 00 08 ee ff ff ff ff ff ff ff ff #                        00 00 0A 76 00 00 00 00\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+# 000500 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  7\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  8\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  9\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 10\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 11*16+8 =  184         00 00 08 EE 00 00 00 B8 \
+   B 00 00 0a 2f ff ff ff ff ff ff ff ff ff ff ff ff #  \
+   B ff ff ff ff ff ff ff ff 00 00 0a 10 ff ff ff ff #  1*16+4 =   20         00 00 0A 2F 00 00 00 14 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6\
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 09 69 #  7*16+0 =  116         00 00 0A 10 00 00 00 70 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 09 f2 #             12         00 00 09 69 00 00 00 0C\
+# 000600 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff 00 00 09 96 ff ff ff ff #  4*16+8 =   72         00 00 09 F2 00 00 00 48 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  7\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  8\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  9\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff # 10 \
+   B ff ff ff ff 00 00 09 5d ff ff ff ff ff ff ff ff # 4+10*16+4= 168         00 00 09 96 00 00 00 A8\
+# 000700 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  7\
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 09 45 #  8*16+4 =  132         00 00 09 5D 00 00 00 84\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4*16   =   64         00 00 09 45 00 00 00 40\
+   B 00 00 09 e4 ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff 00 00 08 dd ff ff ff ff #  2*16+4 =   36         00 00 09 E4 00 00 00 24\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+# 000800 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  7\
+   B ff ff ff ff 00 00 0a 1f ff ff ff ff ff ff ff ff #  7*16+8 =  120         00 00 08 DD 00 00 00 78   \
+   B ff ff ff ff ff ff ff ff 00 00 09 b4 ff ff ff ff #             16         00 00 0A 1F 00 00 00 10 \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff 00 00 09 d4 ff ff ff ff ff ff ff ff #  5*16+8 =   88         00 00 09 B4 00 00 00 58\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  1\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  2\
+# 000900 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  3\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  4\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  5\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff #  6*16+8 =  104         00 00 09 D4 00 00 00 68\
+   B 00 00 08 fa ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 31 00 00 08 d0 ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+# 000A00 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 0a 01 \
+# 000B00 #\
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 a4 ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff 00 00 0a 3e \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B 00 00 09 c4 ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff \
+   B ff ff ff ff 00 00 0a 62 ff ff ff ff ff ff ff ff            #  00 00 0A 62  00 00 00 08\
+# 000C00 #  \
+   B 00 02 c0 05 c1 d9 c7 f1 b5 ff ff ff ff 00 03 c0            #  00 02 C0 05  ARG1@ -1 \
+   B 09 d7 c1 d9 d4 6d d3 c9 e2 e3 ff ff ff ff 00 04 \
+   B c0 04 c1 d9 c7 f1 ff ff ff ff 00 05 c0 07 d9 c5 \
+   B e2 d6 d3 e5 c5 ff ff ff ff 00 06 c0 0c d9 c5 e2 \
+   B d6 d3 e5 c5 60 e3 e8 d7 c5 00 00 09 09 00 07 c0 \
+   B 0c d9 c5 e2 d6 d3 e5 c5 60 d5 c1 d4 c5 00 00 09 \
+   B 1d 00 08 c0 0c d9 c5 e2 d6 d3 e5 c5 60 c1 e4 e3 \
+   B c8 ff ff ff ff 00 0a c0 10 d4 c1 e3 c5 d9 c9 c1 \
+   B d3 c9 e9 c5 6d c1 d9 c5 c1 ff ff ff ff 00 0c c0 \
+   B 04 c9 d5 c6 d6 ff ff ff ff 00 0d c0 0e c2 e8 e3 \
+   B c5 e2 60 d7 d9 d6 e5 c9 c4 c5 c4 ff ff ff ff 00 \
+   B 0e c0 0f c2 e8 e3 c5 e2 60 c1 e5 c1 c9 d3 c1 c2 \
+   B d3 c5 ff ff ff ff 00 11 c0 06 d4 e2 c7 60 c9 c4 \
+   B ff ff ff ff 00 13 c0 08 d4 e2 c7 60 c6 c9 d3 c5 \
+   B ff ff ff ff 00 15 c0 08 d4 e2 c7 60 e3 c5 e7 e3 \
+   B ff ff ff ff 00 17 c0 08 d4 e2 c7 60 e2 c9 e9 c5 \
+# 000D00 #  \
+   B ff ff ff ff 00 19 c0 08 d4 e2 c7 60 e3 e8 d7 c5 \
+   B ff ff ff ff 00 1b c0 06 d4 e2 c7 60 d8 e2 ff ff \
+   B ff ff 00 1d c0 07 d4 e2 c7 60 d8 e2 d5 ff ff ff \
+   B ff 00 1f c0 07 d9 c5 d7 d3 e8 60 d8 ff ff ff ff \
+   B 00 21 c0 07 d4 e2 c7 60 d2 c5 e8 ff ff ff ff 00 \
+   B 23 c0 08 c5 d9 d9 60 c3 d6 c4 c5 ff ff ff ff 00 \
+   B 24 c0 07 d8 d4 c8 e2 d5 c4 d4 ff ff ff ff 00 26 \
+   B c0 1c d7 d9 d6 c3 c5 e2 e2 60 c3 d6 d4 d4 e4 d5 \
+   B c9 c3 c1 e3 c9 d6 d5 60 d6 c2 d1 c5 c3 e3 ff ff \
+   B ff ff 00 27 c0 0c e2 c5 d7 e3 60 d7 d6 c9 d5 e3 \
+   B c5 d9 ff ff ff ff 00 0d 40 0c e2 c8 d6 e6 60 d4 \
+   B c5 e2 e2 c1 c7 c5 \
+# 000DB6 #\
+                       00 00 \
+# 000DB8 #\
+   B                         06 00 00 00 00 01 0a 00 \
+   B 00 00 00 01 08 00 00 00 00 00 02 00 00 00 00 02 \
+   B 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 \
+   B 00 00 00 00 00 20 00 00 00 00 00 30 00 00 00 00 \
+   B 00 40 00 00 00 00 10 40 00 00 02 00 00 00 00 0b \
+# \ul 000E00\ulnone  #  \
+   B 02 00 00 00 00 0b 02 00 00 04 00 0b 05 00 00 00 \
+   B 00 00 00 00 10 50 00 00 00 00 10 60 00 00 00 00 \
+   B 10 70 00 00 00 00 10 80 00 00 00 00 10 a0 00 00 \
+   B 00 00 10 b0 00 00 00 00 12 b0 00 00 00 00 12 c0 \
+   B 00 00 00 00 12 d0 00 00 00 00 12 e0 00 00 00 00 \
+   B 12 f0 00 00 00 00 13 00 00 00 00 00 13 20 00 00 \
+   B 00 00 13 30 00 00 00 00 13 40 00 00 00 00 13 50 \
+   B 00 00 00 00 13 70 00 00 00 00 13 80 00 00 00 00 \
+   B 13 90 00 00 00 00 13 a0 00 00 07 00 00 00 00 00 \
+   B 02 00 00 00 00 27 0d 00 00 00 00 30 0d 00 00 00 \
+   B 00 30 00 00 13 b0 00 00 06 00 00 00 00 0d \
+# \ul 000EAE\ulnone  #  \
+   B                                           00 00 \
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+# 000F00 #\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+ 16B\
+   B 00 02 00 10 03 80 00 91 32 49 33 0c 3d 00 00 00 \
+   B 00 01 00 00 00 00 00 00 28 f2 e1 83 1e 00 10 00 \
+# 001000 #\
+\
+Immediate operands\
+The value of an immediate operand is encoded in the 2-byte instruction operand entry directly. \
+\
+Immediate operands may have the following values:\
+THE FIRST 3 BITS REPRESENT THE TYPE (WE INCLUDE NULL OPERAND)\
+\
+\'95 (0000 0000 0000 0000) NULL operand (hex 0000)\
+\'95 (1011 xxxx xxxx xxxx) Negative signed binary representing a binary value of negative 4,096 to negative 1 (0xBFFF).\
+\'95 (0010 xxxx xxxx xxxx) Positive signed binary representing a binary value of positive 1 to positive 4,095.\
+\'95 (001x xxxx xxxx xxxx) Unsigned binary representing a binary value of 0 to 8,191.\
+\'95 (0010 0000 xxxx xxxx) Byte string representing a single byte value from hex 00 to hex FF.\
+\'95 (???x xxxx xxxx xxxx) Absolute instruction number representing an instruction number in the range of 1 to 8,191.\
+\'95 (???x xxxx xxxx xxxx) Relative instruction number representing a displacement of an instruction relative to the instruction in which the operand occurs. This operand value may identify an instruction displacement of negative 4,096 to positive 4,095.\
+\
+00018  0004 00001C  1042 000D 0010                CPYNV BYTES-PROVIDED, -4097     \
+                                                  /* UNNAMED VARIABLE-CONSTANT */ \
+00019  0005 000022  1042 000D B000                CPYNV BYTES-PROVIDED, -4096     \
+                                                  /* IMMEDIATE */                 \
+00020  0006 000028  1042 000D 3FFF                CPYNV BYTES-PROVIDED, 8191      \
+                                                  /* IMMEDIATE */                 \
+00021  0007 00002E  1042 000D 0011                CPYNV BYTES-PROVIDED, 8192      \
+                                                  /* UNNAMED VARIABLE-CONSTANT */ \
+\
+}
