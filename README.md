@@ -55,7 +55,7 @@ The set of variables required by all APIs is declared in **QUINCLUDE** source fi
 *Machine Language*
 <br/>For **OPM** program model there has been a programming environment that -although low\-level- became quite common years ago. I am referring to the *AS/400 Machine\-Level Programming* (that is also the title of a detailed *hacker\-oriented* soft\-book written by *Leif Svalgaard*).
 
-Actually, when ILE was introduced, at V2R3, *original process model and ILE process model coexisted in the AS/400 until the appearence of the RISC processors. The RISC processor systems support only the ILE program and process models. **Both the ILE program and process models were created with the RISC processors in mind** * ( Frank G. Soltis *FORTRESS Rochester*, page 225)
+Actually, when ILE was introduced, at V2R3, *original process model and ILE process model coexisted in the AS/400 until the appearence of the RISC processors. The RISC processor systems support only the ILE program and process models. **Both the ILE program and process models were created with the RISC processors in mind** ( Frank G. Soltis FORTRESS Rochester, page 225)*
 
 As soon as V2R3 had its general availability in 1993 the idea of migrating to RISC appears pretty old: from the perspective of Rochester it all started in the early 90s.
 
