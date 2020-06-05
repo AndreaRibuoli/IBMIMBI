@@ -57,8 +57,7 @@ The set of variables required by all APIs is declared in **QUINCLUDE** source fi
 
 Actually, when ILE was introduced, at V2R3, 
 
-<cite>original process model and ILE process model coexisted in the AS/400 until the appearence of the RISC processors. The RISC processor systems support only the ILE program and process models. **Both the ILE program and process models were created with the RISC processors in mind**.
-</cite> 
+*original process model and ILE process model coexisted in the AS/400 until the appearence of the RISC processors. The RISC processor systems support only the ILE program and process models. **Both the ILE program and process models were created with the RISC processors in mind** *
 
 ( Frank G. Soltis *FORTRESS Rochester*, page 225)
 
