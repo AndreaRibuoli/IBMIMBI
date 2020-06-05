@@ -118,7 +118,7 @@
  say '.'
  say 'Nel nostro caso (essendo espresso in EBCDIC) corrisponde alla dicitura:' substr(data,nxtp+X2D(10)+1,32)
  say 'A seguire abbiamo quattro campi: BIN(2), BIN(2), BIN(4) e BIN(8). L''ultimo ripete il numero record archiviati'
- say 'con evidenti capacità di crescita (!), il penultimo dovrebbe segnalare la dimensione della pagina di memoria'
+ say 'con maggiori capacità di espansione, il penultimo dovrebbe segnalare la dimensione della pagina di memoria'
  say '(era X''00000200'' ai tempi del CISC). Dei primi due il secondo sembra indicare la versione minima del sistema'
  say 'operativo per cui è pensato il ripristino'
  say '.'
