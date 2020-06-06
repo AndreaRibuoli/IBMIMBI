@@ -44,9 +44,18 @@
  dts = C2X(substr(data,nxtp+1,8))
  odate = '                    '
  'CALL QSYS/QWCCVTDT PARM(*DTS &idate *YYMD &odate *NULL)'
+ say '.       SSSSS        AA   VV        VV  EEEEEEEEEE  FFFFFFFFFFF  III  LLL         EEEEEEEEEE'
+ say '.     SSS   SSS     AAAA   VV       VV  EEE         FFF          III  LLL         EEE'
+ say '.    SS            AAAAAA   VV     VV   EEE         FFF          III  LLL         EEE'
+ say '.     SSSS         AA   AA   VV    VV   EEEEEEE     FFFFFFF      III  LLL         EEEEEEE'
+ say '.        SSSSS    AAA    AA   VV  VV    EEE         FFF          III  LLL         EEE'
+ say '.           SSS   AAAAAAAAAA   VVVVV    EEE         FFF          III  LLL         EEE'
+ say '.     SS    SSS  AAA       AA   VVV     EEE         FFF          III  LLL         EEE'
+ say '.      SSSSSS   AAA         AA   VV     EEEEEEEEEE  FFF          III  LLLLLLLLLL  EEEEEEEEEE'
+ say '.'
  say 'I primi 8 byte di un savefile sono composti da un timestamp in un formato interno al sistema e noto come *DST.'
  say 'Si tratta di un numero binario, BIN(8), che esprime i microsecondi intercorsi facendo riferimento alla'
- say 'convenzione che al valore X''8000000000000000'' debbano corrispondere le ore 0 del 1 Gennaio 2000.'
+ say 'convenzione che al valore esadecimale X''8000000000000000'' debbano corrispondere le ore 0 del 1 Gennaio 2000.'
  say 'Nel nostro caso tale marcatura temporale vale X'''dts''' che corrisponde al timestamp' ,
      substr(odate,7,2)'/'substr(odate,5,2)'/'substr(odate,1,4) ,
      substr(odate,9,2)':'substr(odate,11,2)':'substr(odate,13,2)'.'substr(odate,15,6)
