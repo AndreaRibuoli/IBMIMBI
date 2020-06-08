@@ -128,7 +128,7 @@
  say '| ' || c2x(substr(data,nxtp+X2D(20)+1,16)) || '  |'
  say '------------------------------------+-'
  say '.'
- say 'Nel nostro caso (essendo espresso in EBCDIC) l'esadecimale corrisponde alla dicitura:' ,
+ say 'Nel nostro caso (essendo espresso in EBCDIC) l''esadecimale corrisponde alla dicitura:' ,
        substr(data,nxtp+X2D(10)+1,32)
  say '.'
  say 'A seguire abbiamo altri quattro campi: BIN(2), BIN(2), BIN(4) e BIN(8). L''ultimo ripete il numero record'
