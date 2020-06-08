@@ -128,16 +128,18 @@
  say '| ' || c2x(substr(data,nxtp+X2D(20)+1,16)) || '  |'
  say '------------------------------------+-'
  say '.'
- say 'Nel nostro caso (essendo espresso in EBCDIC) l'esadecimale corrisponde alla dicitura:' substr(data,nxtp+X2D(10)+1,32)
+ say 'Nel nostro caso (essendo espresso in EBCDIC) l'esadecimale corrisponde alla dicitura:' ,
+       substr(data,nxtp+X2D(10)+1,32)
  say '.'
- say 'A seguire abbiamo altri quattro campi: BIN(2), BIN(2), BIN(4) e BIN(8). L''ultimo ripete il numero record archiviati'
- say 'con maggiori possibilità di dimensione del valore, il penultimo dovrebbe segnalare la dimensione della pagina di'
- say 'memoria (era X''00000200'' ai tempi del CISC).'
- say 'Il secondo campo di questa ultima serie sembra indicare una versione minima del sistema operativo per cui è ipotizzato'
- say 'il ripristino. Pur retrocedendo in un SAVLIB *PRV il valore effettivo differisce dalla versione esatta che è indicata'
- say 'altrove. Anche questo campo è di fatto ignorato all''atto di un ripristino: ovviamente questa come altre asserzioni
- say 'che possono essere fatte sul formato dei savefile è sempre soggetta ad essere contraddetta in evoluzioni future del
- say 'sistema operativo.'
+ say 'A seguire abbiamo altri quattro campi: BIN(2), BIN(2), BIN(4) e BIN(8). L''ultimo ripete il numero record'
+ say 'archiviati con maggiori possibilità di dimensione del valore, il penultimo dovrebbe segnalare la dimensione'
+ say 'della pagina di memoria (era X''00000200'' ai tempi del CISC).'
+ say 'Il secondo campo di questa ultima serie sembra indicare una versione minima del sistema operativo per cui'
+ say 'è ipotizzato il ripristino. Pur retrocedendo in un SAVLIB *PRV il valore effettivo differisce dalla'
+ say 'versione esatta che è indicata altrove.'
+ say 'Anche questo campo è di fatto ignorato all''atto di un ripristino: ovviamente questa come altre asserzioni'
+ say 'che possono essere fatte sul formato dei savefile è sempre soggetta ad essere contraddetta in evoluzioni'
+ say 'future del sistema operativo.'
  say '.'
  say '+----------------+--------+----+----+-'
  say '|   *DST BIN(8)  | BIN(4) |    |    | '
