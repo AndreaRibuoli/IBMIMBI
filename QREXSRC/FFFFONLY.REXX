@@ -158,20 +158,15 @@
          ||  c2x(substr(data,nxtp+X2D(34)+1,4)) || '|' || c2x(substr(data,nxtp+X2D(38)+1,8)) || '|'
  say '+----+----+--------+----------------+-'
  say '.'
- /*
- say 'Numero record totale          'c2d( substr( data,  nxtp+X2D(08)+1, 4))
- say 'Formato load/dump interno   0x'c2x( substr( data,  nxtp+X2D(0C)+1, 2))
- say 'Formato load/dump esterno   0x'c2x( substr( data,  nxtp+X2D(0E)+1, 2))
- say 'Modello sistema e processore  '||   substr( data,  nxtp+X2D(10)+1, 32)
- say 'Versione OS massima (?)     0x'c2x( substr( data,  nxtp+X2D(30)+1, 2))
- say 'Versione OS minima  (?)     0x'c2x( substr( data,  nxtp+X2D(32)+1, 2))
- say 'Dimensione pagina             'c2d( substr( data,  nxtp+X2D(34)+1, 4))
- say 'Numero record totale UINT(8)  'c2d( substr( data,  nxtp+X2D(38)+1, 8))
-   say    c2x( substr( data,  nxtp+ 1, 16))
-   say    c2x( substr( data,  nxtp+17, 16))
-   say    c2x( substr( data,  nxtp+33, 16))
-   say    c2x( substr( data,  nxtp+49, 16))
-*/
+
+ say 'La seguente intestazione dovrebbe ora apparirci meno criptica:'
+ say '.'
+ say '0x000'  c2x( substr( data,  nxtp+ 1, 16))
+ say '0x010'  c2x( substr( data,  nxtp+17, 16))
+ say '0x020'  c2x( substr( data,  nxtp+33, 16))
+ say '0x030'  c2x( substr( data,  nxtp+49, 16))
+
+
    walk = c2d(substr(data, nxtp+X2D(34)+1, 4))
    totnumobjs = 0
    remnumobjs = 0
