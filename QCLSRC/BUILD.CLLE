@@ -33,7 +33,7 @@
              MONMSG     MSGID(CPF0000)
              ENDDO
              IF         COND(&DEVOPT = 'Y') THEN(DO)
-             CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132) CCSID(280)
+             CRTSRCPF   FILE(&TGTLIB/QCLSRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
              CRTSRCPF   FILE(&TGTLIB/QCMDSRC) RCDLEN(132)
              MONMSG     MSGID(CPF0000)
