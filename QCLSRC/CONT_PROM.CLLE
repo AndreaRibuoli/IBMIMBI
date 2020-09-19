@@ -1,4 +1,4 @@
-             PGM        PARM(&TYPCA£ &APPHN£ &PNLNA£ &ELETY£ &VARNM£ &LSTNA£ &SLTHN£)
+             PGM        PARM(&TYPCA_ &APPHN_ &PNLNA_ &ELETY_ &VARNM_ &LSTNA_ &SLTHN_)
              DCL        VAR(&VARRCD1) TYPE(*CHAR) LEN(314)
              DCL        VAR(&VARNAM1) TYPE(*CHAR) STG(*DEFINED) LEN(10) DEFVAR(&VARRCD1   1)
              DCL        VAR(&VARLEN1) TYPE(*INT)  STG(*DEFINED) LEN(4)  DEFVAR(&VARRCD1  11)
