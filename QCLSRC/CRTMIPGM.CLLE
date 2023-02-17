@@ -13,9 +13,9 @@
             DCL        VAR(&PRTFNAM)    TYPE(*CHAR) LEN(20)   VALUE('QSYSPRT   *LIBL     ')
             DCL        VAR(&PRTSTRPAG)  TYPE(*INT)  LEN(4)    VALUE(1)
             DCL        VAR(&PGMPUBAUT)  TYPE(*CHAR) LEN(10)   VALUE('*ALL      ')
-            DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(44)   +                                
-                             VALUE('*LIST      *REPLACE   *XREF      *ATR       ')  
-            DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(4)                                                                                    
+            DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(44)   +
+                             VALUE('*LIST      *REPLACE   *XREF      *ATR       ')
+            DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(4)
          /* DCL        VAR(&PGMOPTS)    TYPE(*CHAR) LEN(22)   VALUE('*LIST      *REPLACE   ')  */
          /* DCL        VAR(&NUMOPTS)    TYPE(*INT)  LEN(4)    VALUE(2)                         */
             DCL        VAR(&ERRCDE)     TYPE(*CHAR) LEN(16)
@@ -31,7 +31,7 @@
             DCL        VAR(&ERRNO)      TYPE(*INT) STG(*BASED) LEN(4) BASPTR(&ERRPTR)
             DCL        VAR(&VALORE)     TYPE(*CHAR) LEN(10)
             DCL        VAR(&FSTROW)     TYPE(*CHAR) LEN(120) STG(*BASED) BASPTR(&MIPGMSRC)
-            
+
             RTVMBRD    FILE(QMISRC) MBR(&SRCMBR) +
                          NBRCURRCD(&RECS) TEXT(&PGMTXT) RTNLIB(&RTNLIB)
             CHGVAR     VAR(&QMISRC) VALUE('/qsys.lib/' *CAT &RTNLIB *TCAT '.lib/qmisrc.file/' +

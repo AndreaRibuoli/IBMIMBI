@@ -28,10 +28,10 @@
 :CLASS NAME=viewcl BASETYPE='BIN 15'.
 :ECLASS.
 .* _____________________________________________________________________________________________________________________
-:VAR      NAME=zjob.                       
-:VAR      NAME=zuser.                         
-:VAR      NAME=zjobnbr.                         
-:VAR      NAME=zsysnam.            
+:VAR      NAME=zjob.
+:VAR      NAME=zuser.
+:VAR      NAME=zjobnbr.
+:VAR      NAME=zsysnam.
 :VAR      NAME=name          CLASS=namecl.
 :VAR      NAME=addr          CLASS=addrcl.
 :VAR      NAME=city          CLASS=citycl.

@@ -3,8 +3,8 @@
 .*  Help for command CONTATTI
 .************************************************************************
 :help name='CONTATTI'.
-&msg(USR0200). - Aiuto
-:p.Il comando &msg(USR0200). (CONTATTI) dimostra l'utilizzo dello
+Avvio Gestione Contatti - Aiuto
+:p.Il comando Avvio Gestione Contatti (CONTATTI) dimostra l'utilizzo dello
 User Interface Manager (UIM) per lo sviluppo di applicazioni interattive
 per IBM i. Per informazioni ulteriori circa UIM consulta
 :cit.Guide to Programming Application and Help Displays:ecit. (SC41-0011)
@@ -23,7 +23,7 @@ e il capitolo "User Interface Manager APIs" in
 .* This command is conditionally threadsafe, <...>
 .* .* If conditionally threadsafe, list threadsafe conditions or restrictions.
 .* :li.
-.* <...> 
+.* <...>
 .* .* Describe other command-level restrictions.
 .* .* Parameter-level restrictions belong in parameter help sections, not here.
 .* :eul.
@@ -32,9 +32,9 @@ e il capitolo "User Interface Manager APIs" in
 .*   Help for parameter ALWCHG
 .*******************************************
 :help name='CONTATTI/ALWCHG'.
-&msg(USR0201). (ALWCHG) - Aiuto
-:xh3.&msg(USR0201). (ALWCHG)
-:p.Use this parameter to disallow writing to the address book database.  
+Consenti scrittura su database. (ALWCHG) - Aiuto
+:xh3.Consenti scrittura su database (ALWCHG)
+:p.Use this parameter to disallow writing to the address book database.
 :parml.
 :pt.:pk def.*YES:epk.
 :pd.
@@ -50,22 +50,22 @@ If *NO is specified, then all writes and updates to the database are ignored.
 .*
 .**************************************************
 :help name='CONTATTI/COMMAND/EXAMPLES'.
-Examples for CONTATTI - Help 
-:xh3.Examples for CONTATTI 
-:p.:hp2.Example 1: Simple Command Example:ehp2.  
+Examples for CONTATTI - Help
+:xh3.Examples for CONTATTI
+:p.:hp2.Example 1: Simple Command Example:ehp2.
 :xmp.
-CONTATTI  KWD1(PARMVAL1)  
+CONTATTI  KWD1(PARMVAL1)
 :exmp.
 :p.This command <...>
-.* Describe a simple invocation of the command.     
+.* Describe a simple invocation of the command.
 .*
-:p.:hp2.Example 2: More Complex Command Example:ehp2.  
+:p.:hp2.Example 2: More Complex Command Example:ehp2.
 :xmp.
 CONTATTI   KWD1(PARMVAL1)  KWD2(PARMVAL2)
            KWD3(PARMVAL3)
 :exmp.
 :p.This command <...>
-.* Describe a more complex invocation of the command.     
+.* Describe a more complex invocation of the command.
 :ehelp.
 .**************************************************
 .*
@@ -77,9 +77,9 @@ CONTATTI   KWD1(PARMVAL1)  KWD2(PARMVAL2)
 :xh3.&msg(CPX0005,QCPFMSG). CONTATTI
 :p.:hp3.*ESCAPE &msg(CPX0006,QCPFMSG).:ehp3.
 .************************************************************************
-.* List the *ESCAPE, *STATUS, and *NOTIFY messages signalled from the command. 
-.* The following are generic messages defined in message file QCPFMSG. 
-.* Modify this list to match the list of error messages for the command. 
+.* List the *ESCAPE, *STATUS, and *NOTIFY messages signalled from the command.
+.* The following are generic messages defined in message file QCPFMSG.
+.* Modify this list to match the list of error messages for the command.
 .************************************************************************
 :DL COMPACT.
 :DT.CPF9801
@@ -106,5 +106,5 @@ CONTATTI   KWD1(PARMVAL1)  KWD2(PARMVAL2)
 :DD.&MSG(CPF9899,QCPFMSG,*LIBL,nosub).
 :EDL.
 :ehelp.
-:epnlgrp.       
-  
+:epnlgrp.
+
