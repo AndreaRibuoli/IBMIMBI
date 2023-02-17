@@ -30,6 +30,13 @@ CONTATTI.CMD: CONTATTI.PGM CONTATTI.QCMDSRC CONTATTI.PNLGRP CONT_MAIN.PNLGRP
           SRCFILE(&SRCLIB/QCMDSRC) ALLOW(*INTERACT *IPGM *IREXX *EXEC) ALWLMTUSR(*YES) +
           PMTFILE(&TGTLIB/CONTATTI) HLPPNLGRP(*LIBL/CONTATTI) HLPID(*CMD) +
           PRDLIB(&TGTLIB)                
+          
+## Product library (PRDLIB)
+##   Specifies the product library that is to be in effect during the processing of the command.
+##
+## Note: The product library for a command or menu remains in the library list while a command or menu is active, 
+## unless another command or menu changes the product library. When a command or menu that changed the product
+## library ends, the product library is restored to what it was when the command or menu started.          
                 
 CONTATTI.MSGF:
              CRTMSGF MSGF(&TGTLIB/$(@M)) CCSID(*MSGD) 

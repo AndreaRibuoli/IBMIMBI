@@ -63,7 +63,7 @@
 :KEYI     KEY=F1          HELP=helpf1          ACTION=HELP.
 :KEYI     KEY=F3          HELP=exit            ACTION='EXIT SET'          VARUPD=NO   .F3=Fine
 :KEYI     KEY=F5          HELP=exit            ACTION='CALL ABUFKEY'      VARUPD=NO   .F5=Rivisualizzazione
-:KEYI     KEY=F9          HELP=exit            ACTION='CMD IBMIMBI/CONTATTI' VARUPD=NO.F9=Esecuzione
+:KEYI     KEY=F9          HELP=exit            ACTION='CMD CONTATTI'      VARUPD=NO   .F9=Esecuzione
 :KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view0  .F11=Mostra città
 :KEYI     KEY=F11         HELP=f11             ACTION=CHGVIEW             COND=view1  .F11=Mostra indirizzo
 :KEYI     KEY=F12         HELP=cancel          ACTION='CANCEL SET'        VARUPD=NO   .F12=Annullamento

@@ -27,8 +27,8 @@
              CHGVAR     VAR(&VARRCD_P) VALUE(%ADDRESS(&VARRCD0))
              CHGVAR     VAR(&VARLEN) VALUE(100)
              CHGVAR     VAR(&VARNAM) VALUE(PGMVAR)
-             ADDLIBLE   LIB(IBMIMBI)
-             MONMSG     MSGID(CPF2103)
+/*             ADDLIBLE   LIB(IBMIMBI)      */
+/*             MONMSG     MSGID(CPF2103)    */
              CHGVAR     VAR(&PNLGN) VALUE(CONT_MAIN)
              INCLUDE    SRCMBR(QUIOPNDA)
              INCLUDE    SRCMBR(QUIPUTV)
