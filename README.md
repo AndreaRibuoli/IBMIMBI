@@ -90,4 +90,8 @@ I was impressed to find a clear description of what we call **TIMI** (Technology
 ```
 
 ## Installation with PASERIE installer
-`system 'PASERIE/INSTALL GIT_USER(AndreaRibuoli) PACKAGEN(IBMIMBI)'`
+
+```
+PASERIE/INSTALL REPO_OWNER(AndreaRibuoli) REPOSITORY(IBMIMBI)
+```
+
